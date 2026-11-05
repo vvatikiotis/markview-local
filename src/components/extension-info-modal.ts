@@ -93,7 +93,7 @@ function getHeaderHTML(version: string): string {
           </defs>
         </svg>
       </div>
-      <h1 class="markview-extension-info-title">MarkView</h1>
+      <h1 class="markview-extension-info-title">${getMessage('appName')}</h1>
       <p class="markview-extension-info-version">Version ${version}</p>
       <p class="markview-extension-info-tagline">${MESSAGES.appDescription || 'Modern Markdown Viewer for Chrome'}</p>
     </div>
@@ -133,7 +133,7 @@ function getBodyHTML(): string {
             </div>
             <div class="markview-extension-info-link-content">
               <span class="markview-extension-info-link-title">${MESSAGES.watchDemo || 'Watch Demo'}</span>
-              <span class="markview-extension-info-link-subtitle">See MarkView in action</span>
+              <span class="markview-extension-info-link-subtitle">See the original MarkView in action</span>
             </div>
             <svg class="markview-extension-info-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -217,7 +217,7 @@ function getBodyHTML(): string {
         </h2>
         
         <p class="markview-extension-info-description">
-          ${MESSAGES.extensionInfo?.description || 'MarkView transforms your Markdown files into beautifully rendered documents with support for syntax highlighting, Mermaid diagrams, math equations, and much more. Browse local files, customize themes, and enjoy a seamless reading experience.'}
+          ${MESSAGES.extensionInfo?.description || 'MarkView Local transforms your Markdown files into beautifully rendered documents with support for syntax highlighting, Mermaid diagrams, math equations, and much more. Browse local files, customize themes, and enjoy a seamless reading experience.'}
         </p>
 
         <div class="markview-extension-info-features">

@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MarkView Settings</title>
+  <title>MarkView Local Settings</title>
   <link rel="stylesheet" href="css/popup.css">
 </head>
 
 <body>
   <div class="popup-container flex flex-col h-full">
     <header class="popup-header">
-      <h1 class="text-2xl font-bold" data-i18n="appName">⚡ MarkView</h1>
+      <h1 class="text-2xl font-bold" data-i18n="appName">⚡ MarkView Local</h1>
       <p class="text-sm opacity-75" data-i18n="appDescription">Modern Markdown Viewer</p>
       <div class="header-attribution">
         <p><span data-i18n="attribution_originalAuthor">Original author:</span> <strong>MarkView Team</strong></p>
@@ -69,7 +69,7 @@
                       id="extension-management-url"
                       style="background: rgba(255, 255, 255, 0.7); padding: 3px 8px; border-radius: 4px; font-family: monospace; color: #856404; border: 1px solid rgba(133, 100, 4, 0.2); font-size: 12px;"></code>
                   </li>
-                  <li style="margin-bottom: 8px;" data-i18n="permissionStep2">Find MarkView and click "Details"</li>
+                  <li style="margin-bottom: 8px;" data-i18n="permissionStep2">Find MarkView Local and click "Details"</li>
                   <li style="margin-bottom: 8px;" data-i18n="permissionStep3">Enable "Allow access to file URLs"</li>
                   <li data-i18n="permissionStep4">Refresh this page</li>
                 </ol>
@@ -301,7 +301,7 @@
                   <span data-i18n="syntaxTheme">Syntax Theme</span>
                 </span>
                 <select id="syntaxTheme" class="setting-select">
-                  <option value="custom" data-i18n="syntaxTheme_markview">MarkView (Default)</option>
+                  <option value="custom" data-i18n="syntaxTheme_markview">MarkView Local (Default)</option>
                   <option disabled>───────────</option>
                   <option value="github">GitHub</option>
                   <option value="vs">Visual Studio</option>
@@ -320,7 +320,7 @@
                 </select>
               </label>
               <p class="text-xs text-muted mt-2" data-i18n="syntaxThemeDescription">
-                Color theme for code blocks. MarkView theme auto-adapts to light/dark mode.
+                Color theme for code blocks. MarkView Local theme auto-adapts to light/dark mode.
               </p>
             </div>
 
@@ -403,7 +403,6 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path
                   d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
               </svg>
               <span data-i18n="resetToDefaults">Reset to Defaults</span>
             </button>

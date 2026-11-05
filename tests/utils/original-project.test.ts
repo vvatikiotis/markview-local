@@ -34,7 +34,7 @@ describe('original-project identity', () => {
     showWelcomeMessage();
     expect(banner).toHaveBeenCalledTimes(1);
     const text = banner.mock.calls[0]![0] as string;
-    expect(text).toContain('v1.0.0');
+    expect(text).toContain('%cMarkView Local %cv1.0.0');
     expect(text).toContain(
       'Modified local build, not maintained or endorsed by the original authors.'
     );

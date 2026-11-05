@@ -1,5 +1,5 @@
 {
-  "name": "markview-oss",
+  "name": "markview-local",
   "version": "1.0.0",
   "type": "module",
   "description": "Lightweight markdown viewer with GFM support, syntax highlighting, Mermaid diagrams, and KaTeX math rendering.",

@@ -1,6 +1,6 @@
-# Architecture
+# MarkView Local Architecture
 
-How MarkView (Open-Source Edition) turns a raw markdown page into a rendered document. For building and running the
+How MarkView Local turns a raw markdown page into a rendered document. For building and running the
 code, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ## Principles
@@ -141,7 +141,7 @@ There is no analytics, telemetry, crash reporting or remote configuration.
 
 - **Local documents and network access.** The extension processes local files only; resources referenced by those
   documents may still be fetched by ordinary browser loading or from Google Fonts. This is not a full offline mode.
-  Images may be blocked by browser policy; MarkView does not retry them through the service worker.
+  Images may be blocked by browser policy; MarkView Local does not retry them through the service worker.
 
 To report a vulnerability, see [SECURITY.md](../SECURITY.md).
 

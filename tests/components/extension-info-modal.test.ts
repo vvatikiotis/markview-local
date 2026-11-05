@@ -33,6 +33,9 @@ describe('extension-info-modal original-project attribution', () => {
         ).toContain('Original author: MarkView Team');
         await initI18n(language);
         document.dispatchEvent(new Event('markview:languageChanged'));
+        expect(document.querySelector('.markview-extension-info-title')?.textContent).toBe(
+          'MarkView Local'
+        );
         const credit = document.querySelector<HTMLElement>('.markview-extension-info-attribution')!;
         expect(isInaccessible(credit)).toBe(false);
         expect(credit.textContent).toContain(

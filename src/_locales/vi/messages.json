@@ -12,7 +12,7 @@
     "message": "Bản dựng cục bộ đã sửa đổi; không do các tác giả gốc duy trì hoặc xác nhận."
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "Trình xem Markdown hiện đại"
@@ -84,7 +84,7 @@
     "message": "Giao diện Code"
   },
   "syntaxThemeDescription": {
-    "message": "Màu sắc cho khối code. Giao diện MarkView tự động thích ứng với chế độ sáng/tối."
+    "message": "Màu sắc cho khối code. Giao diện MarkView Local tự động thích ứng với chế độ sáng/tối."
   },
   "syntaxTheme_autoGroup": {
     "message": "Tự động (Sáng/Tối)"
@@ -96,7 +96,7 @@
     "message": "Giao diện Tối"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView (Mặc định)"
+    "message": "MarkView Local (Mặc định)"
   },
   "syntaxHighlighting": {
     "message": "Tô màu cú pháp"
@@ -180,7 +180,7 @@
     "message": "Không thể hiển thị markdown"
   },
   "notification_loadedSuccess": {
-    "message": "MarkView đã tải thành công!"
+    "message": "MarkView Local đã tải thành công!"
   },
   "notification_loadedWithFilename": {
     "message": "Đã tải"
@@ -201,7 +201,7 @@
     "message": "Tự động làm mới đã tạm dừng. Nhấp vào một tệp trong thanh bên để tiếp tục."
   },
   "notification_extensionUpdated": {
-    "message": "🔃 MarkView đã được cập nhật. Đang tải lại trang..."
+    "message": "🔃 MarkView Local đã được cập nhật. Đang tải lại trang..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 Tính năng này không được hỗ trợ trong ngữ cảnh sandbox (URL bên ngoài)."
@@ -267,7 +267,7 @@
     "message": "Đi tới"
   },
   "permissionStep2": {
-    "message": "Tìm MarkView và nhấp vào \"Chi tiết\""
+    "message": "Tìm MarkView Local và nhấp vào \"Chi tiết\""
   },
   "permissionStep3": {
     "message": "Bật \"Cho phép truy cập vào các URL tệp\""
@@ -504,7 +504,7 @@
     "message": "Cấu hình Plugin"
   },
   "actions_extensionInfo": {
-    "message": "Về MarkView"
+    "message": "Về MarkView Local"
   },
   "actions_quickSettings": {
     "message": "Cài Đặt Nhanh"
@@ -567,10 +567,10 @@
     "message": "Đánh giá tiện ích"
   },
   "extensionInfo_about": {
-    "message": "Về MarkView"
+    "message": "Về MarkView Local"
   },
   "extensionInfo_description": {
-    "message": "MarkView là trình xem Markdown hiện đại, giàu tính năng cho trình duyệt Chromium (Chrome, Edge, Brave, Opera, v.v.). Chuyển đổi các tệp Markdown của bạn thành tài liệu tương tác đẹp mắt với tô sáng cú pháp, biểu đồ, phương trình toán học và nhiều hơn nữa."
+    "message": "MarkView Local là trình xem Markdown hiện đại, giàu tính năng cho trình duyệt Chromium (Chrome, Edge, Brave, Opera, v.v.). Chuyển đổi các tệp Markdown của bạn thành tài liệu tương tác đẹp mắt với tô sáng cú pháp, biểu đồ, phương trình toán học và nhiều hơn nữa."
   },
   "extensionInfo_website": {
     "message": "Trang web chính thức"

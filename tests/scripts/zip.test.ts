@@ -11,7 +11,10 @@ async function fixture(): Promise<string> {
   const directory = await mkdtemp(path.join(root, 'tmp/zip-test-'));
   await mkdir(path.join(directory, 'scripts'));
   await copyFile(path.join(root, 'scripts/zip.mjs'), path.join(directory, 'scripts/zip.mjs'));
-  await writeFile(path.join(directory, 'package.json'), JSON.stringify({ version: '1.2.3' }));
+  await writeFile(
+    path.join(directory, 'package.json'),
+    JSON.stringify({ name: 'markview-local', version: '1.2.3' })
+  );
   return directory;
 }
 
@@ -36,7 +39,10 @@ describe('scripts/zip.mjs', () => {
     const result = runZip(directory);
     expect(result.stderr).toBe('');
     expect(result.status).toBe(0);
-    const entries = unzipSync(await readFile(path.join(directory, 'dist/markview-1.2.3.zip')));
+    expect(result.stdout).toContain('markview-local-1.2.3.zip');
+    const entries = unzipSync(
+      await readFile(path.join(directory, 'dist/markview-local-1.2.3.zip'))
+    );
     expect(Object.keys(entries).sort()).toEqual([
       'LICENSE',
       'manifest.json',
@@ -68,7 +74,7 @@ describe('scripts/zip.mjs', () => {
   it('fails when the archive cannot be written', async () => {
     const directory = await fixture();
     await mkdir(path.join(directory, 'extension'));
-    await mkdir(path.join(directory, 'dist/markview-1.2.3.zip'), { recursive: true });
+    await mkdir(path.join(directory, 'dist/markview-local-1.2.3.zip'), { recursive: true });
     const result = runZip(directory);
     expect(result.status).toBe(1);
     expect(result.stderr).toContain('Failed to create zip');

@@ -12,7 +12,7 @@
     "message": "Build lokal yang dimodifikasi; tidak dipelihara atau didukung oleh penulis asli."
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "Penampil Markdown Modern"
@@ -84,7 +84,7 @@
     "message": "Tema Sintaks"
   },
   "syntaxThemeDescription": {
-    "message": "Tema warna untuk blok kode. Tema MarkView menyesuaikan otomatis dengan mode terang/gelap."
+    "message": "Tema warna untuk blok kode. Tema MarkView Local menyesuaikan otomatis dengan mode terang/gelap."
   },
   "syntaxTheme_autoGroup": {
     "message": "Otomatis (Terang/Gelap)"
@@ -96,7 +96,7 @@
     "message": "Tema Gelap"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView (Default)"
+    "message": "MarkView Local (Default)"
   },
   "syntaxHighlighting": {
     "message": "Penyorotan Sintaks"
@@ -180,7 +180,7 @@
     "message": "Gagal merender markdown"
   },
   "notification_loadedSuccess": {
-    "message": "MarkView berhasil dimuat!"
+    "message": "MarkView Local berhasil dimuat!"
   },
   "notification_loadedWithFilename": {
     "message": "Dimuat"
@@ -201,7 +201,7 @@
     "message": "Penyegaran otomatis dijeda. Klik file di sidebar untuk melanjutkan."
   },
   "notification_extensionUpdated": {
-    "message": "🔃 Ekstensi MarkView diperbarui. Memuat ulang halaman..."
+    "message": "🔃 Ekstensi MarkView Local diperbarui. Memuat ulang halaman..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 Fitur ini tidak didukung dalam konteks terisolasi (URL eksternal)."
@@ -267,7 +267,7 @@
     "message": "Pergi ke"
   },
   "permissionStep2": {
-    "message": "Temukan MarkView dan klik \"Detail\""
+    "message": "Temukan MarkView Local dan klik \"Detail\""
   },
   "permissionStep3": {
     "message": "Aktifkan \"Izinkan akses ke URL file\""
@@ -504,7 +504,7 @@
     "message": "Konfigurasi Plugin"
   },
   "actions_extensionInfo": {
-    "message": "Tentang MarkView"
+    "message": "Tentang MarkView Local"
   },
   "actions_quickSettings": {
     "message": "Pengaturan Cepat"
@@ -567,10 +567,10 @@
     "message": "Beri Nilai Ekstensi"
   },
   "extensionInfo_about": {
-    "message": "Tentang MarkView"
+    "message": "Tentang MarkView Local"
   },
   "extensionInfo_description": {
-    "message": "MarkView adalah penampil Markdown modern yang kaya fitur untuk peramban Chromium (Chrome, Edge, Brave, Opera, dll.). Ubah file Markdown Anda menjadi dokumen interaktif yang indah dengan penyorotan sintaks, diagram, persamaan matematika, dan banyak lagi."
+    "message": "MarkView Local adalah penampil Markdown modern yang kaya fitur untuk peramban Chromium (Chrome, Edge, Brave, Opera, dll.). Ubah file Markdown Anda menjadi dokumen interaktif yang indah dengan penyorotan sintaks, diagram, persamaan matematika, dan banyak lagi."
   },
   "extensionInfo_website": {
     "message": "Situs Web Resmi"

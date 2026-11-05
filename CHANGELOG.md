@@ -1,13 +1,19 @@
-# Changelog
+# MarkView Local Changelog
 
-All notable changes to MarkView (Open-Source Edition) are documented in this file.
+This file distinguishes MarkView Local changes from the original project's historical baseline.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## Local changes
 
-The first public version, to be released as 1.0.0.
+See the [differences from upstream](README.md#differences-from-the-original-open-source-edition) for the changes in
+MarkView Local.
+
+## [Upstream baseline]
+
+The entries below describe the original MarkView open-source snapshot, intended for version 1.0.0. They are retained
+as history, not a list of features currently enabled in MarkView Local.
 
 ### Added
 
@@ -42,4 +48,4 @@ The first public version, to be released as 1.0.0.
 
 - HTML embedded in a document can no longer run script; it is sanitized before rendering.
 
-[Unreleased]: https://github.com/markview-app/markview/commits/main
+[Upstream baseline]: https://github.com/markview-app/markview/tree/16d2d088816423ea236359cc40a5d8f22e5f8480

@@ -1,6 +1,6 @@
-# Contributing
+# Contributing to MarkView Local
 
-Thank you for helping with MarkView (Open-Source Edition). This edition is kept small on purpose: a stable core
+Thank you for helping with MarkView Local. This edition is kept small on purpose: a stable core
 renderer that is easy to read and audit. This guide explains what fits that scope and how to send a change.
 
 By taking part you agree to follow the [Code of Conduct](../CODE_OF_CONDUCT.md).
@@ -28,12 +28,13 @@ If you are unsure whether a change fits, open an issue or a discussion before wr
 
 ## Reporting a bug
 
-Use the [bug report form](https://github.com/markview-app/markview/issues/new?template=bug_report.yml). The most
-useful reports include a small local Markdown file that shows the problem, the browser and its version, and any errors
-from the DevTools console. Remote Markdown documents are not supported by this edition.
+For bugs specific to MarkView Local, contact the maintainer of your checkout. Include a small local Markdown file
+that shows the problem, the browser and its version, and any errors from the DevTools console. Remote Markdown
+documents are not supported.
 
-This tracker is for the open-source edition. Problems with the version installed from the Chrome Web Store or Edge
-Add-ons go to [markview-app/support](https://github.com/markview-app/support).
+For bugs reproducible in the original MarkView open-source edition, use the upstream
+[bug report form](https://github.com/markview-app/markview/issues/new?template=bug_report.yml). Problems with the
+separate Chrome Web Store or Edge Add-ons edition go to [markview-app/support](https://github.com/markview-app/support).
 
 ## Sending a pull request
 
@@ -77,4 +78,5 @@ conventions that tools do not check (no UI framework, no global state, strings f
 
 ## License
 
-By contributing, you agree that your contributions are licensed under the [MIT License](../LICENSE).
+Contributions to MarkView Local are licensed under the [MIT License](../LICENSE). Preserve the original MarkView Team
+copyright and permission notice.

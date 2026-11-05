@@ -1,15 +1,14 @@
 name: Bug Report
-description: Report a bug in the open-source edition
+description: Report a bug in MarkView Local
 title: '[Bug]: '
 labels: ['bug']
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a bug. This tracker is for the open-source edition built from this repository. For
-        MarkView installed from the Chrome Web Store or Edge Add-ons, please use
-        [markview-app/support](https://github.com/markview-app/support/issues). Security problems go to
-        [SECURITY.md](https://github.com/markview-app/markview/blob/main/SECURITY.md), not public issues.
+        Thanks for reporting a bug in MarkView Local. For the original MarkView installed from the Chrome Web Store
+        or Edge Add-ons, please use [markview-app/support](https://github.com/markview-app/support/issues).
+        Report security problems privately as described in this checkout's SECURITY.md, not public issues.
 
   - type: textarea
     id: description
@@ -35,7 +34,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: MarkView version or commit
+      label: MarkView Local version or commit
       placeholder: 'e.g., 1.0.0 or 7456e02'
     validations:
       required: true
@@ -46,8 +45,7 @@ body:
       label: Where was the document opened from?
       options:
         - Local file (file://)
-        - Link (http:// or https://)
-        - Both
+        - Other URL (not supported by MarkView Local)
     validations:
       required: true
 

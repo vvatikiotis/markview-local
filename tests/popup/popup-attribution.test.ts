@@ -47,6 +47,7 @@ describe('popup original-project attribution', () => {
           messages.attribution_modifiedBuild.message
         )
       );
+      expect(document.querySelector('.popup-header h1')?.textContent).toBe('MarkView Local');
       const credit = document.querySelector<HTMLElement>('.popup-header .header-attribution')!;
       expect(isInaccessible(credit)).toBe(false);
       expect(credit.querySelector('strong')?.textContent).toBe('MarkView Team');

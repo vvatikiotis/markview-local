@@ -1,20 +1,29 @@
-# MarkView (Open-Source Edition)
+# MarkView Local
 
-**Original author: MarkView Team** · [Original repository](https://github.com/markview-app/markview) ·
-[Original website](https://getmarkview.com/)
+MarkView Local is a modified build of the original MarkView open-source Markdown viewer for Chromium browsers.
 
-This checkout is a modified local build, not maintained or endorsed by the original authors.
-The original [MIT License](LICENSE) and copyright notice are preserved.
+Kudos and thanks to **MarkView Team**, the original authors, for creating MarkView and sharing its open-source core.
 
-A lightweight, open-source markdown viewer for Chrome, Edge and other Chromium browsers. It is the core rendering
-engine of [MarkView](https://getmarkview.com/), released under the MIT License for auditing, self-hosting and
-restricted environments.
+[Original repository](https://github.com/markview-app/markview) · [Original website](https://getmarkview.com/)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/markview-app/markview/actions/workflows/ci.yml/badge.svg)](https://github.com/markview-app/markview/actions/workflows/ci.yml)
+The original authors do not maintain or endorse these local modifications.
 
-Open a local `.md` file in the browser and MarkView renders it as a formatted document in place of the raw text.
-Remote Markdown documents are not supported.
+## Differences from the original open-source edition
+
+These changes are relative to the upstream snapshot cloned for this repository, not the separate store edition.
+
+- **Local files only:** Markdown viewing and host permissions are restricted to `file://` URLs; remote documents are
+  not processed.
+- **No custom keybindings:** Shortcut handling, shortcut help, and Shift-click actions are removed. Use the on-page
+  controls and Actions menu; native browser keyboard behavior remains available.
+- **No embedded pages:** `iframe`, `frame`, and `frameset` elements are removed from document HTML and returned Mermaid
+  markup. This also disables iframe-based video embeds.
+- **No privileged image proxy:** Images load through normal browser requests, without a background-worker fallback
+  that bypasses page restrictions. Images blocked by browser policy stay blocked.
+- **Updated dependencies and tooling:** TypeScript 7, type-aware Oxlint, a maintained KaTeX plugin, and a replacement ZIP
+  writer replace the older compiler, linter, math plugin, and packaging dependencies.
+- **Additional regression tests:** Coverage includes the security restrictions and remaining UI controls; lint now
+  rejects warnings as well as errors.
 
 ## Features
 
@@ -33,28 +42,21 @@ Remote Markdown documents are not supported.
 - Light and dark themes
 - Table of contents for H1–H3 headings, in a resizable sidebar
 - Raw markdown view, print styles, image viewer, font selection
-- Auto-refresh when the file changes
 - Recent documents and settings in the toolbar popup
 - Interface in 12 languages
 
-MarkView defines no custom keybindings. Use the on-page buttons and Actions menu; browser-native keyboard
-behavior remains available for controls.
+**Supported file extensions**
 
-**Files**
-
-- `.md`, `.markdown`, `.mkd` and `.mdx` documents opened from `file://` URLs only
+- `.md`, `.markdown`, `.mkd` and `.mdx`
 
 ## Install from source
 
 Requirements: Node.js 22.22.2+, 24.15.0+, or 26+, and pnpm 12 or later.
 
-The commands below clone the original upstream project. To build this modified checkout instead, run
-`pnpm install` and `pnpm run build` in this directory.
+From this checkout:
 
 ```bash
-git clone https://github.com/markview-app/markview.git
-cd markview
-pnpm install
+pnpm install --frozen-lockfile
 pnpm run build
 ```
 
@@ -65,30 +67,20 @@ Then load the unpacked extension:
 3. Click **Load unpacked** and select the `extension/` folder
 4. To view local files, open the extension's **Details** and turn on **Allow access to file URLs**
 
-`pnpm run build` also writes a zip of the same build to `dist/`. MarkView requires **Allow access to file URLs** in
-the browser extension settings. Embedded pages and videos using iframes are unsupported and removed from rendered
-documents. Local documents are not fully offline: remote images, fonts and media can still make network requests.
+The build also writes `dist/markview-local-<version>.zip`. After editing a Markdown file, refresh its browser tab;
+automatic local-file watching is not supported.
 
 ## Privacy
 
-All rendering happens in the browser tab. MarkView has no analytics, telemetry or crash reporting, and it never sends
-your documents anywhere. The only network requests it makes are:
+Markdown is parsed and rendered in the browser tab. There is no analytics, telemetry, or crash reporting.
 
-| Request                                       | When                                                                                      |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| The document's own URL and images it links to | Opening a document; auto-refresh polls the document URL                                   |
-| Google Fonts (`fonts.googleapis.com`)         | Only after you choose a font other than the default; the font name is part of the request |
+Local-file-only does not mean offline. Documents can request remote images, media, and CSS resources. Selecting a
+non-default font loads Google Fonts. These requests expose normal network metadata, such as your IP address.
 
 **Permissions**
 
 - `storage`: saves your settings and the recent-documents list in the browser
-- Host access to `file:///*`: lets the extension process local documents and lets its background worker fetch them for auto-refresh
-
-## Scope
-
-This edition keeps to a small, stable core. Bug fixes, security fixes, documentation, translations and accessibility
-improvements are welcome. New features outside core markdown rendering are generally not accepted, and the project
-does not publish a roadmap. See [Contributing](docs/CONTRIBUTING.md) before opening a pull request.
+- Host access to `file:///*`: allows processing local documents and fetching them through the background worker
 
 ## Documentation
 
@@ -104,26 +96,18 @@ These links are for the original upstream project, not support for local modific
 
 - Upstream bugs: [open an issue](https://github.com/markview-app/markview/issues/new/choose)
 - Questions: [Discussions](https://github.com/markview-app/markview/discussions)
-- Security vulnerabilities: see [SECURITY.md](SECURITY.md), not public issues
+- Security vulnerabilities: follow the Security policy listed above; do not open a public issue
 
 ## License
 
-[MIT](LICENSE). Third-party libraries keep their own licenses; see `package.json` for the list.
+[MIT](LICENSE). The original copyright and permission notice are preserved and included in the unpacked extension and
+ZIP. Third-party libraries retain their own licenses; see `package.json` for the dependency list.
 
-## MarkView for Chrome & Edge
+## Store edition
 
-This repository is the open-source core. MarkView is also available from the
-[Chrome Web Store](https://chromewebstore.google.com/detail/cfopbpknalachedpcddhgbgjoigklien) and
-[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/kpobglkjeapfinbaecjidahlnnohcaed) as a
-separately developed extension that adds folder navigation, presentation mode, and HTML and Word export. Its code is
-not part of this repository, and this repository does not track its features.
+The versions on the [Chrome Web Store](https://chromewebstore.google.com/detail/cfopbpknalachedpcddhgbgjoigklien) and
+[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/kpobglkjeapfinbaecjidahlnnohcaed) are developed
+separately. They add folder navigation, presentation mode, and HTML and Word export. Those features were never part
+of the upstream open-source edition and were not removed by these modifications.
 
 Issues with the store version go to [markview-app/support](https://github.com/markview-app/support).
-
----
-
-<div align="center">
-
-[Website](https://getmarkview.com/) • [Chrome Web Store](https://chromewebstore.google.com/detail/cfopbpknalachedpcddhgbgjoigklien) • [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/kpobglkjeapfinbaecjidahlnnohcaed)
-
-</div>

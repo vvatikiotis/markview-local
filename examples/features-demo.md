@@ -1,6 +1,6 @@
-# MarkView Features Demo
+# MarkView Local Features Demo
 
-Welcome to the **MarkView (Open-Source Edition)**! This document demonstrates the core rendering features available in this lightweight viewer.
+Welcome to **MarkView Local**! This document demonstrates the core rendering features available in this lightweight viewer.
 
 ---
 

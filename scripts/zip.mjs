@@ -22,9 +22,11 @@ async function addDirectory(entries, directory, prefix = '') {
 
 async function createZip() {
   try {
-    const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
+    const { name, version } = JSON.parse(
+      await fs.readFile(path.join(root, 'package.json'), 'utf8')
+    );
     const distDir = path.join(root, 'dist');
-    const zipPath = path.join(distDir, `markview-${version}.zip`);
+    const zipPath = path.join(distDir, `${name}-${version}.zip`);
     const entries = Object.create(null);
     await addDirectory(entries, path.join(root, 'extension'));
     const bytes = zipSync(entries, { level: 9 });

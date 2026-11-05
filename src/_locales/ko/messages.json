@@ -12,7 +12,7 @@
     "message": "수정된 로컬 빌드이며 원작자가 유지 관리하거나 승인하지 않습니다."
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "모던 마크다운 뷰어"
@@ -84,7 +84,7 @@
     "message": "구문 테마"
   },
   "syntaxThemeDescription": {
-    "message": "코드 블록의 색상 테마. MarkView 테마는 라이트/다크 모드에 자동 적응합니다."
+    "message": "코드 블록의 색상 테마. MarkView Local 테마는 라이트/다크 모드에 자동 적응합니다."
   },
   "syntaxTheme_autoGroup": {
     "message": "자동 (라이트/다크)"
@@ -96,7 +96,7 @@
     "message": "다크 테마"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView (기본값)"
+    "message": "MarkView Local (기본값)"
   },
   "syntaxHighlighting": {
     "message": "구문 강조"
@@ -180,7 +180,7 @@
     "message": "마크다운 렌더링 실패"
   },
   "notification_loadedSuccess": {
-    "message": "MarkView가 성공적으로 로드되었습니다!"
+    "message": "MarkView Local가 성공적으로 로드되었습니다!"
   },
   "notification_loadedWithFilename": {
     "message": "로드됨"
@@ -201,7 +201,7 @@
     "message": "자동 새로고침이 일시 중지되었습니다. 계속하려면 사이드바에서 파일을 클릭하세요."
   },
   "notification_extensionUpdated": {
-    "message": "🔃 MarkView 확장 프로그램이 업데이트되었습니다. 페이지를 새로고침합니다..."
+    "message": "🔃 MarkView Local 확장 프로그램이 업데이트되었습니다. 페이지를 새로고침합니다..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 이 기능은 샌드박스 컨텍스트(외부 URL)에서 지원되지 않습니다."
@@ -267,7 +267,7 @@
     "message": "이동:"
   },
   "permissionStep2": {
-    "message": "MarkView를 찾아 \"세부정보\" 클릭"
+    "message": "MarkView Local를 찾아 \"세부정보\" 클릭"
   },
   "permissionStep3": {
     "message": "\"파일 URL에 대한 액세스 허용\" 활성화"
@@ -504,7 +504,7 @@
     "message": "플러그인 구성"
   },
   "actions_extensionInfo": {
-    "message": "MarkView 정보"
+    "message": "MarkView Local 정보"
   },
   "actions_quickSettings": {
     "message": "빠른 설정"
@@ -567,10 +567,10 @@
     "message": "확장 프로그램 평가"
   },
   "extensionInfo_about": {
-    "message": "MarkView 정보"
+    "message": "MarkView Local 정보"
   },
   "extensionInfo_description": {
-    "message": "MarkView는 Chromium 브라우저(Chrome, Edge, Brave, Opera 등)용 최신 기능이 풍부한 Markdown 뷰어입니다. 구문 강조, 다이어그램, 수학 방정식 등을 사용하여 Markdown 파일을 아름답고 상호작용적인 문서로 변환하세요."
+    "message": "MarkView Local는 Chromium 브라우저(Chrome, Edge, Brave, Opera 등)용 최신 기능이 풍부한 Markdown 뷰어입니다. 구문 강조, 다이어그램, 수학 방정식 등을 사용하여 Markdown 파일을 아름답고 상호작용적인 문서로 변환하세요."
   },
   "extensionInfo_website": {
     "message": "공식 웹사이트"

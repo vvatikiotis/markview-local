@@ -1,3 +1,5 @@
+# MarkView Local Pull Request
+
 ## What does this change?
 
 <!-- One or two sentences. -->
@@ -8,11 +10,11 @@
 
 ## How was it tested?
 
-<!-- Tests added or updated, and what you checked in the browser (local file, remote link, light/dark theme). -->
+<!-- Tests added or updated, and browser checks (local files, remote-page rejection, light/dark theme). -->
 
 ## Checklist
 
-- [ ] Fits the project scope in [CONTRIBUTING](https://github.com/markview-app/markview/blob/main/docs/CONTRIBUTING.md)
+- [ ] Fits the MarkView Local scope in this checkout's `docs/CONTRIBUTING.md`
 - [ ] `pnpm run lint`, `format:check`, `type-check`, `test:run` and `build` pass
 - [ ] Tests cover the changed behavior
 - [ ] Documentation updated if behavior changed

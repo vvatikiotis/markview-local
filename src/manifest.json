@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "MarkView (Open-Source Edition)",
-  "short_name": "MarkView OSS",
+  "name": "MarkView Local",
+  "short_name": "MarkView Local",
   "version": "1.0.0",
   "default_locale": "en",
   "description": "Lightweight markdown viewer with GFM support, syntax highlighting, Mermaid diagrams, and KaTeX math rendering.",

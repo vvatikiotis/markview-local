@@ -12,7 +12,7 @@
     "message": "Compilação local modificada; não é mantida nem endossada pelos autores originais."
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "Visualizador de Markdown Moderno"
@@ -84,7 +84,7 @@
     "message": "Tema de Sintaxe"
   },
   "syntaxThemeDescription": {
-    "message": "Tema de cores para blocos de código. O tema MarkView se adapta automaticamente ao modo claro/escuro."
+    "message": "Tema de cores para blocos de código. O tema MarkView Local se adapta automaticamente ao modo claro/escuro."
   },
   "syntaxTheme_autoGroup": {
     "message": "Auto (Claro/Escuro)"
@@ -96,7 +96,7 @@
     "message": "Temas Escuros"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView (Padrão)"
+    "message": "MarkView Local (Padrão)"
   },
   "syntaxHighlighting": {
     "message": "Realce de Sintaxe"
@@ -180,7 +180,7 @@
     "message": "Falha ao renderizar markdown"
   },
   "notification_loadedSuccess": {
-    "message": "MarkView carregado com sucesso!"
+    "message": "MarkView Local carregado com sucesso!"
   },
   "notification_loadedWithFilename": {
     "message": "Carregado"
@@ -201,7 +201,7 @@
     "message": "Atualização automática pausada. Clique em um arquivo na barra lateral para retomar."
   },
   "notification_extensionUpdated": {
-    "message": "🔃 Extensão MarkView atualizada. Recarregando página..."
+    "message": "🔃 Extensão MarkView Local atualizada. Recarregando página..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 Este recurso não é suportado em contextos isolados (URLs externas)."
@@ -267,7 +267,7 @@
     "message": "Vá para"
   },
   "permissionStep2": {
-    "message": "Encontre MarkView e clique em \"Detalhes\""
+    "message": "Encontre MarkView Local e clique em \"Detalhes\""
   },
   "permissionStep3": {
     "message": "Ative \"Permitir acesso a URLs de arquivo\""
@@ -504,7 +504,7 @@
     "message": "Configurar Plugins"
   },
   "actions_extensionInfo": {
-    "message": "Sobre o MarkView"
+    "message": "Sobre o MarkView Local"
   },
   "actions_quickSettings": {
     "message": "Configurações Rápidas"
@@ -567,10 +567,10 @@
     "message": "Avaliar extensão"
   },
   "extensionInfo_about": {
-    "message": "Sobre o MarkView"
+    "message": "Sobre o MarkView Local"
   },
   "extensionInfo_description": {
-    "message": "MarkView é um visualizador de Markdown moderno e rico em recursos para navegadores Chromium (Chrome, Edge, Brave, Opera, etc.). Transforme seus arquivos Markdown em documentos interativos bonitos com destaque de sintaxe, diagramas, equações matemáticas e muito mais."
+    "message": "MarkView Local é um visualizador de Markdown moderno e rico em recursos para navegadores Chromium (Chrome, Edge, Brave, Opera, etc.). Transforme seus arquivos Markdown em documentos interativos bonitos com destaque de sintaxe, diagramas, equações matemáticas e muito mais."
   },
   "extensionInfo_website": {
     "message": "Site oficial"

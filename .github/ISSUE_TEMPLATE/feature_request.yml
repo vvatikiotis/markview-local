@@ -1,22 +1,20 @@
 name: Feature Request
-description: Suggest an improvement to the open-source edition
+description: Suggest an improvement to MarkView Local
 title: '[Feature]: '
 labels: ['enhancement']
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the suggestion. Please note the scope first: this edition is kept to a small, stable core, and
-        new features beyond core markdown rendering are usually declined. Improvements to rendering correctness,
-        accessibility and translations are the most likely to be accepted. See
-        [Contributing](https://github.com/markview-app/markview/blob/main/docs/CONTRIBUTING.md#what-fits).
+        Thanks for the suggestion for MarkView Local. Please read this checkout's docs/CONTRIBUTING.md first.
+        Rendering correctness, accessibility and translation improvements fit its scope.
 
   - type: textarea
     id: feature
     attributes:
       label: What feature would you like to see?
       description: Describe your idea clearly
-      placeholder: I would like MarkView to...
+      placeholder: I would like MarkView Local to...
     validations:
       required: true
 

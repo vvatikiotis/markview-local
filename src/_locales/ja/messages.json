@@ -12,7 +12,7 @@
     "message": "変更されたローカルビルドです。原作者による保守や承認はありません。"
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "モダンなMarkdownビューア"
@@ -84,7 +84,7 @@
     "message": "シンタックステーマ"
   },
   "syntaxThemeDescription": {
-    "message": "コードブロックの配色テーマ。MarkViewテーマはライト/ダークモードに自動適応します。"
+    "message": "コードブロックの配色テーマ。MarkView Localテーマはライト/ダークモードに自動適応します。"
   },
   "syntaxTheme_autoGroup": {
     "message": "自動（ライト/ダーク）"
@@ -96,7 +96,7 @@
     "message": "ダークテーマ"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView（デフォルト）"
+    "message": "MarkView Local（デフォルト）"
   },
   "syntaxHighlighting": {
     "message": "シンタックスハイライト"
@@ -180,7 +180,7 @@
     "message": "Markdownのレンダリングに失敗しました"
   },
   "notification_loadedSuccess": {
-    "message": "MarkViewの読み込みが完了しました！"
+    "message": "MarkView Localの読み込みが完了しました！"
   },
   "notification_loadedWithFilename": {
     "message": "読み込み完了"
@@ -201,7 +201,7 @@
     "message": "自動更新が一時停止しました。再開するにはサイドバーのファイルをクリックしてください。"
   },
   "notification_extensionUpdated": {
-    "message": "🔃 MarkView拡張機能が更新されました。ページをリロードしています..."
+    "message": "🔃 MarkView Local拡張機能が更新されました。ページをリロードしています..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 この機能はサンドボックス化されたコンテキスト（外部URL）ではサポートされていません。"
@@ -267,7 +267,7 @@
     "message": "移動："
   },
   "permissionStep2": {
-    "message": "MarkViewを見つけて「詳細」をクリック"
+    "message": "MarkView Localを見つけて「詳細」をクリック"
   },
   "permissionStep3": {
     "message": "「ファイルのURLへのアクセスを許可する」を有効にする"
@@ -504,7 +504,7 @@
     "message": "プラグインの設定"
   },
   "actions_extensionInfo": {
-    "message": "MarkViewについて"
+    "message": "MarkView Localについて"
   },
   "actions_quickSettings": {
     "message": "クイック設定"
@@ -567,10 +567,10 @@
     "message": "拡張機能を評価"
   },
   "extensionInfo_about": {
-    "message": "MarkViewについて"
+    "message": "MarkView Localについて"
   },
   "extensionInfo_description": {
-    "message": "MarkViewは、Chromiumブラウザ（Chrome、Edge、Brave、Operaなど）用の最新の機能豊富なMarkdownビューアです。シンタックスハイライト、図、数式などを使って、Markdownファイルを美しいインタラクティブなドキュメントに変換します。"
+    "message": "MarkView Localは、Chromiumブラウザ（Chrome、Edge、Brave、Operaなど）用の最新の機能豊富なMarkdownビューアです。シンタックスハイライト、図、数式などを使って、Markdownファイルを美しいインタラクティブなドキュメントに変換します。"
   },
   "extensionInfo_website": {
     "message": "公式ウェブサイト"

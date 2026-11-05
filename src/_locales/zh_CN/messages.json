@@ -12,7 +12,7 @@
     "message": "修改后的本地构建；不由原作者维护，也未经原作者认可。"
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "现代化的Markdown查看器"
@@ -84,7 +84,7 @@
     "message": "代码主题"
   },
   "syntaxThemeDescription": {
-    "message": "代码块的颜色主题。MarkView主题自动适应浅色/深色模式。"
+    "message": "代码块的颜色主题。MarkView Local主题自动适应浅色/深色模式。"
   },
   "syntaxTheme_autoGroup": {
     "message": "自动（浅色/深色）"
@@ -96,7 +96,7 @@
     "message": "深色主题"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView（默认）"
+    "message": "MarkView Local（默认）"
   },
   "syntaxHighlighting": {
     "message": "语法高亮"
@@ -180,7 +180,7 @@
     "message": "渲染 Markdown 失败"
   },
   "notification_loadedSuccess": {
-    "message": "MarkView 加载成功！"
+    "message": "MarkView Local 加载成功！"
   },
   "notification_loadedWithFilename": {
     "message": "已加载"
@@ -201,7 +201,7 @@
     "message": "自动刷新已暂停。请点击侧边栏中的文件以继续。"
   },
   "notification_extensionUpdated": {
-    "message": "🔃 MarkView 扩展已更新。正在重新加载页面..."
+    "message": "🔃 MarkView Local 扩展已更新。正在重新加载页面..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 此功能在沙盒环境（外部 URL）中不受支持。"
@@ -267,7 +267,7 @@
     "message": "前往"
   },
   "permissionStep2": {
-    "message": "找到 MarkView 并点击“详细信息”"
+    "message": "找到 MarkView Local 并点击“详细信息”"
   },
   "permissionStep3": {
     "message": "启用“允许访问文件网址”"
@@ -504,7 +504,7 @@
     "message": "配置插件"
   },
   "actions_extensionInfo": {
-    "message": "关于 MarkView"
+    "message": "关于 MarkView Local"
   },
   "actions_quickSettings": {
     "message": "快速设置"
@@ -567,10 +567,10 @@
     "message": "评价扩展"
   },
   "extensionInfo_about": {
-    "message": "关于 MarkView"
+    "message": "关于 MarkView Local"
   },
   "extensionInfo_description": {
-    "message": "MarkView 是一款功能丰富的现代化 Chromium 浏览器（Chrome、Edge、Brave、Opera 等）Markdown 查看器。将您的 Markdown 文件转换为带有语法高亮、图表、数学公式等的精美交互式文档。"
+    "message": "MarkView Local 是一款功能丰富的现代化 Chromium 浏览器（Chrome、Edge、Brave、Opera 等）Markdown 查看器。将您的 Markdown 文件转换为带有语法高亮、图表、数学公式等的精美交互式文档。"
   },
   "extensionInfo_website": {
     "message": "官方网站"

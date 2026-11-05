@@ -1,6 +1,6 @@
-# Development Guide
+# MarkView Local Development Guide
 
-How to build, run and test MarkView (Open-Source Edition), and where things live.
+How to build, run and test MarkView Local, and where things live.
 
 ## Requirements
 
@@ -10,15 +10,15 @@ How to build, run and test MarkView (Open-Source Edition), and where things live
 
 ## Build and load
 
+Run these commands from this modified checkout:
+
 ```bash
-git clone https://github.com/markview-app/markview.git
-cd markview
-pnpm install
+pnpm install --frozen-lockfile
 pnpm run build
 ```
 
 `pnpm run build` cleans, copies the version from `package.json` into the manifest, bundles with webpack in production
-mode into `extension/`, and zips that folder into `dist/markview-<version>.zip`.
+mode into `extension/`, and zips that folder into `dist/markview-local-<version>.zip`.
 
 Load `extension/` in the browser:
 
@@ -59,7 +59,7 @@ request.
 After building and loading the unpacked extension, enable **Allow access to file URLs**. Open the Markdown fixture via
 its `file:///...` URL; serve only its referenced resources from loopback origin A and sentinel responses (non-image
 and valid image) from a different loopback port at origin B. Include direct and A-to-B redirected image URLs, and
-ensure images enter the viewport. Verify that a Markdown fixture served from HTTP(S) does not activate MarkView.
+ensure images enter the viewport. Verify that a Markdown fixture served from HTTP(S) does not activate MarkView Local.
 Inspect the rendered page and image attributes: no response-derived data/blob URL or sentinel bytes should appear;
 obsolete `fetchImage` messages should receive the unknown-action response without a network request. Cross-origin
 images may display under browser policy, but must remain origin-tainted for canvas readback. Also include an iframe
@@ -207,5 +207,8 @@ Create a class in `src/components/` that builds its element, mounts it and clean
 
 ## Getting help
 
-- Questions: [Discussions](https://github.com/markview-app/markview/discussions)
-- Bugs: [Issues](https://github.com/markview-app/markview/issues)
+For MarkView Local changes, contact the maintainer of your checkout. The following channels belong to the original
+MarkView project and are for issues reproducible upstream:
+
+- Upstream questions: [Discussions](https://github.com/markview-app/markview/discussions)
+- Upstream bugs: [Issues](https://github.com/markview-app/markview/issues)

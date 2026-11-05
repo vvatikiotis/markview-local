@@ -12,7 +12,7 @@
     "message": "修改後的本機建置；不由原作者維護，也未經原作者認可。"
   },
   "appName": {
-    "message": "MarkView"
+    "message": "MarkView Local"
   },
   "appDescription": {
     "message": "現代化的Markdown檢視器"
@@ -84,7 +84,7 @@
     "message": "程式碼主題"
   },
   "syntaxThemeDescription": {
-    "message": "程式碼區塊的顏色主題。MarkView主題自動適應淺色/深色模式。"
+    "message": "程式碼區塊的顏色主題。MarkView Local主題自動適應淺色/深色模式。"
   },
   "syntaxTheme_autoGroup": {
     "message": "自動（淺色/深色）"
@@ -96,7 +96,7 @@
     "message": "深色主題"
   },
   "syntaxTheme_markview": {
-    "message": "MarkView（預設）"
+    "message": "MarkView Local（預設）"
   },
   "syntaxHighlighting": {
     "message": "語法高亮"
@@ -180,7 +180,7 @@
     "message": "渲染 Markdown 失敗"
   },
   "notification_loadedSuccess": {
-    "message": "MarkView 載入成功！"
+    "message": "MarkView Local 載入成功！"
   },
   "notification_loadedWithFilename": {
     "message": "已載入"
@@ -201,7 +201,7 @@
     "message": "自動重新整理已暫停。請點擊側邊欄中的檔案以繼續。"
   },
   "notification_extensionUpdated": {
-    "message": "🔃 MarkView 擴充功能已更新。正在重新載入頁面..."
+    "message": "🔃 MarkView Local 擴充功能已更新。正在重新載入頁面..."
   },
   "notification_sandboxRestriction": {
     "message": "🛑 此功能在沙盒環境（外部 URL）中不受支援。"
@@ -267,7 +267,7 @@
     "message": "前往"
   },
   "permissionStep2": {
-    "message": "找到 MarkView 並點擊「詳細資訊」"
+    "message": "找到 MarkView Local 並點擊「詳細資訊」"
   },
   "permissionStep3": {
     "message": "啟用「允許存取檔案網址」"
@@ -504,7 +504,7 @@
     "message": "配置外掛程式"
   },
   "actions_extensionInfo": {
-    "message": "關於 MarkView"
+    "message": "關於 MarkView Local"
   },
   "actions_quickSettings": {
     "message": "快速設定"
@@ -567,10 +567,10 @@
     "message": "評價擴充功能"
   },
   "extensionInfo_about": {
-    "message": "關於 MarkView"
+    "message": "關於 MarkView Local"
   },
   "extensionInfo_description": {
-    "message": "MarkView 是一款功能豐富的現代化 Chromium 瀏覽器（Chrome、Edge、Brave、Opera 等）Markdown 檢視器。將您的 Markdown 檔案轉換為帶有語法醒目提示、圖表、數學方程式等的精美互動式文件。"
+    "message": "MarkView Local 是一款功能豐富的現代化 Chromium 瀏覽器（Chrome、Edge、Brave、Opera 等）Markdown 檢視器。將您的 Markdown 檔案轉換為帶有語法醒目提示、圖表、數學方程式等的精美互動式文件。"
   },
   "extensionInfo_website": {
     "message": "官方網站"
