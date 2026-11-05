@@ -115,6 +115,9 @@ export class CenteredToggle {
       localInterfaceFont: settings.localInterfaceFont,
       localCodeFont: settings.localCodeFont,
       localProseFont: settings.localProseFont,
+      localInterfaceFontSize: settings.localInterfaceFontSize,
+      localCodeFontSize: settings.localCodeFontSize,
+      localProseFontSize: settings.localProseFontSize,
     });
   }
 

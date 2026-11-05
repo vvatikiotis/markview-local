@@ -99,14 +99,14 @@
 }
 
 .markview-extension-info-title {
-  font-size: 28px;
+  font-size: calc((28px) * var(--markview-interface-font-scale, 1));
   font-weight: 700;
   margin: 0;
   letter-spacing: -0.5px;
 }
 
 .markview-extension-info-version {
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   font-weight: 500;
   margin: 0;
   padding: 4px 12px;
@@ -116,7 +116,7 @@
 }
 
 .markview-extension-info-tagline {
-  font-size: 15px;
+  font-size: calc((15px) * var(--markview-interface-font-scale, 1));
   margin: 0;
   opacity: 0.95;
   font-weight: 400;
@@ -156,7 +156,7 @@
 
 .markview-extension-info-attribution {
   margin-bottom: 24px;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   line-height: 1.6;
   color: inherit;
 }
@@ -215,7 +215,7 @@ html.markview-active.markview-dark .markview-extension-info-body::-webkit-scroll
   }
 
   .markview-extension-info-title {
-    font-size: 24px;
+    font-size: calc((24px) * var(--markview-interface-font-scale, 1));
   }
 }
 

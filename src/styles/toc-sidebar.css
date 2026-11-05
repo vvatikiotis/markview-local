@@ -60,7 +60,7 @@
 
 .markview-toc-title {
   margin: 0;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   font-weight: 600;
   color: #24292e;
   text-transform: uppercase;
@@ -117,7 +117,7 @@
   padding: 4px 8px;
   color: #586069;
   text-decoration: none;
-  font-size: 13px;
+  font-size: calc((13px) * var(--markview-interface-font-scale, 1));
   line-height: 1.5;
   border-radius: 4px;
   transition: all 0.15s ease;
@@ -174,7 +174,7 @@
 /* Heading Level Styling */
 .markview-toc-item[data-level='1'] > .markview-toc-link {
   font-weight: 600;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   margin-top: 8px;
   margin-bottom: 4px;
 }
@@ -184,13 +184,13 @@
 }
 
 .markview-toc-item[data-level='3'] > .markview-toc-link {
-  font-size: 12px;
+  font-size: calc((12px) * var(--markview-interface-font-scale, 1));
 }
 
 .markview-toc-item[data-level='4'] > .markview-toc-link,
 .markview-toc-item[data-level='5'] > .markview-toc-link,
 .markview-toc-item[data-level='6'] > .markview-toc-link {
-  font-size: 12px;
+  font-size: calc((12px) * var(--markview-interface-font-scale, 1));
   color: #6a737d;
 }
 
@@ -232,7 +232,7 @@
   padding: 1rem;
   text-align: center;
   color: var(--markview-text-muted, #6a737d);
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
 }
 
 /* Raw Mode Message */
@@ -247,20 +247,20 @@
 }
 
 .markview-toc-raw-icon {
-  font-size: 48px;
+  font-size: calc((48px) * var(--markview-interface-font-scale, 1));
   margin-bottom: 16px;
 }
 
 .markview-toc-raw-title {
   margin: 0 0 8px 0;
-  font-size: 16px;
+  font-size: calc((16px) * var(--markview-interface-font-scale, 1));
   font-weight: 600;
   color: var(--markview-text, #24292e);
 }
 
 .markview-toc-raw-message {
   margin: 0;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   line-height: 1.6;
 }
 
@@ -287,7 +287,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  font-size: 24px;
+  font-size: calc((24px) * var(--markview-interface-font-scale, 1));
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
   display: flex;

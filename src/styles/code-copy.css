@@ -19,7 +19,7 @@
   background: transparent;
   border: none;
   color: var(--language-label-text);
-  font-size: 13px;
+  font-size: calc((13px) * var(--markview-interface-font-scale, 1));
   font-weight: 500;
   font-family: var(
     --markview-interface-font,
@@ -61,7 +61,7 @@
   border: 1px solid var(--copy-button-border);
   border-radius: 6px;
   color: var(--copy-button-text);
-  font-size: 13px;
+  font-size: calc((13px) * var(--markview-interface-font-scale, 1));
   font-weight: 500;
   font-family: var(
     --markview-interface-font,

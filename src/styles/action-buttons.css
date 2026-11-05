@@ -57,7 +57,7 @@
   background: transparent;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   color: #333;
   transition: background 0.15s ease;
   text-align: left;

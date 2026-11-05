@@ -186,6 +186,9 @@ async function applyLayout(): Promise<void> {
     localInterfaceFont: settings.localInterfaceFont,
     localCodeFont: settings.localCodeFont,
     localProseFont: settings.localProseFont,
+    localInterfaceFontSize: settings.localInterfaceFontSize,
+    localCodeFontSize: settings.localCodeFontSize,
+    localProseFontSize: settings.localProseFontSize,
   });
 
   // Apply code block display mode

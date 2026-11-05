@@ -149,6 +149,9 @@ export interface LocalFontSettings {
   localInterfaceFont?: string;
   localCodeFont?: string;
   localProseFont?: string;
+  localInterfaceFontSize?: number | null;
+  localCodeFontSize?: number | null;
+  localProseFontSize?: number | null;
 }
 
 export function getLocalFontFamily(name: string | undefined, fallback: string): string {
@@ -177,5 +180,19 @@ export function applyLocalFonts(settings: LocalFontSettings): void {
     if (settings[key]?.trim())
       root.setProperty(property, getLocalFontFamily(settings[key], fallback));
     else root.removeProperty(property);
+  }
+
+  if (settings.localInterfaceFontSize !== undefined) {
+    if (settings.localInterfaceFontSize && settings.localInterfaceFontSize > 0) {
+      root.setProperty(
+        '--markview-interface-font-scale',
+        String(settings.localInterfaceFontSize / 14)
+      );
+    } else root.removeProperty('--markview-interface-font-scale');
+  }
+  if (settings.localCodeFontSize !== undefined) {
+    if (settings.localCodeFontSize && settings.localCodeFontSize > 0)
+      root.setProperty('--markview-code-font-size', `${settings.localCodeFontSize}px`);
+    else root.removeProperty('--markview-code-font-size');
   }
 }

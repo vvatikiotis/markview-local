@@ -341,35 +341,35 @@
 
 /* Font Size */
 .text-xs {
-  font-size: var(--font-size-xs);
+  font-size: calc((var(--font-size-xs)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-sm {
-  font-size: var(--font-size-sm);
+  font-size: calc((var(--font-size-sm)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-base {
-  font-size: var(--font-size-base);
+  font-size: calc((var(--font-size-base)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-md {
-  font-size: var(--font-size-md);
+  font-size: calc((var(--font-size-md)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-lg {
-  font-size: var(--font-size-lg);
+  font-size: calc((var(--font-size-lg)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-xl {
-  font-size: var(--font-size-xl);
+  font-size: calc((var(--font-size-xl)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-2xl {
-  font-size: var(--font-size-2xl);
+  font-size: calc((var(--font-size-2xl)) * var(--markview-interface-font-scale, 1));
 }
 
 .text-3xl {
-  font-size: var(--font-size-3xl);
+  font-size: calc((var(--font-size-3xl)) * var(--markview-interface-font-scale, 1));
 }
 
 /* Font Weight */

@@ -8,7 +8,12 @@ import { createLocalFontSettings } from './local-font-settings';
 import { isLocaleKey } from '@utils/locales';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
-import { getSettings, updateSetting, type DisplaySettings } from '@core/storage';
+import {
+  getSettings,
+  updateSetting,
+  type DisplaySettings,
+  type MarkViewSettings,
+} from '@core/storage';
 import { showNotification } from '@utils/notification';
 
 // Track if modal is currently open to prevent duplicates
@@ -221,7 +226,7 @@ async function loadBodyContent(bodyElement: HTMLElement, modalElement: HTMLEleme
 
   bodyElement.innerHTML = settingsHTML;
   const localFonts = createLocalFontSettings(settings, async (key, value) => {
-    await updateSetting(key, value);
+    await updateSetting(key as keyof MarkViewSettings, value as never);
     showNotification(MESSAGES.popup.settingsSaved, {
       type: 'success',
       scope: modalElement,

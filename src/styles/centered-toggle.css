@@ -54,7 +54,7 @@ html.markview-active.markview-dark #markview-centered-toggle:hover {
     top: 10px;
     right: 10px;
     padding: 10px 16px;
-    font-size: 13px;
+    font-size: calc((13px) * var(--markview-interface-font-scale, 1));
   }
 }
 
@@ -73,7 +73,7 @@ html.markview-active.markview-dark #markview-centered-toggle:hover {
 
   .markview-centered-notification {
     padding: 8px 14px;
-    font-size: 12px;
+    font-size: calc((12px) * var(--markview-interface-font-scale, 1));
     border-radius: 6px;
   }
 }

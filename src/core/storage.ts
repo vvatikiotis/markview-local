@@ -102,6 +102,9 @@ export interface MarkViewSettings {
   localInterfaceFont?: string;
   localCodeFont?: string;
   localProseFont?: string;
+  localInterfaceFontSize?: number | null;
+  localCodeFontSize?: number | null;
+  localProseFontSize?: number | null;
   lineHeight: number;
   maxWidth: number;
   highlight: boolean;
@@ -137,6 +140,9 @@ export const DEFAULT_SETTINGS: MarkViewSettings = {
   localInterfaceFont: '',
   localCodeFont: '',
   localProseFont: '',
+  localInterfaceFontSize: null,
+  localCodeFontSize: null,
+  localProseFontSize: null,
   lineHeight: 1.6,
   maxWidth: 1000,
   highlight: true,

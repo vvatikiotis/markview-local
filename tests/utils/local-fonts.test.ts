@@ -65,13 +65,13 @@ describe('installed font overrides', () => {
     document.body.appendChild(controls);
     expect(controls.querySelector('img')).toBeNull();
     const inputs = controls.querySelectorAll('input');
-    expect(inputs).toHaveLength(3);
-    expect(inputs[2]!.value).toBe('<img src=x>');
+    expect(inputs).toHaveLength(6);
+    expect(inputs[4]!.value).toBe('<img src=x>');
     inputs[0]!.value = '  Aptos  ';
     inputs[0]!.dispatchEvent(new Event('change'));
     await vi.waitFor(() => expect(save).toHaveBeenCalledWith('localInterfaceFont', 'Aptos'));
-    inputs[2]!.value = '';
-    inputs[2]!.dispatchEvent(new Event('change'));
+    inputs[4]!.value = '';
+    inputs[4]!.dispatchEvent(new Event('change'));
     await vi.waitFor(() => expect(save).toHaveBeenCalledWith('localProseFont', ''));
   });
 });

@@ -89,7 +89,7 @@ body:has(.markview-image-modal.opened) {
   border-radius: 50%;
   color: var(--nav-button-text);
   cursor: pointer;
-  font-size: 24px;
+  font-size: calc((24px) * var(--markview-interface-font-scale, 1));
   font-weight: bold;
   font-family: var(--markview-interface-font, Arial, sans-serif);
   line-height: 1;
@@ -129,7 +129,7 @@ body:has(.markview-image-modal.opened) {
   border: 1px solid var(--counter-border);
   border-radius: 20px;
   color: var(--counter-text);
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   font-weight: 500;
   font-family: var(
     --markview-interface-font,

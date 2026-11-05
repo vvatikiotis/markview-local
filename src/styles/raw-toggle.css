@@ -11,7 +11,7 @@
   white-space: pre-wrap;
   word-wrap: break-word;
   font-family: var(--markview-code-font, 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace);
-  font-size: 14px;
+  font-size: var(--markview-code-font-size, 14px);
   line-height: 1.6;
   padding: 20px;
   background: var(--markview-code-bg);

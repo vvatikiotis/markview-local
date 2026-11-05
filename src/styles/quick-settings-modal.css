@@ -98,20 +98,20 @@
 }
 
 .markview-quick-settings-icon {
-  font-size: 48px;
+  font-size: calc((48px) * var(--markview-interface-font-scale, 1));
   margin-bottom: 12px;
   line-height: 1;
 }
 
 .markview-quick-settings-title {
-  font-size: 28px;
+  font-size: calc((28px) * var(--markview-interface-font-scale, 1));
   font-weight: 700;
   margin: 0 0 8px 0;
   color: white;
 }
 
 .markview-quick-settings-subtitle {
-  font-size: 16px;
+  font-size: calc((16px) * var(--markview-interface-font-scale, 1));
   margin: 0;
   opacity: 0.9;
   color: white;
@@ -183,7 +183,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 15px;
+  font-size: calc((15px) * var(--markview-interface-font-scale, 1));
   font-weight: 600;
   color: #1f2937;
 }
@@ -194,7 +194,7 @@
 }
 
 .quick-setting-description {
-  font-size: 13px;
+  font-size: calc((13px) * var(--markview-interface-font-scale, 1));
   color: #6b7280;
   margin: 0 0 0 28px;
   line-height: 1.5;
@@ -256,7 +256,7 @@
   border-radius: 6px;
   background: white;
   color: #374151;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
@@ -284,7 +284,7 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   color: #374151;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -332,14 +332,14 @@
 }
 
 .quick-settings-confirm-title {
-  font-size: 18px;
+  font-size: calc((18px) * var(--markview-interface-font-scale, 1));
   font-weight: 700;
   color: #1f2937;
   margin: 0 0 12px 0;
 }
 
 .quick-settings-confirm-text {
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   color: #6b7280;
   line-height: 1.6;
   margin: 0 0 20px 0;
@@ -354,7 +354,7 @@
 .quick-settings-confirm-btn {
   padding: 10px 20px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -488,11 +488,11 @@ html.markview-active.markview-dark .quick-settings-confirm-cancel:hover {
   }
 
   .markview-quick-settings-title {
-    font-size: 24px;
+    font-size: calc((24px) * var(--markview-interface-font-scale, 1));
   }
 
   .markview-quick-settings-subtitle {
-    font-size: 14px;
+    font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   }
 
   .quick-setting-card {
@@ -500,11 +500,11 @@ html.markview-active.markview-dark .quick-settings-confirm-cancel:hover {
   }
 
   .quick-setting-title {
-    font-size: 14px;
+    font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   }
 
   .quick-setting-description {
-    font-size: 12px;
+    font-size: calc((12px) * var(--markview-interface-font-scale, 1));
     margin-left: 0;
   }
 }
@@ -529,16 +529,16 @@ html.markview-active.markview-dark .quick-settings-confirm-cancel:hover {
   }
 
   .markview-quick-settings-icon {
-    font-size: 40px;
+    font-size: calc((40px) * var(--markview-interface-font-scale, 1));
     margin-bottom: 8px;
   }
 
   .markview-quick-settings-title {
-    font-size: 20px;
+    font-size: calc((20px) * var(--markview-interface-font-scale, 1));
   }
 
   .markview-quick-settings-subtitle {
-    font-size: 13px;
+    font-size: calc((13px) * var(--markview-interface-font-scale, 1));
   }
 
   .quick-setting-card {
@@ -546,11 +546,11 @@ html.markview-active.markview-dark .quick-settings-confirm-cancel:hover {
   }
 
   .quick-setting-title {
-    font-size: 14px;
+    font-size: calc((14px) * var(--markview-interface-font-scale, 1));
   }
 
   .quick-setting-description {
-    font-size: 12px;
+    font-size: calc((12px) * var(--markview-interface-font-scale, 1));
     margin-left: 0;
   }
 }

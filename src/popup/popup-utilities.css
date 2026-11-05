@@ -13,7 +13,7 @@
   padding: var(--input-padding);
   border: var(--input-border);
   border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  font-size: calc((var(--font-size-sm)) * var(--markview-interface-font-scale, 1));
   font-family: inherit;
   transition: all var(--transition-base);
   background: var(--color-bg-secondary);
@@ -43,7 +43,7 @@
   padding: var(--input-padding);
   border: var(--input-border);
   border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  font-size: calc((var(--font-size-sm)) * var(--markview-interface-font-scale, 1));
   font-family: inherit;
   transition: all var(--transition-base);
 }
@@ -87,14 +87,14 @@
 }
 
 .popup-empty-title {
-  font-size: var(--font-size-lg);
+  font-size: calc((var(--font-size-lg)) * var(--markview-interface-font-scale, 1));
   font-weight: var(--font-weight-semibold);
   margin-bottom: var(--space-sm);
   color: #666;
 }
 
 .popup-empty-text {
-  font-size: var(--font-size-sm);
+  font-size: calc((var(--font-size-sm)) * var(--markview-interface-font-scale, 1));
   color: var(--color-text-muted);
 }
 
@@ -168,7 +168,7 @@
 
 .popup-section-title {
   margin: 0 0 6px 0;
-  font-size: var(--font-size-2xl);
+  font-size: calc((var(--font-size-2xl)) * var(--markview-interface-font-scale, 1));
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
@@ -177,7 +177,7 @@
 .popup-section-subtitle {
   margin: 0;
   color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: calc((var(--font-size-sm)) * var(--markview-interface-font-scale, 1));
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-normal);
 }
@@ -201,7 +201,7 @@
   gap: 6px;
   padding: 8px var(--space-md);
   border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
+  font-size: calc((var(--font-size-xs)) * var(--markview-interface-font-scale, 1));
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -232,7 +232,7 @@
 .popup-form-label {
   display: block;
   margin-bottom: var(--space-sm);
-  font-size: var(--font-size-sm);
+  font-size: calc((var(--font-size-sm)) * var(--markview-interface-font-scale, 1));
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   text-transform: uppercase;

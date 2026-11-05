@@ -594,7 +594,7 @@
     "message": "Local fonts"
   },
   "localFontsDescription": {
-    "message": "Enter a font family installed on your computer. These fonts load locally. Leave blank to use the default; prose falls back to Font Family above. Unavailable fonts use a fallback."
+    "message": "Enter an installed font family. Local fonts do not require downloads. Enter a size in pixels from 8 to 48, or leave it blank for the default. Prose uses the Font Family selection when its local font is blank."
   },
   "localFontInterface": {
     "message": "Interface font"
@@ -604,5 +604,11 @@
   },
   "localFontProse": {
     "message": "Prose font"
+  },
+  "localFontSize": {
+    "message": "Size (px)"
+  },
+  "fontSizeDefault": {
+    "message": "Default"
   }
 }

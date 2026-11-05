@@ -222,8 +222,8 @@ export function applyLayoutSettings(
     }
   }
 
-  if (settings.fontSize) {
-    styles.fontSize = `${settings.fontSize}px`;
+  if (settings.fontSize || settings.localProseFontSize !== undefined) {
+    styles.fontSize = `${settings.localProseFontSize ?? settings.fontSize}px`;
   }
 
   if (settings.lineHeight) {

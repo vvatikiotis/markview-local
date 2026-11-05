@@ -61,7 +61,10 @@ export async function handleSettingsChange(
     changes.fontFamily !== undefined ||
     changes.localInterfaceFont !== undefined ||
     changes.localCodeFont !== undefined ||
-    changes.localProseFont !== undefined
+    changes.localProseFont !== undefined ||
+    changes.localInterfaceFontSize !== undefined ||
+    changes.localCodeFontSize !== undefined ||
+    changes.localProseFontSize !== undefined
   ) {
     // Get fresh settings to ensure we have latest values
     // Force cache refresh by invalidating it first

@@ -81,7 +81,7 @@ non-default Font Family loads Google Fonts unless a local prose font is set. The
 In Settings or Quick Settings, use **Local fonts** to enter separate installed font family names for
 interface, code (including raw Markdown), and prose, such as `Segoe UI`, `JetBrains Mono`, and `Georgia`.
 Changes save when you leave the field. Local fonts do not require downloads or font-list permission.
-Leave a field blank to restore its default; prose uses the existing Font Family selection. If a font
+Leave a font field blank to restore its default; prose uses the existing Font Family selection. Set each size in pixels from 8 to 48, or leave it blank to use the default size. If a font
 is not installed or is unavailable to the browser, a fallback font is displayed.
 
 **Permissions**

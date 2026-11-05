@@ -105,7 +105,7 @@ html.markview-active body {
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: var(--markview-code-font, 'Courier New', Courier, monospace);
-  font-size: 85%;
+  font-size: var(--markview-code-font-size, 85%);
   color: var(--brand-primary); /* Using main brand color */
   transition: background var(--transition-fast); /* Smooth hover transition */
 }
@@ -122,6 +122,14 @@ html.markview-active body {
   padding: 16px;
   border-radius: 6px;
   overflow-x: auto;
+}
+
+#markview-container pre {
+  font-size: var(--markview-code-font-size, inherit);
+}
+
+#markview-container pre code {
+  font-size: inherit;
 }
 
 /* Custom scrollbar for code blocks - matching TOC style */

@@ -74,7 +74,7 @@ export class SettingsTab {
       document.body.style.fontFamily = getInterfaceFontFamily();
       const existingFonts = this.container.querySelector('.markview-local-font-settings');
       const localFonts = createLocalFontSettings(settings, (key, value) =>
-        this.saveSetting(key, value)
+        this.saveSetting(key as keyof MarkViewSettings, value as never)
       );
       if (existingFonts) existingFonts.replaceWith(localFonts);
       else fontFamilySelect?.closest('.card')?.after(localFonts);
