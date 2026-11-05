@@ -1,0 +1,106 @@
+/* MarkView Action Buttons Styles */
+
+/* Container */
+#markview-action-buttons {
+  position: fixed;
+  bottom: 188px;
+  right: 20px;
+  z-index: 10001;
+}
+
+/* Main Toggle Button */
+#markview-actions-toggle {
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#markview-actions-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(96, 125, 139, 0.4);
+}
+
+/* Actions Menu */
+.markview-actions-menu {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+}
+
+.markview-actions-menu.menu-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Menu Items */
+.markview-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.15s ease;
+  text-align: left;
+  font-family: inherit;
+  opacity: 1;
+}
+
+.markview-menu-item[data-disabled='true'] {
+  cursor: not-allowed;
+  color: #aaa;
+  opacity: 0.65;
+}
+
+.markview-menu-item:hover:not([data-disabled='true']) {
+  background: #f5f5f5;
+}
+
+.markview-menu-item-label {
+  flex: 1;
+}
+
+/* Dark mode support */
+.markview-dark .markview-actions-menu {
+  background: #2a2a2a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.markview-dark .markview-menu-item {
+  color: #e0e0e0;
+}
+
+.markview-dark .markview-menu-item:hover:not([data-disabled='true']) {
+  background: #3a3a3a;
+}
+
+.markview-dark .markview-menu-item[data-disabled='true'] {
+  color: #666;
+  opacity: 0.65;
+}
+
+/* Print - Hide action buttons */
+@media print {
+  #markview-action-buttons {
+    display: none !important;
+  }
+}

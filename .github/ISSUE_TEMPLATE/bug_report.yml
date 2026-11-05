@@ -1,0 +1,72 @@
+name: Bug Report
+description: Report a bug in the open-source edition
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. This tracker is for the open-source edition built from this repository. For
+        MarkView installed from the Chrome Web Store or Edge Add-ons, please use
+        [markview-app/support](https://github.com/markview-app/support/issues). Security problems go to
+        [SECURITY.md](https://github.com/markview-app/markview/blob/main/SECURITY.md), not public issues.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly and concisely
+      placeholder: Tell us what went wrong
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce
+      description: Steps to reproduce the issue
+      placeholder: |
+        1. Open a markdown file
+        2. Click on...
+        3. See error
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: MarkView version or commit
+      placeholder: 'e.g., 1.0.0 or 7456e02'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source
+    attributes:
+      label: Where was the document opened from?
+      options:
+        - Local file (file://)
+        - Link (http:// or https://)
+        - Both
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Edge
+        - Brave
+        - Opera
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: Screenshots, console errors, or anything else that might help
+      placeholder: Optional - Add any extra context here
