@@ -1,3 +1,5 @@
+import { createLocalFontSettings } from '@components/local-font-settings';
+import { applyLocalFonts, getInterfaceFontFamily } from '@utils/fonts';
 /**
  * Settings Tab Component
  * Handles all settings-related logic in the popup
@@ -67,6 +69,15 @@ export class SettingsTab {
       if (fontFamilySelect) {
         fontFamilySelect.value = settings.fontFamily;
       }
+
+      applyLocalFonts(settings);
+      document.body.style.fontFamily = getInterfaceFontFamily();
+      const existingFonts = this.container.querySelector('.markview-local-font-settings');
+      const localFonts = createLocalFontSettings(settings, (key, value) =>
+        this.saveSetting(key, value)
+      );
+      if (existingFonts) existingFonts.replaceWith(localFonts);
+      else fontFamilySelect?.closest('.card')?.after(localFonts);
 
       // Sidebars
       const tocVisibleCheckbox = document.getElementById('tocVisible') as HTMLInputElement;

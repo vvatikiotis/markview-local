@@ -143,3 +143,39 @@ export async function loadGoogleFont(fontName: string): Promise<void> {
 export function loadGoogleFonts(): void {
   logger.log('[Fonts] loadGoogleFonts() is deprecated - fonts now load on demand');
 }
+
+/** Independent installed-font overrides. Names are single families, never CSS lists. */
+export interface LocalFontSettings {
+  localInterfaceFont?: string;
+  localCodeFont?: string;
+  localProseFont?: string;
+}
+
+export function getLocalFontFamily(name: string | undefined, fallback: string): string {
+  const family = name?.trim();
+  if (!family) return fallback;
+  // Quote as a CSS string, including control characters and user-supplied quotes.
+  const escaped = family.replace(
+    // eslint-disable-next-line no-control-regex -- CSS strings must escape control characters.
+    /["\\\x00-\x1f\x7f]/g,
+    char => `\\${char.charCodeAt(0).toString(16)} `
+  );
+  return `"${escaped}", ${fallback}`;
+}
+
+export function getInterfaceFontFamily(): string {
+  return `var(--markview-interface-font, ${FONT_FAMILIES.default})`;
+}
+
+export function applyLocalFonts(settings: LocalFontSettings): void {
+  const root = document.documentElement.style;
+  for (const [key, property, fallback] of [
+    ['localInterfaceFont', '--markview-interface-font', FONT_FAMILIES.default!],
+    ['localCodeFont', '--markview-code-font', 'ui-monospace, monospace'],
+  ] as const) {
+    if (settings[key] === undefined) continue;
+    if (settings[key]?.trim())
+      root.setProperty(property, getLocalFontFamily(settings[key], fallback));
+    else root.removeProperty(property);
+  }
+}

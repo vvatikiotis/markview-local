@@ -2,7 +2,12 @@
 // Helper functions for DOM manipulation
 import { logger } from '@utils/logger';
 import { setDocumentHTML } from '@core/sanitize-document-html';
-import { getFontFamily } from './fonts';
+import {
+  applyLocalFonts,
+  getFontFamily,
+  getLocalFontFamily,
+  type LocalFontSettings,
+} from './fonts';
 import { recoverUtf8FromLegacyDecode } from './source-encoding';
 
 /**
@@ -130,13 +135,15 @@ function applySyntaxHighlightingTheme(theme: 'light' | 'dark'): void {
 /**
  * Apply layout settings to container
  */
-export function applyLayoutSettings(settings: {
-  centered?: boolean;
-  maxWidth?: number;
-  fontSize?: number;
-  lineHeight?: number;
-  fontFamily?: string;
-}): void {
+export function applyLayoutSettings(
+  settings: LocalFontSettings & {
+    centered?: boolean;
+    maxWidth?: number;
+    fontSize?: number;
+    lineHeight?: number;
+    fontFamily?: string;
+  }
+): void {
   const container = document.getElementById('markview-container');
   if (!container) {
     logger.error('[applyLayoutSettings] Container not found!');
@@ -223,35 +230,14 @@ export function applyLayoutSettings(settings: {
     styles.lineHeight = `${settings.lineHeight}`;
   }
 
-  if (settings.fontFamily) {
-    styles.fontFamily = getFontFamily(settings.fontFamily);
-
-    // Also apply font to sidebars and other UI elements
-    const tocSidebar = document.querySelector('.markview-toc-sidebar') as HTMLElement;
-    const actionMenu = document.querySelector('.markview-actions-menu') as HTMLElement;
-
-    if (tocSidebar) {
-      tocSidebar.style.fontFamily = getFontFamily(settings.fontFamily);
-    }
-
-    if (actionMenu) {
-      actionMenu.style.fontFamily = getFontFamily(settings.fontFamily);
-    }
-
-    const extensionInfoModal = document.querySelector(
-      '.markview-extension-info-modal'
-    ) as HTMLElement;
-    if (extensionInfoModal) {
-      extensionInfoModal.style.fontFamily = getFontFamily(settings.fontFamily);
-    }
-
-    // Quick Settings modal
-    const quickSettingsModal = document.querySelector(
-      '.markview-quick-settings-modal'
-    ) as HTMLElement;
-    if (quickSettingsModal) {
-      quickSettingsModal.style.fontFamily = getFontFamily(settings.fontFamily);
-    }
+  if (settings.fontFamily !== undefined || settings.localProseFont !== undefined) {
+    styles.fontFamily = getLocalFontFamily(
+      settings.localProseFont,
+      getFontFamily(settings.fontFamily || 'default')
+    );
+  }
+  if (settings.localInterfaceFont !== undefined || settings.localCodeFont !== undefined) {
+    applyLocalFonts(settings);
   }
 
   Object.assign(container.style, styles);

@@ -168,7 +168,11 @@ async function applyLayout(): Promise<void> {
   const settings = await getSettings();
 
   // Load custom font if needed
-  if (settings.fontFamily && settings.fontFamily !== 'default') {
+  if (
+    !settings.localProseFont?.trim() &&
+    settings.fontFamily &&
+    settings.fontFamily !== 'default'
+  ) {
     const { loadGoogleFont } = await import('@utils/fonts');
     await loadGoogleFont(settings.fontFamily);
   }
@@ -179,6 +183,9 @@ async function applyLayout(): Promise<void> {
     fontSize: settings.fontSize,
     lineHeight: settings.lineHeight,
     fontFamily: settings.fontFamily,
+    localInterfaceFont: settings.localInterfaceFont,
+    localCodeFont: settings.localCodeFont,
+    localProseFont: settings.localProseFont,
   });
 
   // Apply code block display mode

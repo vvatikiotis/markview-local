@@ -756,6 +756,9 @@ export class TocSidebar {
         fontSize: settings.fontSize,
         lineHeight: settings.lineHeight,
         fontFamily: settings.fontFamily,
+        localInterfaceFont: settings.localInterfaceFont,
+        localCodeFont: settings.localCodeFont,
+        localProseFont: settings.localProseFont,
       });
     });
   }

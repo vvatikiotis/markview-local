@@ -71,11 +71,9 @@ export class ActionButtons {
    * Create menu with current font family settings
    */
   private async createMenu(): Promise<void> {
-    // Get current font family setting
-    const { getSettings } = await import('@core/storage');
-    const { getFontFamily } = await import('@utils/fonts');
-    const settings = await getSettings();
-    const fontFamily = settings.fontFamily ? getFontFamily(settings.fontFamily) : 'inherit';
+    // Use the independently selected interface font.
+    const { getInterfaceFontFamily } = await import('@utils/fonts');
+    const fontFamily = getInterfaceFontFamily();
 
     // Remove existing menu if any
     if (this.menu) {

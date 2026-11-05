@@ -21,7 +21,8 @@
   color: var(--language-label-text);
   font-size: 13px;
   font-weight: 500;
-  font-family:
+  font-family: var(
+    --markview-interface-font,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -32,7 +33,8 @@
     Cantarell,
     'Helvetica Neue',
     Arial,
-    sans-serif;
+    sans-serif
+  );
   text-transform: none;
   letter-spacing: 0;
   z-index: 10;
@@ -61,7 +63,8 @@
   color: var(--copy-button-text);
   font-size: 13px;
   font-weight: 500;
-  font-family:
+  font-family: var(
+    --markview-interface-font,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -72,7 +75,8 @@
     Cantarell,
     'Helvetica Neue',
     Arial,
-    sans-serif;
+    sans-serif
+  );
   cursor: pointer;
   opacity: 0;
   transition: all 0.2s ease;

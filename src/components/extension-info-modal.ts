@@ -16,11 +16,9 @@ import { MESSAGES } from '@utils/messages';
 export async function showExtensionInfoModal(): Promise<void> {
   logger.log('[ExtensionInfoModal] Showing modal');
 
-  // Get current font family setting
-  const { getSettings } = await import('@core/storage');
-  const { getFontFamily } = await import('@utils/fonts');
-  const settings = await getSettings();
-  const fontFamily = settings.fontFamily ? getFontFamily(settings.fontFamily) : 'inherit';
+  // Use the independently selected interface font.
+  const { getInterfaceFontFamily } = await import('@utils/fonts');
+  const fontFamily = getInterfaceFontFamily();
 
   // Get extension version from manifest
   const manifest = chrome.runtime.getManifest();

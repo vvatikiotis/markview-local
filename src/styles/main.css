@@ -104,7 +104,7 @@ html.markview-active body {
   background: var(--markview-code-bg);
   padding: 0.2em 0.4em;
   border-radius: 3px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--markview-code-font, 'Courier New', Courier, monospace);
   font-size: 85%;
   color: var(--brand-primary); /* Using main brand color */
   transition: background var(--transition-fast); /* Smooth hover transition */

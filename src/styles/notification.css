@@ -8,7 +8,8 @@
   padding: 15px 20px;
   border-radius: 6px;
   color: white;
-  font-family:
+  font-family: var(
+    --markview-interface-font,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -19,7 +20,8 @@
     Cantarell,
     'Helvetica Neue',
     Arial,
-    sans-serif;
+    sans-serif
+  );
   font-size: 14px;
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

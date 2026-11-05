@@ -589,5 +589,20 @@
   },
   "actions_exportHtmlFailed": {
     "message": "Could not export HTML"
+  },
+  "localFonts": {
+    "message": "Local fonts"
+  },
+  "localFontsDescription": {
+    "message": "Enter a font family installed on your computer. These fonts load locally. Leave blank to use the default; prose falls back to Font Family above. Unavailable fonts use a fallback."
+  },
+  "localFontInterface": {
+    "message": "Interface font"
+  },
+  "localFontCode": {
+    "message": "Code font"
+  },
+  "localFontProse": {
+    "message": "Prose font"
   }
 }

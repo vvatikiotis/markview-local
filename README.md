@@ -76,7 +76,13 @@ automatic local-file watching is not supported.
 Markdown is parsed and rendered in the browser tab. There is no analytics, telemetry, or crash reporting.
 
 Local-file-only does not mean offline. Documents can request remote images, media, and CSS resources. Selecting a
-non-default font loads Google Fonts. These requests expose normal network metadata, such as your IP address.
+non-default Font Family loads Google Fonts unless a local prose font is set. These requests expose normal network metadata, such as your IP address.
+
+In Settings or Quick Settings, use **Local fonts** to enter separate installed font family names for
+interface, code (including raw Markdown), and prose, such as `Segoe UI`, `JetBrains Mono`, and `Georgia`.
+Changes save when you leave the field. Local fonts do not require downloads or font-list permission.
+Leave a field blank to restore its default; prose uses the existing Font Family selection. If a font
+is not installed or is unavailable to the browser, a fallback font is displayed.
 
 **Permissions**
 

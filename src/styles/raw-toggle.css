@@ -10,7 +10,7 @@
 .markview-raw-view {
   white-space: pre-wrap;
   word-wrap: break-word;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  font-family: var(--markview-code-font, 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace);
   font-size: 14px;
   line-height: 1.6;
   padding: 20px;

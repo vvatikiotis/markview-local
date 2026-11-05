@@ -1,3 +1,4 @@
+import { createLocalFontSettings } from './local-font-settings';
 /**
  * Quick Settings Modal Component
  * Provides quick access to frequently-used settings without opening the extension popup
@@ -28,9 +29,8 @@ export async function showQuickSettingsModal(): Promise<void> {
   logger.log('[QuickSettingsModal] Showing modal');
 
   // Get current font family setting
-  const settings = await getSettings();
-  const { getFontFamily } = await import('@utils/fonts');
-  const fontFamily = settings.fontFamily ? getFontFamily(settings.fontFamily) : 'inherit';
+  const { getInterfaceFontFamily } = await import('@utils/fonts');
+  const fontFamily = getInterfaceFontFamily();
 
   // Create modal overlay
   const overlay = document.createElement('div');
@@ -203,6 +203,18 @@ async function loadBodyContent(bodyElement: HTMLElement, modalElement: HTMLEleme
   `;
 
   bodyElement.innerHTML = settingsHTML;
+  const localFonts = createLocalFontSettings(settings, async (key, value) => {
+    await updateSetting(key, value);
+    showNotification(MESSAGES.popup.settingsSaved, {
+      type: 'success',
+      scope: modalElement,
+      badge: true,
+    });
+  });
+  bodyElement
+    .querySelector('[data-setting="fontFamily"]')
+    ?.closest('.quick-setting-card')
+    ?.after(localFonts);
 
   // Setup event listeners for all controls
   setupSettingListeners(bodyElement, modalElement);

@@ -58,20 +58,28 @@ export async function handleSettingsChange(
     changes.maxWidth ||
     changes.fontSize ||
     changes.lineHeight ||
-    changes.fontFamily
+    changes.fontFamily !== undefined ||
+    changes.localInterfaceFont !== undefined ||
+    changes.localCodeFont !== undefined ||
+    changes.localProseFont !== undefined
   ) {
     // Get fresh settings to ensure we have latest values
     // Force cache refresh by invalidating it first
     const currentSettings = await getSettings();
 
     // If font family changed, load the Google Font on demand
-    if (changes.fontFamily !== undefined) {
+    if (
+      (changes.fontFamily !== undefined || changes.localProseFont !== undefined) &&
+      !(changes.localProseFont ?? currentSettings.localProseFont)?.trim()
+    ) {
       const { loadGoogleFont } = await import('@utils/fonts');
-      await loadGoogleFont(changes.fontFamily);
+      await loadGoogleFont(changes.fontFamily ?? currentSettings.fontFamily);
     }
 
     // Apply layout with merged settings (use changed values if available)
     applyLayoutSettings({
+      ...currentSettings,
+      ...changes,
       centered: changes.centered !== undefined ? changes.centered : currentSettings.centered,
       maxWidth: changes.maxWidth !== undefined ? changes.maxWidth : currentSettings.maxWidth,
       fontSize: changes.fontSize !== undefined ? changes.fontSize : currentSettings.fontSize,

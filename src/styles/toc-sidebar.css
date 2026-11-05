@@ -13,7 +13,8 @@
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
-  font-family:
+  font-family: var(
+    --markview-interface-font,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -24,7 +25,8 @@
     Cantarell,
     'Helvetica Neue',
     Arial,
-    sans-serif;
+    sans-serif
+  );
 
   /* Note: position: fixed already creates positioning context for resize handle */
 }

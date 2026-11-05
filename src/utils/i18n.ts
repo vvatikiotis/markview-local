@@ -37,7 +37,7 @@ export async function initI18n(language?: string): Promise<void> {
 
   // Ensure locale exists in LOCALES, fallback to 'en' if not
   const selectedLocale = isLocaleKey(locale) ? locale : 'en';
-  messages = LOCALES[selectedLocale];
+  messages = { ...LOCALES.en, ...LOCALES[selectedLocale] };
   logger.log(`[i18n] Messages loaded for locale: ${selectedLocale}`);
 }
 

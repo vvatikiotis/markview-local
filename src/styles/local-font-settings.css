@@ -1,0 +1,35 @@
+.markview-local-font-settings {
+  margin: 12px 0;
+  padding: 16px;
+  border: 1px solid var(--markview-border, #d0d7de);
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.markview-local-font-settings legend {
+  font-weight: 600;
+}
+
+.markview-local-font-settings p {
+  margin: 0 0 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.markview-local-font-settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.markview-local-font-settings input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--markview-border, #d0d7de);
+  border-radius: 4px;
+  background: var(--markview-bg, var(--color-bg-primary, #fff));
+  color: inherit;
+  font: inherit;
+}

@@ -11,7 +11,8 @@ body {
   width: 380px;
   height: 600px;
   max-height: 600px;
-  font-family:
+  font-family: var(
+    --markview-interface-font,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -22,7 +23,8 @@ body {
     Cantarell,
     'Helvetica Neue',
     Arial,
-    sans-serif;
+    sans-serif
+  );
   font-size: 14px;
   line-height: 1.5;
   color: #333;

@@ -99,6 +99,9 @@ export interface MarkViewSettings {
   centered: boolean;
   fontSize: number;
   fontFamily: string;
+  localInterfaceFont?: string;
+  localCodeFont?: string;
+  localProseFont?: string;
   lineHeight: number;
   maxWidth: number;
   highlight: boolean;
@@ -131,6 +134,9 @@ export const DEFAULT_SETTINGS: MarkViewSettings = {
   centered: true,
   fontSize: 16,
   fontFamily: 'default',
+  localInterfaceFont: '',
+  localCodeFont: '',
+  localProseFont: '',
   lineHeight: 1.6,
   maxWidth: 1000,
   highlight: true,
