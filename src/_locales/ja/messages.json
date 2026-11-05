@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "原作者:"
+  },
+  "attribution_repository": {
+    "message": "元のリポジトリ"
+  },
+  "attribution_website": {
+    "message": "元のウェブサイト"
+  },
+  "attribution_modifiedBuild": {
+    "message": "変更されたローカルビルドです。原作者による保守や承認はありません。"
+  },
   "appName": {
     "message": "MarkView"
   },

@@ -29,6 +29,8 @@ describe('scripts/zip.mjs', () => {
     await mkdir(path.join(directory, 'extension/nested/empty'), { recursive: true });
     const manifest = Buffer.from('{"manifest_version":3}');
     const binary = Buffer.from([0, 255, 128, 13, 10]);
+    const license = await readFile(path.join(root, 'LICENSE'));
+    await writeFile(path.join(directory, 'extension/LICENSE'), license);
     await writeFile(path.join(directory, 'extension/manifest.json'), manifest);
     await writeFile(path.join(directory, 'extension/nested/icon.png'), binary);
     const result = runZip(directory);
@@ -36,11 +38,13 @@ describe('scripts/zip.mjs', () => {
     expect(result.status).toBe(0);
     const entries = unzipSync(await readFile(path.join(directory, 'dist/markview-1.2.3.zip')));
     expect(Object.keys(entries).sort()).toEqual([
+      'LICENSE',
       'manifest.json',
       'nested/',
       'nested/empty/',
       'nested/icon.png',
     ]);
+    expect(Buffer.from(entries['LICENSE']!)).toEqual(license);
     expect(Buffer.from(entries['manifest.json']!)).toEqual(manifest);
     expect(Buffer.from(entries['nested/icon.png']!)).toEqual(binary);
     expect(entries['nested/empty/']).toHaveLength(0);

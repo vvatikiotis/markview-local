@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "Auteur d’origine :"
+  },
+  "attribution_repository": {
+    "message": "Dépôt d’origine"
+  },
+  "attribution_website": {
+    "message": "Site web d’origine"
+  },
+  "attribution_modifiedBuild": {
+    "message": "Version locale modifiée ; ni maintenue ni approuvée par les auteurs d’origine."
+  },
   "appName": {
     "message": "MarkView"
   },

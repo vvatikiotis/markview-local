@@ -55,6 +55,16 @@ body {
   margin-bottom: 0;
 }
 
+.header-attribution {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.header-attribution a {
+  text-decoration: underline;
+}
+
 .header-links {
   margin-top: 14px;
   padding-top: 12px;
@@ -252,10 +262,16 @@ body {
   border-bottom-color: #667eea;
 }
 
+/* Let scrollable panels fit below the variable-height translated header. */
+.popup-content {
+  min-height: 0;
+  overflow: hidden;
+}
+
 /* Tab Panels */
 .tab-panel {
   display: none;
-  height: calc(600px - 200px);
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   background: #ffffff;

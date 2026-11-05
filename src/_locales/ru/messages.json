@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "Первоначальный автор:"
+  },
+  "attribution_repository": {
+    "message": "Исходный репозиторий"
+  },
+  "attribution_website": {
+    "message": "Исходный сайт"
+  },
+  "attribution_modifiedBuild": {
+    "message": "Изменённая локальная сборка; первоначальные авторы её не поддерживают и не одобряют."
+  },
   "appName": {
     "message": "MarkView"
   },

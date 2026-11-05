@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "原作者："
+  },
+  "attribution_repository": {
+    "message": "原始程式碼儲存庫"
+  },
+  "attribution_website": {
+    "message": "原始網站"
+  },
+  "attribution_modifiedBuild": {
+    "message": "修改後的本機建置；不由原作者維護，也未經原作者認可。"
+  },
   "appName": {
     "message": "MarkView"
   },

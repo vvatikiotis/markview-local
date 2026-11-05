@@ -154,6 +154,22 @@
   padding: 32px;
 }
 
+.markview-extension-info-attribution {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: inherit;
+}
+
+.markview-extension-info-attribution p {
+  margin: 0 0 8px;
+}
+
+.markview-extension-info-attribution a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* ===================================
    Sections
    =================================== */

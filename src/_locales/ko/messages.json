@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "원작자:"
+  },
+  "attribution_repository": {
+    "message": "원본 저장소"
+  },
+  "attribution_website": {
+    "message": "원본 웹사이트"
+  },
+  "attribution_modifiedBuild": {
+    "message": "수정된 로컬 빌드이며 원작자가 유지 관리하거나 승인하지 않습니다."
+  },
   "appName": {
     "message": "MarkView"
   },

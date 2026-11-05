@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "Tác giả gốc:"
+  },
+  "attribution_repository": {
+    "message": "Kho mã nguồn gốc"
+  },
+  "attribution_website": {
+    "message": "Trang web gốc"
+  },
+  "attribution_modifiedBuild": {
+    "message": "Bản dựng cục bộ đã sửa đổi; không do các tác giả gốc duy trì hoặc xác nhận."
+  },
   "appName": {
     "message": "MarkView"
   },

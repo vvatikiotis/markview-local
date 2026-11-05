@@ -1,4 +1,16 @@
 {
+  "attribution_originalAuthor": {
+    "message": "Penulis asli:"
+  },
+  "attribution_repository": {
+    "message": "Repositori asli"
+  },
+  "attribution_website": {
+    "message": "Situs web asli"
+  },
+  "attribution_modifiedBuild": {
+    "message": "Build lokal yang dimodifikasi; tidak dipelihara atau didukung oleh penulis asli."
+  },
   "appName": {
     "message": "MarkView"
   },

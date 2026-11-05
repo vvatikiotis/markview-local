@@ -5,6 +5,8 @@
  */
 
 import { logger } from '@utils/logger';
+import { getMessage } from '@utils/i18n';
+import { ORIGINAL_PROJECT } from '@utils/original-project';
 import { MESSAGES } from '@utils/messages';
 import { openExternalLink } from '@utils/open-external-link';
 import { getExtensionStoreUrl, getStoreName } from '@utils/browser-detection';
@@ -104,6 +106,14 @@ function getHeaderHTML(version: string): string {
 function getBodyHTML(): string {
   return `
     <div class="markview-extension-info-content">
+      <div class="markview-extension-info-attribution">
+        <p>${getMessage('attribution_originalAuthor')} <strong>${ORIGINAL_PROJECT.author}</strong></p>
+        <p>
+          <a href="${ORIGINAL_PROJECT.repository}" target="_blank" rel="noopener noreferrer">${getMessage('attribution_repository')}</a> ·
+          <a href="${ORIGINAL_PROJECT.website}" target="_blank" rel="noopener noreferrer">${getMessage('attribution_website')}</a>
+        </p>
+        <p>${getMessage('attribution_modifiedBuild')}</p>
+      </div>
       <!-- Quick Links Section -->
       <div class="markview-extension-info-section">
         <h2 class="markview-extension-info-section-title">
@@ -253,7 +263,7 @@ function getBodyHTML(): string {
       <!-- Footer -->
       <div class="markview-extension-info-footer">
         <p>${MESSAGES.extensionInfo?.madeWith || 'Made with'} ❤️ ${MESSAGES.extensionInfo?.forDevelopers || 'for developers and writers'}</p>
-        <p class="markview-extension-info-copyright">&copy; 2026 MarkView. ${MESSAGES.extensionInfo?.allRightsReserved || 'All rights reserved'}.</p>
+        <p class="markview-extension-info-copyright">&copy; 2026 ${ORIGINAL_PROJECT.author} · MIT License</p>
       </div>
     </div>
   `;

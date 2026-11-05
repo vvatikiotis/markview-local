@@ -1,5 +1,11 @@
 # MarkView (Open-Source Edition)
 
+**Original author: MarkView Team** · [Original repository](https://github.com/markview-app/markview) ·
+[Original website](https://getmarkview.com/)
+
+This checkout is a modified local build, not maintained or endorsed by the original authors.
+The original [MIT License](LICENSE) and copyright notice are preserved.
+
 A lightweight, open-source markdown viewer for Chrome, Edge and other Chromium browsers. It is the core rendering
 engine of [MarkView](https://getmarkview.com/), released under the MIT License for auditing, self-hosting and
 restricted environments.
@@ -41,6 +47,9 @@ behavior remains available for controls.
 ## Install from source
 
 Requirements: Node.js 22.22.2+, 24.15.0+, or 26+, and pnpm 12 or later.
+
+The commands below clone the original upstream project. To build this modified checkout instead, run
+`pnpm install` and `pnpm run build` in this directory.
 
 ```bash
 git clone https://github.com/markview-app/markview.git
@@ -91,7 +100,9 @@ does not publish a roadmap. See [Contributing](docs/CONTRIBUTING.md) before open
 
 ## Support
 
-- Bugs in this edition: [open an issue](https://github.com/markview-app/markview/issues/new/choose)
+These links are for the original upstream project, not support for local modifications.
+
+- Upstream bugs: [open an issue](https://github.com/markview-app/markview/issues/new/choose)
 - Questions: [Discussions](https://github.com/markview-app/markview/discussions)
 - Security vulnerabilities: see [SECURITY.md](SECURITY.md), not public issues
 

@@ -84,6 +84,9 @@ module.exports = {
     // Copy static assets
     new CopyWebpackPlugin({
       patterns: [
+        // Preserve the original upstream MIT copyright and permission notice.
+        { from: 'LICENSE', to: 'LICENSE', toType: 'file' },
+
         // Manifest
         {
           from: 'src/manifest.json',
