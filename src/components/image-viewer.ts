@@ -2,6 +2,7 @@
 // Lightweight lightbox for viewing images in full screen
 import { logger } from '@utils/logger';
 import { lazyImageLoader } from '@utils/lazy-load-images';
+import { MESSAGES } from '@utils/messages';
 
 interface Position {
   width: number;
@@ -19,7 +20,6 @@ export class ImageViewer {
   private originalImage: HTMLImageElement | null = null;
   private setPosition: PositionFunc | null = null;
   private resizeHandler: (() => void) | null = null;
-  private keyboardHandler: ((e: KeyboardEvent) => void) | null = null;
 
   // Gallery navigation
   private allImages: HTMLImageElement[] = [];
@@ -105,7 +105,7 @@ export class ImageViewer {
       this.prevButton = document.createElement('button');
       this.prevButton.className = 'markview-image-nav markview-image-prev';
       this.prevButton.innerHTML = '‹';
-      this.prevButton.title = 'Previous image (←)';
+      this.prevButton.title = 'Previous image';
       this.prevButton.setAttribute('aria-label', 'Previous image');
       this.prevButton.addEventListener('click', e => {
         e.stopPropagation();
@@ -119,7 +119,7 @@ export class ImageViewer {
       this.nextButton = document.createElement('button');
       this.nextButton.className = 'markview-image-nav markview-image-next';
       this.nextButton.innerHTML = '›';
-      this.nextButton.title = 'Next image (→)';
+      this.nextButton.title = 'Next image';
       this.nextButton.setAttribute('aria-label', 'Next image');
       this.nextButton.addEventListener('click', e => {
         e.stopPropagation();
@@ -274,21 +274,6 @@ export class ImageViewer {
     }, 100);
 
     window.addEventListener('resize', this.resizeHandler);
-
-    // Set up keyboard handler (ESC to close, arrows to navigate)
-    this.keyboardHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        this.close(e);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        this.showPrevious();
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        this.showNext();
-      }
-    };
-    document.addEventListener('keydown', this.keyboardHandler);
   }
 
   /**
@@ -515,12 +500,6 @@ export class ImageViewer {
     if (this.resizeHandler) {
       window.removeEventListener('resize', this.resizeHandler);
       this.resizeHandler = null;
-    }
-
-    // Clean up keyboard handler
-    if (this.keyboardHandler) {
-      document.removeEventListener('keydown', this.keyboardHandler);
-      this.keyboardHandler = null;
     }
 
     return;
@@ -782,6 +761,18 @@ export class ImageViewer {
     this.zoomControls.appendChild(zoomOutBtn);
     this.zoomControls.appendChild(resetBtn);
 
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'markview-image-zoom-btn';
+    closeBtn.textContent = '×';
+    closeBtn.title = MESSAGES.common.close;
+    closeBtn.setAttribute('aria-label', MESSAGES.common.close);
+    closeBtn.setAttribute('data-action', 'close');
+    closeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      this.close(e);
+    });
+    this.zoomControls.appendChild(closeBtn);
+
     this.modal.appendChild(this.zoomControls);
   }
 
@@ -886,10 +877,6 @@ export class ImageViewer {
       window.removeEventListener('resize', this.resizeHandler);
     }
 
-    if (this.keyboardHandler) {
-      document.removeEventListener('keydown', this.keyboardHandler);
-    }
-
     // Remove DOM elements
     this.modal?.remove();
 
@@ -899,7 +886,6 @@ export class ImageViewer {
     this.originalImage = null;
     this.setPosition = null;
     this.resizeHandler = null;
-    this.keyboardHandler = null;
     this.prevButton = null;
     this.nextButton = null;
     this.counter = null;

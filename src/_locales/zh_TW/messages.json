@@ -204,7 +204,7 @@
     "message": "✨ 渲染檢視"
   },
   "ui_scrollTopTitle": {
-    "message": "捲動到頂部 (Home 鍵)"
+    "message": "捲動到頂部"
   },
   "ui_scrolledTop": {
     "message": "⬆️ 已捲動到頂部"
@@ -378,10 +378,10 @@
     "message": "目錄在原始 Markdown 視圖中不可用。"
   },
   "toc_toggleButtonTitle": {
-    "message": "切換目錄側邊欄 - Ctrl+Shift+L"
+    "message": "切換目錄側邊欄"
   },
   "theme_toggleButtonTitle": {
-    "message": "切換主題（明亮/深色/自動） - Ctrl+Shift+D"
+    "message": "切換主題（明亮/深色/自動）"
   },
   "theme_light": {
     "message": "⚪ 亮色主題"
@@ -393,7 +393,7 @@
     "message": "⚙️ 自動"
   },
   "centered_toggleButtonTitle": {
-    "message": "切換佈局（寬/置中） - Ctrl+Shift+C"
+    "message": "切換佈局（寬/置中）"
   },
   "centered_centered": {
     "message": "📄 置中"
@@ -402,7 +402,7 @@
     "message": "🖥️ 全寬"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "切換資料夾瀏覽器側邊欄 - Ctrl+Shift+B"
+    "message": "切換資料夾瀏覽器側邊欄"
   },
   "recent_clearConfirm": {
     "message": "清除所有最近的文件？"
@@ -450,7 +450,7 @@
     "message": "網址已複製到剪貼簿"
   },
   "recent_clickToOpen": {
-    "message": "按一下在目前分頁中開啟，Shift+按一下在新分頁中開啟"
+    "message": "按一下在目前分頁中開啟"
   },
   "recent_cannotReopen": {
     "message": "檔案系統API檔案無法從歷史記錄中重新開啟"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "需要設置"
-  },
-  "keyboardHelp_title": {
-    "message": "鍵盤快速鍵"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "快速存取所有功能"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "顯示"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "切換主題（淺色/深色/自動）"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "檢視原始內容"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "切換佈局（寬/置中）"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "切換目錄側邊欄"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "切換資料夾瀏覽器側邊欄"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "開啟快速設定"
-  },
-  "keyboardHelp_navigation": {
-    "message": "導航"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "在資料夾中搜尋"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "捲動到頁面頂端"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "關閉任何開啟的對話框"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "圖片庫"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "上一張圖片"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "下一張圖片"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "關閉圖片檢視器"
-  },
-  "keyboardHelp_macNote": {
-    "message": "在macOS上，使用⌘（Cmd）代替Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "在macOS上，將Ctrl替換為⌘（Cmd）"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "鍵盤快速鍵"
   },
   "actions_configurePlugins": {
     "message": "配置外掛程式"

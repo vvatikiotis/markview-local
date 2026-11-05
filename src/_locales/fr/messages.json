@@ -204,7 +204,7 @@
     "message": "✨ Vue rendue"
   },
   "ui_scrollTopTitle": {
-    "message": "Haut de page (Touche Début)"
+    "message": "Haut de page"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Défilé vers le haut"
@@ -378,10 +378,10 @@
     "message": "La table des matières n'est pas disponible en vue markdown brute."
   },
   "toc_toggleButtonTitle": {
-    "message": "Basculer la barre latérale de table des matières - Ctrl+Shift+L"
+    "message": "Basculer la barre latérale de table des matières"
   },
   "theme_toggleButtonTitle": {
-    "message": "Basculer le thème (Clair/Sombre/Auto) - Ctrl+Shift+D"
+    "message": "Basculer le thème (Clair/Sombre/Auto)"
   },
   "theme_light": {
     "message": "⚪ Thème clair"
@@ -393,7 +393,7 @@
     "message": "⚙️ Thème auto"
   },
   "centered_toggleButtonTitle": {
-    "message": "Basculer la mise en page (Large/Centré) - Ctrl+Shift+C"
+    "message": "Basculer la mise en page (Large/Centré)"
   },
   "centered_centered": {
     "message": "📄 Mise en page centrée"
@@ -402,7 +402,7 @@
     "message": "🖥️ Mise en page pleine largeur"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Basculer la barre latérale de navigation de dossiers - Ctrl+Shift+B"
+    "message": "Basculer la barre latérale de navigation de dossiers"
   },
   "recent_clearConfirm": {
     "message": "Effacer tous les documents récents ?"
@@ -450,7 +450,7 @@
     "message": "URL copiée dans le presse-papiers"
   },
   "recent_clickToOpen": {
-    "message": "Cliquer pour ouvrir dans l'onglet actuel, Maj+Clic pour un nouvel onglet"
+    "message": "Cliquer pour ouvrir dans l'onglet actuel"
   },
   "recent_cannotReopen": {
     "message": "Les fichiers File System API ne peuvent pas être rouverts depuis l'historique"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "Configuration requise"
-  },
-  "keyboardHelp_title": {
-    "message": "Raccourcis clavier"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Accès rapide à toutes les fonctionnalités"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Affichage"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Basculer le thème (Clair/Sombre/Auto)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Voir données brutes"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Basculer la mise en page (Large/Centré)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Basculer la barre latérale de table des matières"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Basculer la barre latérale de navigation de dossiers"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Ouvrir les paramètres rapides"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Navigation"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Rechercher dans le dossier"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Faire défiler vers le haut de la page"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Fermer toute fenêtre modale ouverte"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Galerie d'images"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Image précédente"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Image suivante"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Fermer la visionneuse d'images"
-  },
-  "keyboardHelp_macNote": {
-    "message": "Sur macOS, utilisez ⌘ (Cmd) au lieu de Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "Sur macOS, remplacez Ctrl par ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Raccourcis clavier"
   },
   "actions_configurePlugins": {
     "message": "Configurer les plugins"

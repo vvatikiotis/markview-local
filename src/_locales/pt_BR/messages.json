@@ -204,7 +204,7 @@
     "message": "✨ Visualização Renderizada"
   },
   "ui_scrollTopTitle": {
-    "message": "Rolar para o topo (Tecla Home)"
+    "message": "Rolar para o topo"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Rolado para o topo"
@@ -378,10 +378,10 @@
     "message": "O índice não está disponível na visualização markdown bruta."
   },
   "toc_toggleButtonTitle": {
-    "message": "Alternar barra lateral de índice - Ctrl+Shift+L"
+    "message": "Alternar barra lateral de índice"
   },
   "theme_toggleButtonTitle": {
-    "message": "Alternar tema (Claro/Escuro/Auto) - Ctrl+Shift+D"
+    "message": "Alternar tema (Claro/Escuro/Auto)"
   },
   "theme_light": {
     "message": "⚪ Tema Claro"
@@ -393,7 +393,7 @@
     "message": "⚙️ Tema Auto"
   },
   "centered_toggleButtonTitle": {
-    "message": "Alternar layout (Largo/Centralizado) - Ctrl+Shift+C"
+    "message": "Alternar layout (Largo/Centralizado)"
   },
   "centered_centered": {
     "message": "📄 Layout Centralizado"
@@ -402,7 +402,7 @@
     "message": "🖥️ Layout Largura Total"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Alternar barra lateral de navegação de pastas - Ctrl+Shift+B"
+    "message": "Alternar barra lateral de navegação de pastas"
   },
   "recent_clearConfirm": {
     "message": "Limpar todos os documentos recentes?"
@@ -450,7 +450,7 @@
     "message": "URL copiado para a área de transferência"
   },
   "recent_clickToOpen": {
-    "message": "Clique para abrir na aba atual, Shift+Clique para nova aba"
+    "message": "Clique para abrir na aba atual"
   },
   "recent_cannotReopen": {
     "message": "Arquivos da File System API não podem ser reabertos do histórico"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "Configuração necessária"
-  },
-  "keyboardHelp_title": {
-    "message": "Atalhos de teclado"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Acesso rápido a todos os recursos"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Exibição"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Alternar tema (Claro/Escuro/Auto)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Ver dados originais"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Alternar layout (Largo/Centralizado)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Alternar barra lateral de índice"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Alternar barra lateral de navegação de pastas"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Abrir configurações rápidas"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Navegação"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Pesquisar na pasta"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Rolar para o topo da página"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Fechar qualquer modal aberto"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Galeria de imagens"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Imagem anterior"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Próxima imagem"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Fechar visualizador de imagens"
-  },
-  "keyboardHelp_macNote": {
-    "message": "No macOS, use ⌘ (Cmd) em vez de Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "No macOS, substitua Ctrl por ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Atalhos de teclado"
   },
   "actions_configurePlugins": {
     "message": "Configurar Plugins"

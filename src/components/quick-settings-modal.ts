@@ -8,37 +8,10 @@ import { isLocaleKey } from '@utils/locales';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 import { getSettings, updateSetting, type DisplaySettings } from '@core/storage';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { showNotification } from '@utils/notification';
 
 // Track if modal is currently open to prevent duplicates
 let isModalOpen = false;
-
-/**
- * Initialize Quick Settings Modal keyboard shortcuts
- */
-export function initQuickSettingsModal(): void {
-  logger.log('[QuickSettingsModal] Initializing keyboard shortcuts...');
-
-  // Keyboard shortcut: Ctrl+Shift+K (or Cmd+Shift+K on Mac)
-  keyboardManager.register('quick-settings', {
-    key: 'K',
-    ctrl: true,
-    shift: true,
-    description: 'Open Quick Settings modal',
-    action: () => {
-      logger.log('[QuickSettingsModal] Received Ctrl+Shift+K keyboard shortcut');
-      showQuickSettingsModal();
-    },
-  });
-}
-
-/**
- * Clean up Quick Settings Modal resources
- */
-export function destroyQuickSettingsModal(): void {
-  keyboardManager.unregister('quick-settings');
-}
 
 /**
  * Show quick settings modal
@@ -100,16 +73,6 @@ export async function showQuickSettingsModal(): Promise<void> {
       closeModal(overlay);
     }
   });
-
-  // Close on Escape key
-  const handleEscape = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      closeModal(overlay);
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('markview:languageChanged', handleLanguageChange);
-    }
-  };
-  document.addEventListener('keydown', handleEscape);
 
   // Listen for language changes and update modal content
   const handleLanguageChange = () => {

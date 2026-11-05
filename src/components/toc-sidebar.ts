@@ -5,7 +5,6 @@ import { getSettings, updateSetting } from '@core/storage';
 import { applyLayoutSettings, clearContentMargin, setContentMargin } from '@utils/dom';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { ResizeHandle } from './resize-handle';
 
 export interface TocHeading {
@@ -80,7 +79,6 @@ export class TocSidebar {
       this.render();
       this.setupScrollSpy();
       this.setupRawViewListeners();
-      this.setupKeyboardShortcut();
 
       // Set content margin to make room for the sidebar
       this.adjustContentMargin(true);
@@ -600,30 +598,6 @@ export class TocSidebar {
   }
 
   /**
-   * Setup keyboard shortcut (Ctrl+Shift+L or Cmd+Shift+L)
-   * L for List/sidenav
-   * Changed from Ctrl+Shift+T to avoid conflict with browser's "Reopen closed tab"
-   * Changed from Ctrl+Shift+O to avoid conflict with browser's "Open Bookmark Manager"
-   */
-  private setupKeyboardShortcut(): void {
-    keyboardManager.register('toc-sidebar', {
-      key: 'L',
-      ctrl: true,
-      shift: true,
-      description: MESSAGES.toc.title,
-      action: () => {
-        if (this.container?.style.display === 'none') {
-          this.show();
-        } else {
-          this.hide();
-        }
-      },
-    });
-
-    logger.log('[TocSidebar] Keyboard shortcut registered: Ctrl+Shift+L / Cmd+Shift+L');
-  }
-
-  /**
    * Show the sidebar
    */
   show(): void {
@@ -867,9 +841,6 @@ export class TocSidebar {
       this.resizeHandle.destroy();
       this.resizeHandle = null;
     }
-
-    // Unregister keyboard shortcut
-    keyboardManager.unregister('toc-sidebar');
 
     // Remove container
     if (this.container) {

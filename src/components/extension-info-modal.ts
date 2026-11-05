@@ -316,16 +316,6 @@ function setupEventListeners(
     }
   });
 
-  // Close on Escape key
-  const handleEscape = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      closeModal(overlay);
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('markview:languageChanged', handleLanguageChange);
-    }
-  };
-  document.addEventListener('keydown', handleEscape);
-
   // Listen for language changes and update modal content
   const handleLanguageChange = async () => {
     await updateModalContent(headerElement, bodyElement, overlay);

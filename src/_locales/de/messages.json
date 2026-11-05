@@ -204,7 +204,7 @@
     "message": "✨ Gerenderte Ansicht"
   },
   "ui_scrollTopTitle": {
-    "message": "Nach oben scrollen (Pos1-Taste)"
+    "message": "Nach oben scrollen"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Nach oben gescrollt"
@@ -378,10 +378,10 @@
     "message": "Das Inhaltsverzeichnis ist in der Roh-Markdown-Ansicht nicht verfügbar."
   },
   "toc_toggleButtonTitle": {
-    "message": "Inhaltsverzeichnis-Seitenleiste umschalten - Ctrl+Shift+L"
+    "message": "Inhaltsverzeichnis-Seitenleiste umschalten"
   },
   "theme_toggleButtonTitle": {
-    "message": "Design umschalten (Strg+Umschalt+T)"
+    "message": "Design umschalten"
   },
   "theme_light": {
     "message": "⚪ Helles Design"
@@ -393,7 +393,7 @@
     "message": "⚙️ Auto-Design"
   },
   "centered_toggleButtonTitle": {
-    "message": "Layout umschalten (Breit/Zentriert) - Ctrl+Shift+C"
+    "message": "Layout umschalten (Breit/Zentriert)"
   },
   "centered_centered": {
     "message": "📄 Zentriertes Layout"
@@ -402,7 +402,7 @@
     "message": "🖥️ Layout in voller Breite"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Ordner-Browser-Seitenleiste umschalten - Ctrl+Shift+B"
+    "message": "Ordner-Browser-Seitenleiste umschalten"
   },
   "recent_clearConfirm": {
     "message": "Alle kürzlich geöffneten Dokumente löschen?"
@@ -450,7 +450,7 @@
     "message": "URL in Zwischenablage kopiert"
   },
   "recent_clickToOpen": {
-    "message": "Klicken zum Öffnen im aktuellen Tab, Umschalt+Klick für neuen Tab"
+    "message": "Klicken zum Öffnen im aktuellen Tab"
   },
   "recent_cannotReopen": {
     "message": "File System API-Dateien können nicht aus dem Verlauf geöffnet werden"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "Einrichtung erforderlich"
-  },
-  "keyboardHelp_title": {
-    "message": "Tastaturkürzel"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Schnellzugriff auf alle Funktionen"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Anzeige"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Thema umschalten (Hell/Dunkel/Auto)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Rohdaten anzeigen"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Layout umschalten (Breit/Zentriert)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Inhaltsverzeichnis-Seitenleiste umschalten"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Ordner-Browser-Seitenleiste umschalten"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Schnelleinstellungen öffnen"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Navigation"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Im Ordner suchen"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Zum Seitenanfang scrollen"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Jedes geöffnete Modal schließen"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Bildergalerie"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Vorheriges Bild"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Nächstes Bild"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Bildbetrachter schließen"
-  },
-  "keyboardHelp_macNote": {
-    "message": "Unter macOS verwenden Sie ⌘ (Cmd) anstelle von Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "Unter macOS ersetzen Sie Ctrl durch ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Tastaturkürzel"
   },
   "actions_configurePlugins": {
     "message": "Plugins konfigurieren"

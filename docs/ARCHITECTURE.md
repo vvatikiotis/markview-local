@@ -95,7 +95,7 @@ plugins.
 
 Components live in `src/components/` and are mounted by `src/core/component-manager.ts`: the TOC sidebar (H1–H3, with
 a resize handle), theme toggle, centered-layout toggle, raw view toggle, code copy buttons, scroll-to-top, action
-menu, quick settings, keyboard shortcuts help, image viewer and Mermaid zoom with download.
+menu, quick settings, image viewer and Mermaid zoom with download.
 
 Interface text comes from `src/_locales/<language>/messages.json` (12 languages) through `src/utils/i18n.ts`.
 

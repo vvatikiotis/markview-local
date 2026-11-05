@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
 vi.mock('@core/storage', async importOriginal => {
   const original = await importOriginal<typeof import('@core/storage')>();
   return {
@@ -11,10 +11,13 @@ vi.mock('@utils/notification', () => ({ showNotification: vi.fn() }));
 import { updateSetting } from '@core/storage';
 import { showQuickSettingsModal } from '@components/quick-settings-modal';
 
+let documentListeners: MockInstance<typeof document.addEventListener>;
+
 beforeEach(async () => {
   vi.useFakeTimers();
   document.body.innerHTML = '';
   vi.mocked(updateSetting).mockClear();
+  documentListeners = vi.spyOn(document, 'addEventListener');
   await showQuickSettingsModal();
 });
 afterEach(() => {
@@ -22,6 +25,7 @@ afterEach(() => {
   vi.advanceTimersByTime(200);
   document.body.innerHTML = '';
   vi.useRealTimers();
+  vi.restoreAllMocks();
 });
 
 function selectValue(setting: string, value: string): void {
@@ -85,5 +89,30 @@ describe('quick-settings-modal setting boundaries', () => {
     toggle.dispatchEvent(new Event('change'));
     await Promise.resolve();
     expect(updateSetting).not.toHaveBeenCalled();
+  });
+});
+
+describe('quick-settings-modal mouse dismissal without keybindings', () => {
+  it('ignores Escape and native control keys, then closes via its button', () => {
+    const overlay = document.querySelector<HTMLElement>('.markview-quick-settings-overlay')!;
+    for (const key of ['Escape', 'Tab', 'Enter']) {
+      const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+      expect(overlay.querySelector('select')!.dispatchEvent(event)).toBe(true);
+      expect(event.defaultPrevented).toBe(false);
+      expect(overlay.style.opacity).not.toBe('0');
+    }
+    expect(documentListeners.mock.calls.some(([type]) => /^key(down|up|press)$/.test(type))).toBe(
+      false
+    );
+    overlay.querySelector<HTMLButtonElement>('.markview-quick-settings-close')!.click();
+    vi.advanceTimersByTime(200);
+    expect(overlay.isConnected).toBe(false);
+  });
+
+  it('closes on a backdrop click', () => {
+    const overlay = document.querySelector<HTMLElement>('.markview-quick-settings-overlay')!;
+    overlay.click();
+    vi.advanceTimersByTime(200);
+    expect(overlay.isConnected).toBe(false);
   });
 });

@@ -2,7 +2,6 @@
 import { showNotification } from '@utils/notification';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
-import { showKeyboardShortcutsHelp } from './keyboard-shortcuts-help';
 import { isSandboxed } from '@utils/sandbox-detection';
 
 /** One entry in the actions menu. */
@@ -121,15 +120,6 @@ export class ActionButtons {
           <circle cx="12" cy="12" r="3"></circle>
         </svg>`,
         action: () => this.showQuickSettings(),
-      },
-      {
-        id: 'keyboard-shortcuts',
-        label: MESSAGES.actions.keyboardShortcuts,
-        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-          <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"></path>
-        </svg>`,
-        action: () => this.showKeyboardHelp(),
       },
       {
         id: 'extension-info',
@@ -261,12 +251,6 @@ export class ActionButtons {
     // Show quick settings modal
     const { showQuickSettingsModal } = await import('./quick-settings-modal');
     await showQuickSettingsModal();
-    this.closeMenu();
-  }
-
-  private async showKeyboardHelp(): Promise<void> {
-    // Show keyboard shortcuts help modal
-    await showKeyboardShortcutsHelp();
     this.closeMenu();
   }
 

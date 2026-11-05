@@ -8,13 +8,9 @@ vi.mock('@core/storage', async importOriginal => {
   };
 });
 vi.mock('@utils/notification', () => ({ showNotification: vi.fn() }));
-vi.mock('@utils/keyboard-shortcuts', () => ({
-  keyboardManager: { register: vi.fn(), unregister: vi.fn() },
-}));
 import { ThemeToggle } from '@components/theme-toggle';
 import { updateSetting } from '@core/storage';
 import { showNotification } from '@utils/notification';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -24,12 +20,10 @@ afterEach(() => {
 });
 
 describe('theme-toggle action Promise contract', () => {
-  it('applies the theme immediately and preserves a Promise-returning shortcut action', async () => {
-    new ThemeToggle();
-    await vi.waitFor(() => expect(keyboardManager.register).toHaveBeenCalled());
-    const config = vi.mocked(keyboardManager.register).mock.calls[0]?.[1];
-    if (!config) throw new Error('Missing theme shortcut');
-    const pending = config.action(new KeyboardEvent('keydown'));
+  it('applies the theme immediately and preserves its Promise-returning action', async () => {
+    const toggle = new ThemeToggle();
+    await vi.waitFor(() => expect(document.getElementById('markview-theme-toggle')).not.toBeNull());
+    const pending = toggle['toggleTheme']();
     expect(pending).toBeInstanceOf(Promise);
     expect(document.documentElement.classList.contains('markview-dark')).toBe(true);
     expect(updateSetting).toHaveBeenCalledWith('theme', 'dark');
@@ -37,14 +31,12 @@ describe('theme-toggle action Promise contract', () => {
   });
 
   it('converts immediate action errors to rejections', async () => {
-    new ThemeToggle();
-    await vi.waitFor(() => expect(keyboardManager.register).toHaveBeenCalled());
-    const config = vi.mocked(keyboardManager.register).mock.calls[0]?.[1];
-    if (!config) throw new Error('Missing theme shortcut');
+    const toggle = new ThemeToggle();
+    await vi.waitFor(() => expect(document.getElementById('markview-theme-toggle')).not.toBeNull());
     const failure = new Error('notification unavailable');
     vi.mocked(showNotification).mockImplementation(() => {
       throw failure;
     });
-    await expect(config.action(new KeyboardEvent('keydown'))).rejects.toBe(failure);
+    await expect(toggle['toggleTheme']()).rejects.toBe(failure);
   });
 });

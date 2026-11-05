@@ -229,9 +229,6 @@ export function applyLayoutSettings(settings: {
     // Also apply font to sidebars and other UI elements
     const tocSidebar = document.querySelector('.markview-toc-sidebar') as HTMLElement;
     const actionMenu = document.querySelector('.markview-actions-menu') as HTMLElement;
-    const keyboardShortcutsModal = document.querySelector(
-      '.markview-keyboard-help-modal'
-    ) as HTMLElement;
 
     if (tocSidebar) {
       tocSidebar.style.fontFamily = getFontFamily(settings.fontFamily);
@@ -239,10 +236,6 @@ export function applyLayoutSettings(settings: {
 
     if (actionMenu) {
       actionMenu.style.fontFamily = getFontFamily(settings.fontFamily);
-    }
-
-    if (keyboardShortcutsModal) {
-      keyboardShortcutsModal.style.fontFamily = getFontFamily(settings.fontFamily);
     }
 
     const extensionInfoModal = document.querySelector(

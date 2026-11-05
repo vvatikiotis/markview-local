@@ -204,7 +204,7 @@
     "message": "✨ Tampilan Dirender"
   },
   "ui_scrollTopTitle": {
-    "message": "Gulir ke atas (Tombol Home)"
+    "message": "Gulir ke atas"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Digulir ke atas"
@@ -378,10 +378,10 @@
     "message": "Daftar Isi tidak tersedia dalam tampilan markdown mentah."
   },
   "toc_toggleButtonTitle": {
-    "message": "Beralih sidebar daftar isi - Ctrl+Shift+L"
+    "message": "Beralih sidebar daftar isi"
   },
   "theme_toggleButtonTitle": {
-    "message": "Beralih tema (Terang/Gelap/Otomatis) - Ctrl+Shift+D"
+    "message": "Beralih tema (Terang/Gelap/Otomatis)"
   },
   "theme_light": {
     "message": "⚪ Tema Terang"
@@ -393,7 +393,7 @@
     "message": "⚙️ Tema Otomatis"
   },
   "centered_toggleButtonTitle": {
-    "message": "Beralih tata letak tengah (Ctrl+Shift+C)"
+    "message": "Beralih tata letak tengah"
   },
   "centered_centered": {
     "message": "📄 Tata Letak Tengah"
@@ -402,7 +402,7 @@
     "message": "🖥️ Tata Letak Lebar Penuh"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Beralih sidebar penjelajah folder - Ctrl+Shift+B"
+    "message": "Beralih sidebar penjelajah folder"
   },
   "recent_clearConfirm": {
     "message": "Hapus semua dokumen terkini?"
@@ -450,7 +450,7 @@
     "message": "URL disalin ke clipboard"
   },
   "recent_clickToOpen": {
-    "message": "Klik untuk membuka di tab saat ini, Shift+Klik untuk tab baru"
+    "message": "Klik untuk membuka di tab saat ini"
   },
   "recent_cannotReopen": {
     "message": "File File System API tidak dapat dibuka kembali dari riwayat"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "Pengaturan diperlukan"
-  },
-  "keyboardHelp_title": {
-    "message": "Pintasan keyboard"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Akses cepat ke semua fitur"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Tampilan"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Beralih tema (Terang/Gelap/Otomatis)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Lihat data asli"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Beralih tata letak (Lebar/Terpusat)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Beralih sidebar daftar isi"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Beralih sidebar penjelajah folder"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Buka pengaturan cepat"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Navigasi"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Cari di folder"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Gulir ke atas halaman"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Tutup modal yang terbuka"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Galeri gambar"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Gambar sebelumnya"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Gambar berikutnya"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Tutup penampil gambar"
-  },
-  "keyboardHelp_macNote": {
-    "message": "Di macOS, gunakan ⌘ (Cmd) sebagai pengganti Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "Di macOS, ganti Ctrl dengan ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Pintasan keyboard"
   },
   "actions_configurePlugins": {
     "message": "Konfigurasi Plugin"

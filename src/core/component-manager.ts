@@ -11,12 +11,7 @@ import { ScrollTopButton } from '@components/scroll-top';
 import { ThemeToggle } from '@components/theme-toggle';
 import { createTocSidebar, TocSidebar } from '@components/toc-sidebar';
 import { TocToggleButton } from '@components/toc-toggle';
-import {
-  initQuickSettingsModal,
-  destroyQuickSettingsModal,
-} from '@components/quick-settings-modal';
 import { getSettings } from '@core/storage';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { logger } from '@utils/logger';
 
 /**
@@ -55,10 +50,6 @@ export function createComponentInstances(): ComponentInstances {
 export async function initializeComponents(components: ComponentInstances): Promise<void> {
   const settings = await getSettings();
 
-  // Initialize keyboard shortcut manager first
-  keyboardManager.initialize();
-  logger.log('MarkView: Keyboard shortcut manager initialized');
-
   // Initialize all components in parallel for performance
   await Promise.all([
     // Initialize TOC sidebar
@@ -94,28 +85,22 @@ export async function initializeComponents(components: ComponentInstances): Prom
     // Initialize simple toggle buttons (fast, synchronous)
     Promise.resolve().then(() => {
       components.themeToggle = new ThemeToggle();
-      logger.log('MarkView: Theme toggle initialized (Ctrl+Shift+T)');
+      logger.log('MarkView: Theme toggle initialized');
 
       components.centeredToggle = new CenteredToggle();
-      logger.log('MarkView: Centered layout toggle initialized (Ctrl+Shift+C)');
+      logger.log('MarkView: Centered layout toggle initialized');
 
       components.scrollTopButton = new ScrollTopButton();
-      logger.log('MarkView: Scroll to top button initialized (Home key)');
+      logger.log('MarkView: Scroll to top button initialized');
 
       components.actionButtons = new ActionButtons();
       logger.log('MarkView: Action buttons initialized (Print & Settings)');
 
       components.rawToggle = new RawToggle();
-      logger.log(
-        'MarkView: Raw view toggle initialized (Ctrl+Shift+R) - menu item in action buttons'
-      );
+      logger.log('MarkView: Raw view toggle initialized - menu item in action buttons');
 
       components.codeCopy = new CodeCopy();
       logger.log('MarkView: Code copy buttons initialized');
-
-      // Initialize Quick Settings Modal keyboard shortcuts
-      initQuickSettingsModal();
-      logger.log('MarkView: Quick Settings Modal initialized (Ctrl+Shift+K)');
 
       logger.log('MarkView: Image viewer initialized (click images to view)');
       logger.log('MarkView: Lazy image loading initialized');
@@ -147,7 +132,6 @@ export function destroyAllComponents(components: ComponentInstances): void {
     components.centeredToggle = null;
   }
   if (components.rawToggle) {
-    components.rawToggle.destroy();
     components.rawToggle = null;
   }
   if (components.scrollTopButton) {
@@ -162,7 +146,4 @@ export function destroyAllComponents(components: ComponentInstances): void {
     components.actionButtons.destroy();
     components.actionButtons = null;
   }
-
-  // Cleanup Quick Settings Modal keyboard shortcuts
-  destroyQuickSettingsModal();
 }

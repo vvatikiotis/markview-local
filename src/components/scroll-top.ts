@@ -1,6 +1,5 @@
 // MarkView Scroll to Top Button Component
 import { showNotification } from '@utils/notification';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 
@@ -50,14 +49,6 @@ export class ScrollTopButton {
     // Scroll listener to show/hide button
     window.addEventListener('scroll', () => {
       this.checkScrollPosition();
-    });
-
-    // Keyboard shortcut: Home key
-    keyboardManager.register('scroll-top', {
-      key: 'Home',
-      description: MESSAGES.ui.scrollTopTitle,
-      action: () => this.scrollToTop(),
-      ignoreInInputs: true,
     });
   }
 
@@ -110,7 +101,6 @@ export class ScrollTopButton {
    * Clean up
    */
   destroy(): void {
-    keyboardManager.unregister('scroll-top');
     this.button?.remove();
     this.button = null;
   }

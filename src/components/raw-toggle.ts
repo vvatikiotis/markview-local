@@ -1,7 +1,6 @@
 // MarkView Raw/Rendered View Toggle Component
 import { extractMarkdownSource } from '@utils/dom';
 import { showNotification } from '@utils/notification';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 
@@ -43,19 +42,6 @@ export class RawToggle {
     document.addEventListener('markview:toggleRawView', () => {
       logger.log('[RawToggle] Received markview:toggleRawView event');
       this.toggle();
-    });
-
-    // Keyboard shortcut: Ctrl+Shift+M (or Cmd+Shift+M on Mac)
-    // Changed from Ctrl+Shift+R to avoid conflict with browser's "Hard reload"
-    keyboardManager.register('raw-toggle', {
-      key: 'M',
-      ctrl: true,
-      shift: true,
-      description: 'Toggle RAW markdown view',
-      action: () => {
-        logger.log('[RawToggle] Received Ctrl+Shift+M keyboard shortcut');
-        this.toggle();
-      },
     });
   }
 
@@ -141,13 +127,5 @@ export class RawToggle {
     if (this.isRawView && this.container) {
       this.showRawView();
     }
-  }
-
-  /**
-   * Clean up
-   */
-  destroy(): void {
-    keyboardManager.unregister('raw-toggle');
-    // No button to remove - toggle is now managed via ActionButtons menu
   }
 }

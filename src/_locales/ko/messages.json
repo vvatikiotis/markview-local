@@ -204,7 +204,7 @@
     "message": "✨ 렌더링된 보기"
   },
   "ui_scrollTopTitle": {
-    "message": "맨 위로 스크롤 (Home 키)"
+    "message": "맨 위로 스크롤"
   },
   "ui_scrolledTop": {
     "message": "⬆️ 맨 위로 스크롤됨"
@@ -378,10 +378,10 @@
     "message": "목차는 raw 마크다운 뷰에서 사용할 수 없습니다."
   },
   "toc_toggleButtonTitle": {
-    "message": "목차 사이드바 전환 - Ctrl+Shift+L"
+    "message": "목차 사이드바 전환"
   },
   "theme_toggleButtonTitle": {
-    "message": "테마 전환 (라이트/다크/자동) - Ctrl+Shift+D"
+    "message": "테마 전환 (라이트/다크/자동)"
   },
   "theme_light": {
     "message": "⚪ 밝은 테마"
@@ -393,7 +393,7 @@
     "message": "⚙️ 자동"
   },
   "centered_toggleButtonTitle": {
-    "message": "레이아웃 전환 (와이드/중앙) - Ctrl+Shift+C"
+    "message": "레이아웃 전환 (와이드/중앙)"
   },
   "centered_centered": {
     "message": "📄 중앙 정렬"
@@ -402,7 +402,7 @@
     "message": "🖥️ 전체 너비"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "폴더 브라우저 사이드바 전환 - Ctrl+Shift+B"
+    "message": "폴더 브라우저 사이드바 전환"
   },
   "recent_clearConfirm": {
     "message": "최근 문서를 모두 지우시겠습니까?"
@@ -450,7 +450,7 @@
     "message": "URL이 클립보드에 복사되었습니다"
   },
   "recent_clickToOpen": {
-    "message": "클릭하면 현재 탭에서 열기, Shift+클릭하면 새 탭"
+    "message": "클릭하면 현재 탭에서 열기"
   },
   "recent_cannotReopen": {
     "message": "File System API 파일은 기록에서 다시 열 수 없습니다"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "설정 필요"
-  },
-  "keyboardHelp_title": {
-    "message": "키보드 단축키"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "모든 기능에 빠르게 액세스"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "디스플레이"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "테마 전환 (라이트/다크/자동)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "원본 데이터 보기"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "레이아웃 전환 (와이드/중앙)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "목차 사이드바 전환"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "폴더 브라우저 사이드바 전환"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "빠른 설정 열기"
-  },
-  "keyboardHelp_navigation": {
-    "message": "탐색"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "폴더에서 검색"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "페이지 상단으로 스크롤"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "열린 모달 닫기"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "이미지 갤러리"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "이전 이미지"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "다음 이미지"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "이미지 뷰어 닫기"
-  },
-  "keyboardHelp_macNote": {
-    "message": "macOS에서는 Ctrl 대신 ⌘ (Cmd)를 사용하세요"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "macOS에서는 Ctrl을 ⌘ (Cmd)로 바꾸세요"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "키보드 단축키"
   },
   "actions_configurePlugins": {
     "message": "플러그인 구성"

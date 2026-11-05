@@ -204,7 +204,7 @@
     "message": "✨ Vista Renderizada"
   },
   "ui_scrollTopTitle": {
-    "message": "Desplazarse al inicio (Tecla Inicio)"
+    "message": "Desplazarse al inicio"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Desplazado al inicio"
@@ -378,10 +378,10 @@
     "message": "La tabla de contenidos no está disponible en la vista markdown sin procesar."
   },
   "toc_toggleButtonTitle": {
-    "message": "Alternar barra lateral de tabla de contenidos - Ctrl+Shift+L"
+    "message": "Alternar barra lateral de tabla de contenidos"
   },
   "theme_toggleButtonTitle": {
-    "message": "Alternar tema (Claro/Oscuro/Auto) - Ctrl+Shift+D"
+    "message": "Alternar tema (Claro/Oscuro/Auto)"
   },
   "theme_light": {
     "message": "⚪ Tema Claro"
@@ -393,7 +393,7 @@
     "message": "⚙️ Automático"
   },
   "centered_toggleButtonTitle": {
-    "message": "Alternar diseño (Ancho/Centrado) - Ctrl+Shift+C"
+    "message": "Alternar diseño (Ancho/Centrado)"
   },
   "centered_centered": {
     "message": "📄 Diseño Centrado"
@@ -402,7 +402,7 @@
     "message": "🖥️ Ancho Completo"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Alternar barra lateral de explorador de carpetas - Ctrl+Shift+B"
+    "message": "Alternar barra lateral de explorador de carpetas"
   },
   "recent_clearConfirm": {
     "message": "¿Borrar todos los documentos recientes?"
@@ -450,7 +450,7 @@
     "message": "URL copiada al portapapeles"
   },
   "recent_clickToOpen": {
-    "message": "Clic para abrir en pestaña actual, Shift+Clic para nueva pestaña"
+    "message": "Clic para abrir en pestaña actual"
   },
   "recent_cannotReopen": {
     "message": "Los archivos de File System API no se pueden reabrir desde el historial"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "Configuración requerida"
-  },
-  "keyboardHelp_title": {
-    "message": "Atajos de teclado"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Acceso rápido a todas las funciones"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Visualización"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Alternar tema (Claro/Oscuro/Auto)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Ver código fuente"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Alternar diseño (Ancho/Centrado)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Alternar barra lateral de tabla de contenidos"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Alternar barra lateral de explorador de carpetas"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Abrir configuración rápida"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Navegación"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Buscar en carpeta"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Desplazarse al inicio de la página"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Cerrar cualquier modal abierto"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Galería de imágenes"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Imagen anterior"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Imagen siguiente"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Cerrar visor de imágenes"
-  },
-  "keyboardHelp_macNote": {
-    "message": "En macOS, usa ⌘ (Cmd) en lugar de Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "En macOS, reemplaza Ctrl con ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Atajos de teclado"
   },
   "actions_configurePlugins": {
     "message": "Configurar Plugins"

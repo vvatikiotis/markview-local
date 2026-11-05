@@ -207,7 +207,7 @@
     "message": "✨ Отображённый вид"
   },
   "ui_scrollTopTitle": {
-    "message": "Прокрутить вверх (клавиша Home)"
+    "message": "Прокрутить вверх"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Прокручено вверх"
@@ -381,10 +381,10 @@
     "message": "Содержание недоступно в режиме исходного кода markdown."
   },
   "toc_toggleButtonTitle": {
-    "message": "Переключить боковую панель содержания - Ctrl+Shift+L"
+    "message": "Переключить боковую панель содержания"
   },
   "theme_toggleButtonTitle": {
-    "message": "Переключить тему (Светлая/Тёмная/Авто) - Ctrl+Shift+D"
+    "message": "Переключить тему (Светлая/Тёмная/Авто)"
   },
   "theme_light": {
     "message": "⚪ Светлая тема"
@@ -396,7 +396,7 @@
     "message": "⚙️ Автоматическая тема"
   },
   "centered_toggleButtonTitle": {
-    "message": "Переключить макет (Широкий/Центрированный) - Ctrl+Shift+C"
+    "message": "Переключить макет (Широкий/Центрированный)"
   },
   "centered_centered": {
     "message": "📄 Центрированный макет"
@@ -405,7 +405,7 @@
     "message": "🖥️ Полноширинный макет"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Переключить боковую панель обзора папок - Ctrl+Shift+B"
+    "message": "Переключить боковую панель обзора папок"
   },
   "recent_clearConfirm": {
     "message": "Очистить все недавние документы?"
@@ -453,7 +453,7 @@
     "message": "URL скопирован в буфер обмена"
   },
   "recent_clickToOpen": {
-    "message": "Нажмите для открытия в текущей вкладке, Shift+Клик для новой вкладки"
+    "message": "Нажмите для открытия в текущей вкладке"
   },
   "recent_cannotReopen": {
     "message": "Файлы File System API не могут быть открыты из истории"
@@ -487,66 +487,6 @@
   },
   "cancel": {
     "message": "Отмена"
-  },
-  "keyboardHelp_title": {
-    "message": "Горячие клавиши"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Быстрый доступ ко всем функциям"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Отображение"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Переключить тему (Светлая/Тёмная/Авто)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Просмотр исходного кода"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Переключить макет (Широкий/Центрированный)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Переключить боковую панель содержания"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Переключить боковую панель обзора папок"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Открыть быстрые настройки"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Навигация"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Поиск в папке"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Прокрутить в начало страницы"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Закрыть любое открытое модальное окно"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Галерея изображений"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Предыдущее изображение"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Следующее изображение"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Закрыть просмотр изображений"
-  },
-  "keyboardHelp_macNote": {
-    "message": "На macOS используйте ⌘ (Cmd) вместо Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "На macOS замените Ctrl на ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Горячие клавиши"
   },
   "actions_configurePlugins": {
     "message": "Настроить плагины"

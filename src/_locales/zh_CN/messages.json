@@ -204,7 +204,7 @@
     "message": "✨ 渲染视图"
   },
   "ui_scrollTopTitle": {
-    "message": "滚动到顶部 (Home 键)"
+    "message": "滚动到顶部"
   },
   "ui_scrolledTop": {
     "message": "⬆️ 已滚动到顶部"
@@ -378,10 +378,10 @@
     "message": "目录在原始 Markdown 视图中不可用。"
   },
   "toc_toggleButtonTitle": {
-    "message": "切换目录侧边栏 - Ctrl+Shift+L"
+    "message": "切换目录侧边栏"
   },
   "theme_toggleButtonTitle": {
-    "message": "切换主题（明亮/暗黑/自动） - Ctrl+Shift+D"
+    "message": "切换主题（明亮/暗黑/自动）"
   },
   "theme_light": {
     "message": "⚪ 亮色主题"
@@ -393,7 +393,7 @@
     "message": "⚙️ 自动"
   },
   "centered_toggleButtonTitle": {
-    "message": "切换布局（宽/居中） - Ctrl+Shift+C"
+    "message": "切换布局（宽/居中）"
   },
   "centered_centered": {
     "message": "📄 居中"
@@ -402,7 +402,7 @@
     "message": "🖥️ 全宽"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "切换文件夹浏览器侧边栏 - Ctrl+Shift+B"
+    "message": "切换文件夹浏览器侧边栏"
   },
   "recent_clearConfirm": {
     "message": "清除所有最近的文档？"
@@ -450,7 +450,7 @@
     "message": "URL已复制到剪贴板"
   },
   "recent_clickToOpen": {
-    "message": "单击在当前标签页中打开，Shift+单击在新标签页中打开"
+    "message": "单击在当前标签页中打开"
   },
   "recent_cannotReopen": {
     "message": "文件系统API文件无法从历史记录中重新打开"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "需要设置"
-  },
-  "keyboardHelp_title": {
-    "message": "键盘快捷键"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "快速访问所有功能"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "显示"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "切换主题（浅色/深色/自动）"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "查看原始内容"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "切换布局（宽/居中）"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "切换目录侧边栏"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "切换文件夹浏览器侧边栏"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "打开快速设置"
-  },
-  "keyboardHelp_navigation": {
-    "message": "导航"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "在文件夹中搜索"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "滚动到页面顶部"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "关闭任何打开的模态框"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "图片库"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "上一张图片"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "下一张图片"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "关闭图片查看器"
-  },
-  "keyboardHelp_macNote": {
-    "message": "在macOS上，使用⌘（Cmd）代替Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "在macOS上，将Ctrl替换为⌘（Cmd）"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "键盘快捷键"
   },
   "actions_configurePlugins": {
     "message": "配置插件"

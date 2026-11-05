@@ -13,7 +13,6 @@ import './styles/action-buttons.css';
 import './styles/alerts.css';
 import './styles/centered-toggle.css';
 import './styles/notification.css';
-import './styles/keyboard-shortcuts-help.css';
 import './styles/quick-settings-modal.css';
 import './styles/extension-info-modal.css';
 import './styles/raw-toggle.css';

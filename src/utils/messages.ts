@@ -122,9 +122,6 @@ export const MESSAGES = {
     get print() {
       return getMessage('print');
     },
-    get keyboardShortcuts() {
-      return getMessage('actions_keyboardShortcuts');
-    },
     get quickSettings() {
       return getMessage('actions_quickSettings');
     },
@@ -133,59 +130,6 @@ export const MESSAGES = {
     },
     get extensionInfo() {
       return getMessage('actions_extensionInfo');
-    },
-  },
-  keyboardHelp: {
-    get title() {
-      return getMessage('keyboardHelp_title');
-    },
-    get subtitle() {
-      return getMessage('keyboardHelp_subtitle');
-    },
-    get viewToggles() {
-      return getMessage('keyboardHelp_viewToggles');
-    },
-    get toggleTheme() {
-      return getMessage('keyboardHelp_toggleTheme');
-    },
-    get toggleRaw() {
-      return getMessage('keyboardHelp_toggleRaw');
-    },
-    get toggleLayout() {
-      return getMessage('keyboardHelp_toggleLayout');
-    },
-    get toggleToc() {
-      return getMessage('keyboardHelp_toggleToc');
-    },
-    get openQuickSettings() {
-      return getMessage('keyboardHelp_openQuickSettings');
-    },
-    get navigation() {
-      return getMessage('keyboardHelp_navigation');
-    },
-    get scrollTop() {
-      return getMessage('keyboardHelp_scrollTop');
-    },
-    get closeModal() {
-      return getMessage('keyboardHelp_closeModal');
-    },
-    get imageGallery() {
-      return getMessage('keyboardHelp_imageGallery');
-    },
-    get previousImage() {
-      return getMessage('keyboardHelp_previousImage');
-    },
-    get nextImage() {
-      return getMessage('keyboardHelp_nextImage');
-    },
-    get closeViewer() {
-      return getMessage('keyboardHelp_closeViewer');
-    },
-    get macNote() {
-      return getMessage('keyboardHelp_macNote');
-    },
-    get windowsNote() {
-      return getMessage('keyboardHelp_windowsNote');
     },
   },
   common: {

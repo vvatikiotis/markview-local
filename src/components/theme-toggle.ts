@@ -1,7 +1,6 @@
 // MarkView Theme Toggle Component
 import { getSettings, updateSetting } from '@core/storage';
 import { showNotification } from '@utils/notification';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 
@@ -76,16 +75,6 @@ export class ThemeToggle {
     // Click handler
     this.button.addEventListener('click', () => {
       this.toggleTheme();
-    });
-
-    // Keyboard shortcut: Ctrl+Shift+D (or Cmd+Shift+D on Mac)
-    // Changed from Ctrl+Shift+T to avoid conflict with browser's "Reopen closed tab"
-    keyboardManager.register('theme-toggle', {
-      key: 'D',
-      ctrl: true,
-      shift: true,
-      description: MESSAGES.theme.toggleButtonTitle,
-      action: () => this.toggleTheme(),
     });
 
     // Listen for system theme changes when in auto mode
@@ -179,7 +168,6 @@ export class ThemeToggle {
   }
 
   public destroy(): void {
-    keyboardManager.unregister('theme-toggle');
     if (this.button) {
       this.button.remove();
       this.button = null;

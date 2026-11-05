@@ -204,7 +204,7 @@
     "message": "✨ レンダリング表示"
   },
   "ui_scrollTopTitle": {
-    "message": "トップへスクロール (Homeキー)"
+    "message": "トップへスクロール"
   },
   "ui_scrolledTop": {
     "message": "⬆️ トップへスクロールしました"
@@ -378,10 +378,10 @@
     "message": "目次はrawマークダウンビューでは利用できません。"
   },
   "toc_toggleButtonTitle": {
-    "message": "目次サイドバーの切り替え - Ctrl+Shift+L"
+    "message": "目次サイドバーの切り替え"
   },
   "theme_toggleButtonTitle": {
-    "message": "テーマ切り替え（ライト/ダーク/自動） - Ctrl+Shift+D"
+    "message": "テーマ切り替え（ライト/ダーク/自動）"
   },
   "theme_light": {
     "message": "⚪ ライトテーマ"
@@ -393,7 +393,7 @@
     "message": "⚙️ 自動"
   },
   "centered_toggleButtonTitle": {
-    "message": "レイアウト切り替え（ワイド/センター） - Ctrl+Shift+C"
+    "message": "レイアウト切り替え（ワイド/センター）"
   },
   "centered_centered": {
     "message": "📄 中央揃え"
@@ -402,7 +402,7 @@
     "message": "🖥️ 全幅"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "フォルダブラウザのサイドバー切り替え - Ctrl+Shift+B"
+    "message": "フォルダブラウザのサイドバー切り替え"
   },
   "recent_clearConfirm": {
     "message": "すべての最近のドキュメントをクリアしますか？"
@@ -450,7 +450,7 @@
     "message": "URLをクリップボードにコピーしました"
   },
   "recent_clickToOpen": {
-    "message": "クリックで現在のタブで開く、Shift+クリックで新しいタブ"
+    "message": "クリックで現在のタブで開く"
   },
   "recent_cannotReopen": {
     "message": "File System APIファイルは履歴から再度開くことができません"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "セットアップが必要"
-  },
-  "keyboardHelp_title": {
-    "message": "キーボードショートカット"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "すべての機能への素早いアクセス"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "表示"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "テーマの切り替え（ライト/ダーク/自動）"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "元データを表示"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "レイアウト切り替え（ワイド/センター）"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "目次サイドバーの切り替え"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "フォルダブラウザのサイドバー切り替え"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "クイック設定を開く"
-  },
-  "keyboardHelp_navigation": {
-    "message": "ナビゲーション"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "フォルダ内を検索"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "ページトップへスクロール"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "開いているモーダルを閉じる"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "画像ギャラリー"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "前の画像"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "次の画像"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "画像ビューアを閉じる"
-  },
-  "keyboardHelp_macNote": {
-    "message": "macOSでは、Ctrlの代わりに⌘（Cmd）を使用してください"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "macOSでは、Ctrlを⌘（Cmd）に置き換えてください"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "キーボードショートカット"
   },
   "actions_configurePlugins": {
     "message": "プラグインの設定"

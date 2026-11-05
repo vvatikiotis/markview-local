@@ -207,7 +207,7 @@
     "message": "✨ Rendered View"
   },
   "ui_scrollTopTitle": {
-    "message": "Scroll to top (Home key)"
+    "message": "Scroll to top"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Scrolled to top"
@@ -381,10 +381,10 @@
     "message": "Table of Contents is not available in raw markdown view."
   },
   "toc_toggleButtonTitle": {
-    "message": "Toggle Table of Contents sidebar - Ctrl+Shift+L"
+    "message": "Toggle Table of Contents sidebar"
   },
   "theme_toggleButtonTitle": {
-    "message": "Toggle theme (Light/Dark/Auto) - Ctrl+Shift+D"
+    "message": "Toggle theme (Light/Dark/Auto)"
   },
   "theme_light": {
     "message": "⚪ Light Theme"
@@ -396,7 +396,7 @@
     "message": "⚙️ Auto Theme"
   },
   "centered_toggleButtonTitle": {
-    "message": "Toggle layout (Wide/Centered) - Ctrl+Shift+C"
+    "message": "Toggle layout (Wide/Centered)"
   },
   "centered_centered": {
     "message": "📄 Centered Layout"
@@ -405,7 +405,7 @@
     "message": "🖥️ Full-Width Layout"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Toggle Folder Browser sidebar - Ctrl+Shift+B"
+    "message": "Toggle Folder Browser sidebar"
   },
   "recent_clearConfirm": {
     "message": "Clear all recent documents?"
@@ -453,7 +453,7 @@
     "message": "URL copied to clipboard"
   },
   "recent_clickToOpen": {
-    "message": "Click to open in current tab, Shift+Click for new tab"
+    "message": "Click to open in current tab"
   },
   "recent_cannotReopen": {
     "message": "File System API files cannot be reopened from history"
@@ -487,66 +487,6 @@
   },
   "cancel": {
     "message": "Cancel"
-  },
-  "keyboardHelp_title": {
-    "message": "Keyboard Shortcuts"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Quick access to all features"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Display"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Toggle theme (Light/Dark/Auto)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "View raw data"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Toggle layout (Wide/Centered)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Toggle Table of Contents sidebar"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Toggle Folder Browser sidebar"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Open Quick Settings modal"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Navigation"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Search in folder"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Scroll to top of page"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Close any open modal"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Image Gallery"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Previous image"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Next image"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Close image viewer"
-  },
-  "keyboardHelp_macNote": {
-    "message": "On macOS, use ⌘ (Cmd) instead of Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "On macOS, replace Ctrl with ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Keyboard Shortcuts"
   },
   "actions_quickSettings": {
     "message": "Quick Settings"

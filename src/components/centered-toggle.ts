@@ -2,7 +2,6 @@
 import { getSettings, updateSetting } from '@core/storage';
 import { applyLayoutSettings } from '@utils/dom';
 import { showNotification } from '@utils/notification';
-import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 
@@ -74,15 +73,6 @@ export class CenteredToggle {
       this.toggle();
     });
 
-    // Keyboard shortcut: Ctrl+Shift+C (or Cmd+Shift+C on Mac)
-    keyboardManager.register('centered-toggle', {
-      key: 'C',
-      ctrl: true,
-      shift: true,
-      description: MESSAGES.centered.toggleButtonTitle,
-      action: () => this.toggle(),
-    });
-
     // Listen for centered changes from popup
     chrome.storage.onChanged.addListener(changes => {
       if (typeof changes.centered?.newValue === 'boolean') {
@@ -141,7 +131,6 @@ export class CenteredToggle {
   }
 
   public destroy(): void {
-    keyboardManager.unregister('centered-toggle');
     if (this.button) {
       this.button.remove();
       this.button = null;

@@ -29,8 +29,10 @@ Remote Markdown documents are not supported.
 - Raw markdown view, print styles, image viewer, font selection
 - Auto-refresh when the file changes
 - Recent documents and settings in the toolbar popup
-- Keyboard shortcuts
 - Interface in 12 languages
+
+MarkView defines no custom keybindings. Use the on-page buttons and Actions menu; browser-native keyboard
+behavior remains available for controls.
 
 **Files**
 

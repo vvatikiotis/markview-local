@@ -301,10 +301,9 @@ export class RecentTab {
     actionsDiv.appendChild(copyBtn);
     actionsDiv.appendChild(removeBtn);
 
-    // Click handler for opening document
-    // Shift+Click opens in new tab, regular click opens in current tab
-    li.addEventListener('click', async (e: MouseEvent) => {
-      await this.openRecentDocument(doc.url, e.shiftKey);
+    // Open in the current tab regardless of keyboard modifiers.
+    li.addEventListener('click', async () => {
+      await this.openRecentDocument(doc.url);
     });
 
     li.appendChild(contentDiv);
@@ -340,7 +339,7 @@ export class RecentTab {
   /**
    * Open a recent document
    */
-  private openRecentDocument(url: string, openInNewTab: boolean = false): Promise<void> {
+  private openRecentDocument(url: string): Promise<void> {
     return new Promise<void>(resolve => {
       try {
         // File System API not supported in OSS version
@@ -353,28 +352,19 @@ export class RecentTab {
           return;
         }
 
-        // For browser-rendered files (http://, https://, file://) - existing logic
-        if (openInNewTab) {
-          // Open in new tab
-          chrome.tabs.create({ url: url }, () => {
-            window.close();
-          });
-        } else {
-          // Open in current tab (default behavior - matches sidebar file clicks)
-          // Query for active tab since popup doesn't have a "current tab" context
-          chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            if (tabs[0] && tabs[0].id) {
-              chrome.tabs.update(tabs[0].id, { url: url }, () => {
-                window.close();
-              });
-            } else {
-              // Fallback to new tab if active tab not found
-              chrome.tabs.create({ url: url }, () => {
-                window.close();
-              });
-            }
-          });
-        }
+        // Query for the active tab since the popup has no current tab context.
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+          if (tabs[0] && tabs[0].id) {
+            chrome.tabs.update(tabs[0].id, { url: url }, () => {
+              window.close();
+            });
+          } else {
+            // Fall back to a new tab only when no active tab is available.
+            chrome.tabs.create({ url: url }, () => {
+              window.close();
+            });
+          }
+        });
       } catch (error) {
         logger.error('Failed to open document:', error);
         this.showNotification(

@@ -204,7 +204,7 @@
     "message": "✨ Xem hiển thị"
   },
   "ui_scrollTopTitle": {
-    "message": "Cuộn lên đầu trang (Phím Home)"
+    "message": "Cuộn lên đầu trang"
   },
   "ui_scrolledTop": {
     "message": "⬆️ Đã cuộn lên đầu trang"
@@ -378,10 +378,10 @@
     "message": "Mục lục không khả dụng trong chế độ xem markdown thô."
   },
   "toc_toggleButtonTitle": {
-    "message": "Chuyển đổi thanh bên mục lục - Ctrl+Shift+L"
+    "message": "Chuyển đổi thanh bên mục lục"
   },
   "theme_toggleButtonTitle": {
-    "message": "Chuyển đổi giao diện (Ctrl+Shift+T)"
+    "message": "Chuyển đổi giao diện"
   },
   "theme_light": {
     "message": "⚪ Giao diện sáng"
@@ -393,7 +393,7 @@
     "message": "⚙️ Tự động"
   },
   "centered_toggleButtonTitle": {
-    "message": "Chuyển đổi bố cục (Rộng/Căn giữa) - Ctrl+Shift+C"
+    "message": "Chuyển đổi bố cục (Rộng/Căn giữa)"
   },
   "centered_centered": {
     "message": "📄 Căn giữa"
@@ -402,7 +402,7 @@
     "message": "🖥️ Toàn bộ chiều rộng"
   },
   "sidebar_toggleButtonTitle": {
-    "message": "Chuyển đổi thanh bên trình duyệt thư mục - Ctrl+Shift+B"
+    "message": "Chuyển đổi thanh bên trình duyệt thư mục"
   },
   "recent_clearConfirm": {
     "message": "Xóa tất cả tài liệu gần đây?"
@@ -450,7 +450,7 @@
     "message": "Đã sao chép URL vào clipboard"
   },
   "recent_clickToOpen": {
-    "message": "Nhấp để mở trong tab hiện tại, Shift+Nhấp cho tab mới"
+    "message": "Nhấp để mở trong tab hiện tại"
   },
   "recent_cannotReopen": {
     "message": "Tệp File System API không thể mở lại từ lịch sử"
@@ -487,66 +487,6 @@
   },
   "permissionTab": {
     "message": "Cần thiết lập"
-  },
-  "keyboardHelp_title": {
-    "message": "Phím tắt"
-  },
-  "keyboardHelp_subtitle": {
-    "message": "Truy cập nhanh tất cả tính năng"
-  },
-  "keyboardHelp_viewToggles": {
-    "message": "Hiển thị"
-  },
-  "keyboardHelp_toggleTheme": {
-    "message": "Chuyển đổi giao diện (Sáng/Tối/Tự động)"
-  },
-  "keyboardHelp_toggleRaw": {
-    "message": "Xem dữ liệu gốc"
-  },
-  "keyboardHelp_toggleLayout": {
-    "message": "Chuyển đổi bố cục (Rộng/Căn giữa)"
-  },
-  "keyboardHelp_toggleToc": {
-    "message": "Chuyển đổi thanh bên mục lục"
-  },
-  "keyboardHelp_toggleSidebars": {
-    "message": "Chuyển đổi thanh bên trình duyệt thư mục"
-  },
-  "keyboardHelp_openQuickSettings": {
-    "message": "Mở cài đặt nhanh"
-  },
-  "keyboardHelp_navigation": {
-    "message": "Điều hướng"
-  },
-  "keyboardHelp_searchInFolder": {
-    "message": "Tìm kiếm trong thư mục"
-  },
-  "keyboardHelp_scrollTop": {
-    "message": "Cuộn lên đầu trang"
-  },
-  "keyboardHelp_closeModal": {
-    "message": "Đóng cửa sổ bật lên đang mở"
-  },
-  "keyboardHelp_imageGallery": {
-    "message": "Thư viện ảnh"
-  },
-  "keyboardHelp_previousImage": {
-    "message": "Ảnh trước"
-  },
-  "keyboardHelp_nextImage": {
-    "message": "Ảnh tiếp theo"
-  },
-  "keyboardHelp_closeViewer": {
-    "message": "Đóng trình xem ảnh"
-  },
-  "keyboardHelp_macNote": {
-    "message": "Trên macOS, sử dụng ⌘ (Cmd) thay vì Ctrl"
-  },
-  "keyboardHelp_windowsNote": {
-    "message": "Trên macOS, thay thế Ctrl bằng ⌘ (Cmd)"
-  },
-  "actions_keyboardShortcuts": {
-    "message": "Phím tắt"
   },
   "actions_configurePlugins": {
     "message": "Cấu hình Plugin"
