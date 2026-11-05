@@ -21,6 +21,11 @@ export function isMarkdownFile(): boolean {
  * Returns the source type if valid, or null if invalid
  */
 export function validateMarkdownPage(): 'browser-rendered' | 'local-file-system' | null {
+  // MarkView processes local files only; remote markdown is intentionally unsupported.
+  if (window.location.protocol !== 'file:') {
+    return null;
+  }
+
   // Check 1: URL must end with markdown extension
   if (!isMarkdownFile()) {
     return null; // Not a markdown file

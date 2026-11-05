@@ -7,8 +7,8 @@ restricted environments.
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/markview-app/markview/actions/workflows/ci.yml/badge.svg)](https://github.com/markview-app/markview/actions/workflows/ci.yml)
 
-Open a `.md` file in the browser, from disk or from a link, and MarkView renders it as a formatted document in place
-of the raw text.
+Open a local `.md` file in the browser and MarkView renders it as a formatted document in place of the raw text.
+Remote Markdown documents are not supported.
 
 ## Features
 
@@ -34,7 +34,7 @@ of the raw text.
 
 **Files**
 
-- `.md`, `.markdown`, `.mkd` and `.mdx`, on `file://` and `http(s)://` URLs
+- `.md`, `.markdown`, `.mkd` and `.mdx` documents opened from `file://` URLs only
 
 ## Install from source
 
@@ -54,7 +54,9 @@ Then load the unpacked extension:
 3. Click **Load unpacked** and select the `extension/` folder
 4. To view local files, open the extension's **Details** and turn on **Allow access to file URLs**
 
-`pnpm run build` also writes a zip of the same build to `dist/`.
+`pnpm run build` also writes a zip of the same build to `dist/`. MarkView requires **Allow access to file URLs** in
+the browser extension settings. Local documents are not fully offline: remote images, fonts, embeds and media can
+still make network requests.
 
 ## Privacy
 
@@ -69,8 +71,7 @@ your documents anywhere. The only network requests it makes are:
 **Permissions**
 
 - `storage`: saves your settings and the recent-documents list in the browser
-- Host access to `file:///*` and `*://*/*`: lets the extension render markdown files at any address, and lets its
-  background worker fetch the open document (auto-refresh) and its images when the page itself is not allowed to
+- Host access to `file:///*`: lets the extension process local documents and lets its background worker fetch them for auto-refresh
 
 ## Scope
 

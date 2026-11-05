@@ -29,8 +29,8 @@ If you are unsure whether a change fits, open an issue or a discussion before wr
 ## Reporting a bug
 
 Use the [bug report form](https://github.com/markview-app/markview/issues/new?template=bug_report.yml). The most
-useful reports include a small markdown file that shows the problem, whether it was opened from disk (`file://`) or a
-link, the browser and its version, and any errors from the DevTools console.
+useful reports include a small local Markdown file that shows the problem, the browser and its version, and any errors
+from the DevTools console. Remote Markdown documents are not supported by this edition.
 
 This tracker is for the open-source edition. Problems with the version installed from the Chrome Web Store or Edge
 Add-ons go to [markview-app/support](https://github.com/markview-app/support).

@@ -123,8 +123,7 @@ export class LazyImageLoader {
   }
 
   /**
-   * Load an image by setting its src from data-src
-   * In sandboxed contexts (CSP blocks images), fetch via background script
+   * Load an image by setting its src from data-src using normal browser image loading.
    */
   private async loadImage(img: HTMLImageElement): Promise<void> {
     let dataSrc = img.getAttribute('data-src');
@@ -133,84 +132,20 @@ export class LazyImageLoader {
     // Convert Git hosting blob URLs to raw/direct URLs
     dataSrc = this.convertBlobUrlToRaw(dataSrc);
 
-    // Check if we're in a sandboxed context (CSP blocks images)
-    const isSandboxed = document.contentType === 'text/plain';
-    const isExternalImage = dataSrc.startsWith('http://') || dataSrc.startsWith('https://');
-
-    // If sandboxed and external image, fetch via background script
-    if (isSandboxed && isExternalImage) {
-      try {
-        logger.log('[LazyLoad] Fetching image via background script (CSP blocked):', dataSrc);
-
-        const response = await new Promise<{
-          success: boolean;
-          data?: string;
-          contentType?: string;
-          error?: string;
-        }>((resolve, reject) => {
-          chrome.runtime.sendMessage(
-            {
-              action: 'fetchImage',
-              url: dataSrc,
-            },
-            response => {
-              if (chrome.runtime.lastError) {
-                reject(new Error(chrome.runtime.lastError.message));
-              } else {
-                resolve(response);
-              }
-            }
-          );
-        });
-
-        if (response.success && response.data) {
-          // Convert to data URL and set as src
-          const contentType = response.contentType || 'image/png';
-          const dataUrl = `data:${contentType};base64,${response.data}`;
-
-          // Wait for image to actually load before showing it
-          await new Promise<void>((resolve, reject) => {
-            img.onload = () => {
-              img.onload = null;
-              img.onerror = null;
-              resolve();
-            };
-            img.onerror = () => {
-              img.onload = null;
-              img.onerror = null;
-              reject(new Error('Image failed to load'));
-            };
-            img.src = dataUrl;
-          });
-
-          logger.log('[LazyLoad] Image loaded via background script');
-        } else {
-          logger.warn('[LazyLoad] Failed to fetch image:', response.error);
-          // Fallback: try direct load anyway (will likely fail but worth trying)
-          img.src = dataSrc;
-        }
-      } catch (error) {
-        logger.error('[LazyLoad] Error fetching image via background script:', error);
-        // Fallback: try direct load anyway
-        img.src = dataSrc;
-      }
-    } else {
-      // Normal loading for non-sandboxed contexts or data URLs
-      // Wait for image to load
-      await new Promise<void>(resolve => {
-        img.onload = () => {
-          img.onload = null;
-          img.onerror = null;
-          resolve();
-        };
-        img.onerror = () => {
-          img.onload = null;
-          img.onerror = null;
-          resolve(); // Still resolve to clean up
-        };
-        img.src = dataSrc;
-      });
-    }
+    // Use normal browser image loading so CSP, origin, and mixed-content policies apply.
+    await new Promise<void>(resolve => {
+      img.onload = () => {
+        img.onload = null;
+        img.onerror = null;
+        resolve();
+      };
+      img.onerror = () => {
+        img.onload = null;
+        img.onerror = null;
+        resolve(); // Still resolve to clean up
+      };
+      img.src = dataSrc;
+    });
 
     // Remove data-src attribute
     img.removeAttribute('data-src');

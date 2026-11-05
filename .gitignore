@@ -7,6 +7,9 @@ extension/
 dist/
 *.zip
 
+# Agent session data
+.pi/
+
 # IDE
 .vscode/
 .idea/

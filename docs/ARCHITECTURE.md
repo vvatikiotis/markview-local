@@ -16,11 +16,11 @@ code, see [DEVELOPMENT.md](DEVELOPMENT.md).
 | Part           | Entry               | Role                                                                               |
 | -------------- | ------------------- | ---------------------------------------------------------------------------------- |
 | Content script | `src/main.ts`       | Runs on markdown URLs, renders the document and mounts the reading UI              |
-| Service worker | `src/background.ts` | Fetches the document for auto-refresh and images the page may not load; opens tabs |
+| Service worker | `src/background.ts` | Fetches the document for auto-refresh; opens tabs |
 | Popup          | `src/popup/`        | Recent documents and settings                                                      |
 
 The content script is declared for `.md`, `.markdown`, `.mkd` and `.mdx` URLs (with upper-case and query-string
-variants) on `file://` and `http(s)://`, and runs at `document_end`.
+variants) on `file://` URLs only, and runs at `document_end`.
 
 ## From page load to rendered document
 
@@ -39,6 +39,8 @@ lifecycle.ts ── create ExtensionState, load settings, set up the page
 document-renderer.ts ── renderMarkdownContent()
 ```
 
+Only local Markdown documents (`file://`) reach the renderer; remote Markdown URLs do not activate the extension.
+
 `renderMarkdownContent()` runs twelve stages:
 
 1. **Source.** `extractMarkdownSource()` (`src/utils/dom.ts`) reads the `<pre>` text and, when the browser decoded a
@@ -48,7 +50,7 @@ document-renderer.ts ── renderMarkdownContent()
 4. **Render to HTML** with markdown-it and the registered plugins (`src/core/markdown.ts`).
 5. **Inject** the HTML into the page, through the document HTML sanitizer (see [Security notes](#security-notes)).
 6. **Metadata**: the page title.
-7. **Layout**: font and layout settings; a non-default font is loaded from Google Fonts here.
+7. **Layout**: font and layout settings; a non-default font may be loaded from Google Fonts here, so this is not an offline mode.
 8. **Lazy-load images**, resolving relative paths against the document URL.
 9. **Diagrams**: Mermaid blocks render asynchronously.
 10. **Components**: TOC, code copy buttons and the other UI react to the new content.
@@ -106,16 +108,16 @@ stored.
 
 | Request                                   | Made by                         | When                                                         |
 | ----------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
-| The document URL                          | the browser; the service worker | Opening the document; each auto-refresh poll                 |
-| Images the document references            | the page; the service worker    | Rendering; the worker fetches images a sandboxed page cannot |
+| The local document URL                    | the browser; the service worker | Opening the document; each auto-refresh poll                 |
+| Images the document references            | the page                         | Rendering, subject to normal browser image-loading policies |
 | `fonts.googleapis.com` and its font files | the page                        | Only when a font other than the default is selected          |
 
 There is no analytics, telemetry, crash reporting or remote configuration.
 
 ## Security notes
 
-- **Isolation.** The content script runs in the extension's isolated world. The service worker fetches a URL only when
-  the content script asks it to, and the content script asks only for the open document and its images.
+- **Isolation.** The content script runs in the extension's isolated world. The service worker fetches the open document
+  for auto-refresh when asked by the content script; the image-loading path never fetches or exposes responses through the worker.
 - **Raw HTML.** markdown-it runs with `html: true`, so HTML written in a document is rendered as HTML, but only after
   DOMPurify sanitizes it (`src/core/sanitize-document-html.ts`). The rendered document reaches the page through
   `setDocumentHTML()`, which removes everything that can run script:
@@ -135,9 +137,9 @@ There is no analytics, telemetry, crash reporting or remote configuration.
   remaining attributes only. Unit tests cannot show this, since their DOMs have no separate worlds: a change here
   has to be checked in the built extension.
 
-- **Sandboxed pages.** Some servers deliver plain-text documents in a sandboxed or CSP-restricted context, which blocks
-  dialogs such as print and external resources. MarkView detects this (`src/utils/sandbox-detection.ts`) and loads
-  external images through the service worker instead.
+- **Local documents and network access.** The extension processes local files only; resources referenced by those
+  documents may still be fetched by ordinary browser loading or from Google Fonts. This is not a full offline mode.
+  Images may be blocked by browser policy; MarkView does not retry them through the service worker.
 
 To report a vulnerability, see [SECURITY.md](../SECURITY.md).
 

@@ -23,7 +23,7 @@
     }
   },
   "permissions": ["storage"],
-  "host_permissions": ["file:///*", "*://*/*"],
+  "host_permissions": ["file:///*"],
   "background": {
     "service_worker": "js/background.js",
     "type": "module"
@@ -39,22 +39,6 @@
         "file://*/*.MARKDOWN",
         "file://*/*.MKD",
         "file://*/*.MDX",
-        "*://*/*.md",
-        "*://*/*.markdown",
-        "*://*/*.mkd",
-        "*://*/*.mdx",
-        "*://*/*.MD",
-        "*://*/*.MARKDOWN",
-        "*://*/*.MKD",
-        "*://*/*.MDX",
-        "*://*/*.md?*",
-        "*://*/*.markdown?*",
-        "*://*/*.mkd?*",
-        "*://*/*.mdx?*",
-        "*://*/*.MD?*",
-        "*://*/*.MARKDOWN?*",
-        "*://*/*.MKD?*",
-        "*://*/*.MDX?*",
         "file://*/*.md?*",
         "file://*/*.markdown?*",
         "file://*/*.mkd?*",
@@ -79,7 +63,7 @@
         "node_modules/katex/dist/katex.min.css",
         "node_modules/katex/dist/fonts/*"
       ],
-      "matches": ["file:///*", "*://*/*"]
+      "matches": ["file:///*"]
     }
   ]
 }

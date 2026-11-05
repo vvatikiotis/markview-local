@@ -54,12 +54,25 @@ tab. The content script is only injected on page load.
 CI (`.github/workflows/ci.yml`) runs lint, format check, type check, tests and the build on every push and pull
 request.
 
+## Browser security regression check
+
+After building and loading the unpacked extension, enable **Allow access to file URLs**. Open the Markdown fixture via
+its `file:///...` URL; serve only its referenced resources from loopback origin A and sentinel responses (non-image
+and valid image) from a different loopback port at origin B. Include direct and A-to-B redirected image URLs, and
+ensure images enter the viewport. Verify that a Markdown fixture served from HTTP(S) does not activate MarkView.
+Inspect the rendered page and image attributes: no response-derived data/blob URL or sentinel bytes should appear;
+obsolete `fetchImage` messages should receive the unknown-action response without a network request. Cross-origin
+images may display under browser policy, but must remain origin-tainted for canvas readback. Repeat with restrictive
+image CSP, using browser tooling where opener access is unavailable.
+Record browser version, effective response headers, extension build, and results. This manual regression has not been
+run automatically by the unit suite.
+
 ## Project layout
 
 ```text
 src/
 ├── main.ts                 # Content script entry: validates the page, then starts the lifecycle
-├── background.ts           # Service worker: fetches for auto-refresh and blocked images, opens tabs
+├── background.ts           # Service worker: fetches for auto-refresh, opens tabs
 ├── manifest.json           # Extension manifest (version is filled in from package.json at build)
 ├── core/
 │   ├── lifecycle.ts        # Builds the ExtensionState and runs startup
