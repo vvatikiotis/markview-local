@@ -65,23 +65,12 @@ body {
   text-decoration: underline;
 }
 
-.header-links {
+.header-version {
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 11px;
   opacity: 0.85;
-}
-
-.header-version {
-  margin-bottom: 6px;
-}
-
-.header-links-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
 }
 
 .header-link {
@@ -93,10 +82,6 @@ body {
 .header-link:hover {
   opacity: 0.8;
   text-decoration: underline;
-}
-
-.header-separator {
-  opacity: 0.6;
 }
 
 /* Common Button Styles */

@@ -35,7 +35,43 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
+function expectPopupWithoutPromotionalLinks(): void {
+  for (const key of ['watchDemo', 'whatsNew', 'reportIssue'] as const) {
+    expect(document.querySelector(`[data-i18n="${key}"]`)).toBeNull();
+    expect(document.body.textContent).not.toContain(LOCALES.en[key].message);
+  }
+  expect([...document.querySelectorAll<HTMLAnchorElement>('a')].map(link => link.href)).toEqual([
+    'https://github.com/markview-app/markview',
+    'https://getmarkview.com/',
+  ]);
+  expect(document.querySelector('.header-links-row, .header-separator, .header-links')).toBeNull();
+  expect(document.querySelector('.header-version')).not.toBeNull();
+  for (const id of [
+    'tab-settings',
+    'enabled',
+    'language',
+    'theme',
+    'reset-settings',
+    'clear-cache',
+    'tab-recent',
+    'recent-search',
+    'refresh-recent',
+    'clear-recent',
+    'recent-files-list',
+    'tab-permission',
+    'permission-tab-btn',
+    'open-extension-settings-tab',
+  ]) {
+    expect(document.getElementById(id), id).not.toBeNull();
+  }
+}
+
 describe('popup original-project attribution', () => {
+  it('omits promotional links from the popup template while preserving controls and credits', () => {
+    expect(popupHTML).not.toMatch(/watchDemo|whatsNew|reportIssue/);
+    expect(popupHTML).not.toMatch(/youtube\.com|\/whats-new|\/support/);
+    expectPopupWithoutPromotionalLinks();
+  });
   it.each(Object.entries(LOCALES))(
     'keeps visible credit and safe destinations after switching to %s',
     async (language, messages) => {
@@ -47,6 +83,12 @@ describe('popup original-project attribution', () => {
           messages.attribution_modifiedBuild.message
         )
       );
+      // Refresh the whole popup as well as the settings tab's language-change refresh.
+      applyTranslations();
+      expectPopupWithoutPromotionalLinks();
+      for (const key of ['watchDemo', 'whatsNew', 'reportIssue'] as const) {
+        expect(document.body.textContent).not.toContain(messages[key].message);
+      }
       expect(document.querySelector('.popup-header h1')?.textContent).toBe('MarkView Local');
       const credit = document.querySelector<HTMLElement>('.popup-header .header-attribution')!;
       expect(isInaccessible(credit)).toBe(false);
