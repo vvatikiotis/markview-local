@@ -125,11 +125,13 @@ There is no analytics, telemetry, crash reporting or remote configuration.
   - `javascript:` and other script URLs, and `data:` URLs outside images and media
   - `script`, `object`, `embed`, `base`, `meta` and `link` elements, and SVG `animate` and `set`
 
-  Everything else a document uses is kept, which a corpus test checks node for node
+  Iframes, frames and framesets are removed entirely; embedded pages and videos are unsupported. Other supported document
+  content is kept, which a corpus test checks node for node
   (`tests/core/sanitize-document-html-corpus.test.ts`): heading ids, `dir`, `details`, task-list checkboxes, KaTeX's
-  MathML, links with app schemes such as `vscode:`, and elements the parser does not know (MDX `<Note>`). An `<iframe>`
-  keeps its `src` only when it is an `https:` URL, so video and page embeds still work. A raw `target="_blank"` link
-  always gets `rel="noopener noreferrer"`.
+  MathML, links with app schemes such as `vscode:`, and elements the parser does not know (MDX `<Note>`). A raw
+  `target="_blank"` link always gets `rel="noopener noreferrer"`. Mermaid's returned markup is inserted after removing
+  iframe/frame/frameset nodes (including inside template contents); this does not claim to secure Mermaid's internal
+  rendering process or every behavior of generated SVG.
 
   The sanitized nodes are inserted as `document.importNode()` clones. Chrome creates the page's own event handler
   for an `on*` attribute as soon as it parses it, even in DOMPurify's inert document, and the content script, which

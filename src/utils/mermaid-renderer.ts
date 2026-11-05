@@ -2,6 +2,22 @@ import { logger } from '@utils/logger';
 import mermaid from 'mermaid';
 import { initMermaidZoom } from '@components/mermaid-zoom';
 
+/** Parse returned Mermaid markup inertly and remove frame elements, including in nested template contents. */
+function parseMermaidOutput(markup: string): DocumentFragment {
+  const template = document.createElement('template');
+  template.innerHTML = markup;
+  const removeFrames = (root: ParentNode): void => {
+    root.querySelectorAll('iframe, frame, frameset').forEach(frame => frame.remove());
+    root.querySelectorAll('template').forEach(nested => {
+      if (nested instanceof HTMLTemplateElement) {
+        removeFrames(nested.content);
+      }
+    });
+  };
+  removeFrames(template.content);
+  return document.importNode(template.content, true);
+}
+
 /**
  * Initialize Mermaid configuration
  * Using Mermaid v11's built-in themes without custom color manipulation
@@ -69,7 +85,7 @@ export async function renderMermaidDiagrams(): Promise<void> {
       // Store the original code for theme switching
       // Note: Browser automatically handles HTML escaping when setting attributes
       container.setAttribute('data-mermaid-code', code);
-      container.innerHTML = svg;
+      container.appendChild(parseMermaidOutput(svg));
 
       // Replace placeholder with rendered diagram
       if (placeholder.isConnected) {
@@ -180,7 +196,7 @@ export async function reRenderDiagrams(): Promise<void> {
       const actionButtons = container.querySelector('.mermaid-action-buttons');
 
       // Replace container content with new SVG
-      container.innerHTML = newSvg;
+      container.replaceChildren(parseMermaidOutput(newSvg));
 
       // Re-add action buttons if they existed
       if (actionButtons) {

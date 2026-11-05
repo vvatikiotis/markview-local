@@ -62,8 +62,9 @@ and valid image) from a different loopback port at origin B. Include direct and 
 ensure images enter the viewport. Verify that a Markdown fixture served from HTTP(S) does not activate MarkView.
 Inspect the rendered page and image attributes: no response-derived data/blob URL or sentinel bytes should appear;
 obsolete `fetchImage` messages should receive the unknown-action response without a network request. Cross-origin
-images may display under browser policy, but must remain origin-tainted for canvas readback. Repeat with restrictive
-image CSP, using browser tooling where opener access is unavailable.
+images may display under browser policy, but must remain origin-tainted for canvas readback. Also include an iframe
+fixture and verify embedded pages and videos are removed. Repeat with restrictive image CSP, using browser tooling where
+opener access is unavailable.
 Record browser version, effective response headers, extension build, and results. This manual regression has not been
 run automatically by the unit suite.
 

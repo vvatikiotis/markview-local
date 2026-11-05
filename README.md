@@ -55,8 +55,8 @@ Then load the unpacked extension:
 4. To view local files, open the extension's **Details** and turn on **Allow access to file URLs**
 
 `pnpm run build` also writes a zip of the same build to `dist/`. MarkView requires **Allow access to file URLs** in
-the browser extension settings. Local documents are not fully offline: remote images, fonts, embeds and media can
-still make network requests.
+the browser extension settings. Embedded pages and videos using iframes are unsupported and removed from rendered
+documents. Local documents are not fully offline: remote images, fonts and media can still make network requests.
 
 ## Privacy
 

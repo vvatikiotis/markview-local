@@ -28,10 +28,8 @@ const documentPurifier = DOMPurify(window);
  * all removed.
  */
 const DOCUMENT_HTML_CONFIG: Config = Object.freeze({
+  FORBID_TAGS: ['iframe', 'frame', 'frameset'],
   ADD_TAGS: [
-    // Video and page embeds. Kept as an element (see the hook for its `src`), so the document's structure does not
-    // change around it.
-    'iframe',
     // KaTeX's MathML output wraps the formula in <semantics> with an <annotation> holding the TeX source.
     // `annotation-xml`, the dangerous sibling, stays forbidden.
     'semantics',
@@ -43,10 +41,6 @@ const DOCUMENT_HTML_CONFIG: Config = Object.freeze({
   ADD_ATTR: [
     // External links open in a new tab (`link_open` in src/core/markdown.ts sets it).
     'target',
-    // What embed snippets carry.
-    'allow',
-    'allowfullscreen',
-    'frameborder',
     // KaTeX MathML for aligned environments.
     'columnalign',
     'columnspacing',
@@ -108,7 +102,8 @@ documentPurifier.addHook('uponSanitizeElement', (node, data) => {
   if (
     node instanceof HTMLUnknownElement &&
     node.namespaceURI === XHTML_NAMESPACE &&
-    !data.allowedTags[data.tagName]
+    !data.allowedTags[data.tagName] &&
+    !['iframe', 'frame', 'frameset'].includes(data.tagName)
   ) {
     data.allowedTags[data.tagName] = true;
   }
@@ -130,20 +125,11 @@ documentPurifier.addHook('afterSanitizeAttributes', node => {
 });
 
 /**
- * `<iframe>` keeps its element but loses `src` unless it resolves to `https:`: a `javascript:` or `data:` source
- * would run in a context the page can reach. `<a target="_blank">` always carries `noopener noreferrer`, so a raw
- * HTML link cannot hand the opened page a reference back to the document.
+ * `<a target="_blank">` always carries `noopener noreferrer`, so a raw HTML link cannot hand the opened page a
+ * reference back to the document.
  */
 documentPurifier.addHook('afterSanitizeAttributes', node => {
   const tagName = node.nodeName.toLowerCase();
-
-  if (tagName === 'iframe') {
-    const src = node.getAttribute('src');
-    if (src !== null && !resolvesToHttps(src)) {
-      node.removeAttribute('src');
-    }
-    return;
-  }
 
   if (tagName === 'a' && node.getAttribute('target')?.toLowerCase() === '_blank') {
     const relTokens = new Set((node.getAttribute('rel') ?? '').split(/\s+/).filter(Boolean));
@@ -152,15 +138,6 @@ documentPurifier.addHook('afterSanitizeAttributes', node => {
     node.setAttribute('rel', [...relTokens].join(' '));
   }
 });
-
-function resolvesToHttps(url: string): boolean {
-  try {
-    return new URL(url, document.baseURI).protocol === 'https:';
-  } catch {
-    // Not a URL at all: there is nothing safe to load.
-    return false;
-  }
-}
 
 /**
  * Log what was removed, by name only. The document's text and attribute values never reach the log.

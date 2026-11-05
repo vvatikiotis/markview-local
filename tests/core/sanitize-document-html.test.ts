@@ -56,7 +56,7 @@ describe('sanitizeDocumentHTML', () => {
       expect(fragment.querySelector('script')).toBeNull();
       expect(fragment.querySelector('img')?.getAttribute('src')).toBe('does-not-exist.png');
       expect(fragment.querySelector('span')?.textContent).toBe('hover target');
-      expect(fragment.querySelector('iframe')).not.toBeNull();
+      expect(fragment.querySelector('iframe')).toBeNull();
     });
 
     it.each([
@@ -71,13 +71,35 @@ describe('sanitizeDocumentHTML', () => {
     });
 
     it.each([
-      ['javascript: src', '<iframe src="javascript:alert(1)"></iframe>'],
-      ['data:text/html src', '<iframe src="data:text/html,<script>alert(1)</script>"></iframe>'],
-      ['http: src', '<iframe src="http://example.com/page"></iframe>'],
-    ])('should keep the iframe but drop a %s', (_name, html) => {
-      const iframe = sanitizeToFragment(html).querySelector('iframe');
-      expect(iframe).not.toBeNull();
-      expect(iframe?.hasAttribute('src')).toBe(false);
+      '<iframe src="https://example.com"></iframe>',
+      '<iframe src="http://example.com"></iframe>',
+      '<iframe src="file:///tmp/a"></iframe>',
+      '<iframe src="data:text/html,x"></iframe>',
+      '<iframe src="javascript:alert(1)"></iframe>',
+      '<iframe src="relative"></iframe>',
+      '<iframe srcdoc="x"></iframe>',
+      '<iframe></iframe>',
+      '<IFRAME src="https://example.com"></IFRAME>',
+      '<iframe sandbox="allow-scripts allow-same-origin allow-top-navigation"></iframe>',
+      '<iframe><b>nested</b></iframe>',
+      '<template><iframe src="https://example.com"></iframe></template>',
+      '<svg><foreignObject><iframe src="https://example.com"></iframe></foreignObject></svg>',
+      '<math><mtext><iframe src="https://example.com"></iframe></mtext></math>',
+      '<frame src="https://example.com"><frameset><frame></frameset>',
+    ])('should remove iframe completely: %s', html => {
+      const output = sanitizeDocumentHTML(html);
+      const fragment = sanitizeToFragment(html);
+      const target = document.createElement('div');
+      setDocumentHTML(target, html);
+      const framesUnderTemplates = (root: ParentNode): Element[] => [
+        ...Array.from(root.querySelectorAll('iframe, frame, frameset')),
+        ...Array.from(root.querySelectorAll('template')).flatMap(template =>
+          template instanceof HTMLTemplateElement ? framesUnderTemplates(template.content) : []
+        ),
+      ];
+      expect(output).not.toMatch(/<(?:iframe|frame|frameset)\b/i);
+      expect(framesUnderTemplates(fragment)).toEqual([]);
+      expect(framesUnderTemplates(target)).toEqual([]);
     });
 
     it.each([
@@ -239,16 +261,6 @@ describe('sanitizeDocumentHTML', () => {
       expect(img?.getAttribute('srcset')).toBe('a.png 1x');
       expect(img?.getAttribute('width')).toBe('10');
       expect(img?.getAttribute('style')).toBe('height: 5px');
-    });
-
-    it('should keep an https iframe embed with its embed attributes', () => {
-      const iframe = sanitizeToFragment(
-        '<iframe src="https://www.youtube.com/embed/abc" allow="autoplay" allowfullscreen frameborder="0"></iframe>'
-      ).querySelector('iframe');
-      expect(iframe?.getAttribute('src')).toBe('https://www.youtube.com/embed/abc');
-      expect(iframe?.getAttribute('allow')).toBe('autoplay');
-      expect(iframe?.hasAttribute('allowfullscreen')).toBe(true);
-      expect(iframe?.getAttribute('frameborder')).toBe('0');
     });
 
     it('should keep data-* and aria-* attributes and a file: link', () => {

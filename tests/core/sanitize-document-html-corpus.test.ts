@@ -20,6 +20,7 @@
  *   is a classic mutation-XSS carrier, so SAFE_FOR_XML removes it. Comments without markup are kept.
  * - Comments before the document's first content. DOMPurify parses its input as a whole document, so a leading
  *   comment lands outside `<body>` and is dropped. It is invisible and precedes everything else.
+ * - Iframes are removed entirely. This is intentional: embedded pages and videos are unsupported.
  *
  * Runs in jsdom for the reason given in sanitize-document-html.test.ts: happy-dom parses differently from a browser.
  */
@@ -162,6 +163,9 @@ function withoutLeadingComments(fragment: DocumentFragment): DocumentFragment {
 
 /** Drop the expected differences (see the header) from the as-rendered tree. */
 function withoutExpectedDifferences(fragment: DocumentFragment): DocumentFragment {
+  // Embedded pages and videos are unsupported and removed from the sanitized tree.
+  fragment.querySelectorAll('iframe, frame, frameset').forEach(frame => frame.remove());
+
   const htmlInsideMathML = Array.from(fragment.querySelectorAll('*')).filter(
     element =>
       element.namespaceURI === XHTML_NAMESPACE &&
