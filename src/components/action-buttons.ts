@@ -9,7 +9,7 @@ interface ActionMenuItem {
   id: string;
   label: string;
   icon: string;
-  action: () => void;
+  action: () => void | Promise<void>;
   /** Disabled when the page is sandboxed (e.g. print needs allow-modals) */
   isSandboxRestricted?: boolean;
   /** Disabled while the raw markdown view is shown */
@@ -104,6 +104,14 @@ export class ActionButtons {
         isSandboxRestricted: isInSandbox, // Disable in sandbox
       },
       {
+        id: 'export-html',
+        label: MESSAGES.actions.exportHtml,
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>`,
+        action: () => this.exportHtml(),
+        isSandboxRestricted: isInSandbox,
+        isRawModeRestricted: true,
+      },
+      {
         id: 'raw-toggle',
         label: MESSAGES.ui.toggleRaw,
         icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -153,31 +161,25 @@ export class ActionButtons {
 
       menuItem.innerHTML = `${item.icon}<span class="markview-menu-item-label">${item.label}</span>`;
 
-      menuItem.addEventListener('click', e => {
-        return new Promise<void>(resolve => {
-          e.preventDefault();
-          e.stopPropagation();
+      menuItem.addEventListener('click', async e => {
+        e.preventDefault();
+        e.stopPropagation();
 
-          // Check if item is disabled due to RAW mode
-          if (isRawModeRestricted) {
-            this.showNotification(MESSAGES.ui.notAvailableInRawMode, 'info');
-            this.closeMenu();
-            resolve();
-            return;
-          }
-
-          // Check sandbox restriction first
-          if (isSandboxRestricted) {
-            this.showNotification(MESSAGES.notification.sandboxRestriction, 'info');
-            this.closeMenu();
-            resolve();
-            return;
-          }
-
-          item.action();
+        if (isRawModeRestricted) {
+          this.showNotification(MESSAGES.ui.notAvailableInRawMode, 'info');
           this.closeMenu();
-          resolve();
-        });
+          return;
+        }
+
+        if (isSandboxRestricted) {
+          this.showNotification(MESSAGES.notification.sandboxRestriction, 'info');
+          this.closeMenu();
+          return;
+        }
+
+        const pending = item.action();
+        this.closeMenu();
+        await pending;
       });
 
       if (this.menu) {
@@ -229,6 +231,16 @@ export class ActionButtons {
     if (!this.menu) return;
     this.isOpen = false;
     this.menu.classList.remove('menu-open');
+  }
+
+  private async exportHtml(): Promise<void> {
+    try {
+      const { exportRenderedHtml } = await import('@utils/html-export');
+      await exportRenderedHtml();
+    } catch (error) {
+      logger.error('[ActionButtons] HTML export failed', error);
+      this.showNotification(MESSAGES.actions.exportHtmlFailed, 'error');
+    }
   }
 
   private print(): void {

@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "Hak cipta dilindungi"
+  },
+  "actions_exportHtml": {
+    "message": "Ekspor HTML"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "Ekspor HTML gagal"
   }
 }

@@ -148,7 +148,7 @@ function applyExternalTheme(themeId: string, css: string): void {
  * This ensures external themes have equal specificity to the reset CSS
  * and prevents theme styles from affecting the host page
  */
-function scopeThemeCss(css: string): string {
+export function scopeThemeCss(css: string): string {
   // Replace .hljs with .markview-external-syntax-theme #markview-container .hljs
   // This gives external themes the same specificity as the reset CSS in syntax-highlighting.css
   // Handle both standalone .hljs and .hljs-* class selectors

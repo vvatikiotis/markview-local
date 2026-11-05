@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "保留所有权利"
+  },
+  "actions_exportHtml": {
+    "message": "导出 HTML"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "导出 HTML 失败"
   }
 }

@@ -122,6 +122,12 @@ export const MESSAGES = {
     get print() {
       return getMessage('print');
     },
+    get exportHtml() {
+      return getMessage('actions_exportHtml');
+    },
+    get exportHtmlFailed() {
+      return getMessage('actions_exportHtmlFailed');
+    },
     get quickSettings() {
       return getMessage('actions_quickSettings');
     },

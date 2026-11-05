@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "Tous droits réservés"
+  },
+  "actions_exportHtml": {
+    "message": "Exporter en HTML"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "Échec de l’export HTML"
   }
 }

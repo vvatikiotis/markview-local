@@ -42,6 +42,7 @@ These changes are relative to the upstream snapshot cloned for this repository, 
 - Light and dark themes
 - Table of contents for H1–H3 headings, in a resizable sidebar
 - Raw markdown view, print styles, image viewer, font selection
+- Export the rendered document as a static HTML snapshot with MarkView styles and syntax highlighting. Images and other document resources remain referenced by source-resolved URLs, not bundled. KaTeX fonts are embedded from packaged extension assets. Mermaid is static; HTML labels become plain SVG text, so complex label layout may differ.
 - Recent documents and settings in the toolbar popup
 - Interface in 12 languages
 
@@ -107,7 +108,6 @@ ZIP. Third-party libraries retain their own licenses; see `package.json` for the
 
 The versions on the [Chrome Web Store](https://chromewebstore.google.com/detail/cfopbpknalachedpcddhgbgjoigklien) and
 [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/kpobglkjeapfinbaecjidahlnnohcaed) are developed
-separately. They add folder navigation, presentation mode, and HTML and Word export. Those features were never part
-of the upstream open-source edition and were not removed by these modifications.
+separately. They add folder navigation, presentation mode, and Word export. The upstream historical baseline did not include HTML export; this local edition now adds a static HTML snapshot export. Folder browser, presentation mode, and Word export remain absent.
 
 Issues with the store version go to [markview-app/support](https://github.com/markview-app/support).

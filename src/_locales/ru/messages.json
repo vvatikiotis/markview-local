@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "Все права защищены"
+  },
+  "actions_exportHtml": {
+    "message": "Экспортировать HTML"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "Не удалось экспортировать HTML"
   }
 }

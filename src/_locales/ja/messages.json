@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "全ての権利を保有"
+  },
+  "actions_exportHtml": {
+    "message": "HTMLをエクスポート"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "HTMLのエクスポートに失敗しました"
   }
 }

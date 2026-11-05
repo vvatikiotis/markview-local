@@ -109,6 +109,7 @@ describe('component-manager mouse controls without extension keybindings', () =>
       Array.from(document.querySelectorAll('.markview-menu-item-label'), item => item.textContent)
     ).toEqual([
       MESSAGES.actions.print,
+      MESSAGES.actions.exportHtml,
       MESSAGES.ui.toggleRaw,
       MESSAGES.actions.quickSettings,
       MESSAGES.actions.extensionInfo,
@@ -116,14 +117,14 @@ describe('component-manager mouse controls without extension keybindings', () =>
     click('.markview-menu-item:nth-child(1)');
     expect(print).toHaveBeenCalledOnce();
     await openActions();
-    click('.markview-menu-item:nth-child(2)');
+    click('.markview-menu-item:nth-child(3)');
     expect(components.rawToggle?.isInRawMode()).toBe(true);
     expect(document.querySelector('.markview-raw-view')).not.toBeNull();
     await openActions();
-    click('.markview-menu-item:nth-child(2)');
+    click('.markview-menu-item:nth-child(3)');
     expect(components.rawToggle?.isInRawMode()).toBe(false);
     await openActions();
-    click('.markview-menu-item:nth-child(3)');
+    click('.markview-menu-item:nth-child(4)');
     await vi.waitFor(() =>
       expect(document.querySelector('.markview-quick-settings-overlay')).not.toBeNull()
     );

@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "모든 권리 보유"
+  },
+  "actions_exportHtml": {
+    "message": "HTML 내보내기"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "HTML 내보내기에 실패했습니다"
   }
 }

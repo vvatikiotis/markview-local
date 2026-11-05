@@ -583,5 +583,11 @@
   },
   "extensionInfo_allRightsReserved": {
     "message": "Mọi quyền được bảo lưu"
+  },
+  "actions_exportHtml": {
+    "message": "Xuất HTML"
+  },
+  "actions_exportHtmlFailed": {
+    "message": "Không thể xuất HTML"
   }
 }
