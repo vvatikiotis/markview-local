@@ -13,6 +13,7 @@ import { showNotification } from '@utils/notification';
 
 // Track if modal is currently open to prevent duplicates
 let isModalOpen = false;
+const modalCleanups = new WeakMap<HTMLElement, () => void>();
 
 /**
  * Show quick settings modal
@@ -73,6 +74,22 @@ export async function showQuickSettingsModal(): Promise<void> {
       closeModal(overlay);
     }
   });
+
+  // Dismiss the modal with Escape. Cancel an open confirmation first.
+  const handleEscape = (event: KeyboardEvent) => {
+    if (event.key !== 'Escape') return;
+    event.preventDefault();
+    const cancelButton = overlay.querySelector<HTMLButtonElement>(
+      '.quick-settings-confirm-overlay .quick-settings-confirm-cancel'
+    );
+    if (cancelButton) {
+      cancelButton.click();
+    } else {
+      closeModal(overlay);
+    }
+  };
+  document.addEventListener('keydown', handleEscape);
+  modalCleanups.set(overlay, () => document.removeEventListener('keydown', handleEscape));
 
   // Listen for language changes and update modal content
   const handleLanguageChange = () => {
@@ -379,6 +396,8 @@ async function resetToDefaults(modalElement: HTMLElement): Promise<void> {
  * Close the modal with animation
  */
 function closeModal(overlay: HTMLElement): void {
+  modalCleanups.get(overlay)?.();
+  modalCleanups.delete(overlay);
   // Add fade out animation
   overlay.style.opacity = '0';
   overlay.style.transition = 'opacity 0.2s ease-out';

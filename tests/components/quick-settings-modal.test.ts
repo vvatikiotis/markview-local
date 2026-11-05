@@ -92,19 +92,21 @@ describe('quick-settings-modal setting boundaries', () => {
   });
 });
 
-describe('quick-settings-modal mouse dismissal without keybindings', () => {
-  it('ignores Escape and native control keys, then closes via its button', () => {
+describe('quick-settings-modal dismissal', () => {
+  it('closes on Escape but leaves native control keys alone', () => {
     const overlay = document.querySelector<HTMLElement>('.markview-quick-settings-overlay')!;
-    for (const key of ['Escape', 'Tab', 'Enter']) {
+    const select = overlay.querySelector('select')!;
+    for (const key of ['Tab', 'Enter']) {
       const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
-      expect(overlay.querySelector('select')!.dispatchEvent(event)).toBe(true);
+      expect(select.dispatchEvent(event)).toBe(true);
       expect(event.defaultPrevented).toBe(false);
       expect(overlay.style.opacity).not.toBe('0');
     }
-    expect(documentListeners.mock.calls.some(([type]) => /^key(down|up|press)$/.test(type))).toBe(
-      false
-    );
-    overlay.querySelector<HTMLButtonElement>('.markview-quick-settings-close')!.click();
+    const escape = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
+    document.dispatchEvent(escape);
+    expect(escape.defaultPrevented).toBe(true);
+    expect(overlay.style.opacity).toBe('0');
+    expect(documentListeners.mock.calls.some(([type]) => type === 'keydown')).toBe(true);
     vi.advanceTimersByTime(200);
     expect(overlay.isConnected).toBe(false);
   });
