@@ -1,6 +1,6 @@
 /**
  * Extension Info Modal Component
- * Displays extension information, version, and quick access links
+ * Displays extension information, version, and original-project attribution
  * Follows MarkView brand design system
  */
 
@@ -8,20 +8,10 @@ import { logger } from '@utils/logger';
 import { getMessage } from '@utils/i18n';
 import { ORIGINAL_PROJECT } from '@utils/original-project';
 import { MESSAGES } from '@utils/messages';
-import { openExternalLink } from '@utils/open-external-link';
-import { getExtensionStoreUrl, getStoreName } from '@utils/browser-detection';
-
-// Extension links configuration
-const EXTENSION_LINKS = {
-  DEMO_VIDEO: 'https://www.youtube.com/watch?v=DVsQg_OBTHs',
-  WHATS_NEW: 'https://getmarkview.com/whats-new',
-  SUPPORT: 'https://getmarkview.com/support',
-  WEBSITE: 'https://getmarkview.com',
-} as const;
 
 /**
  * Show extension info modal
- * Displays version, description, and quick access links
+ * Displays version and original-project attribution
  */
 export async function showExtensionInfoModal(): Promise<void> {
   logger.log('[ExtensionInfoModal] Showing modal');
@@ -114,157 +104,6 @@ function getBodyHTML(): string {
         </p>
         <p>${getMessage('attribution_modifiedBuild')}</p>
       </div>
-      <!-- Quick Links Section -->
-      <div class="markview-extension-info-section">
-        <h2 class="markview-extension-info-section-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          ${MESSAGES.extensionInfo?.quickLinks || 'Quick Links'}
-        </h2>
-        
-        <div class="markview-extension-info-links">
-          <a href="#" class="markview-extension-info-link" data-link="demo">
-            <div class="markview-extension-info-link-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="markview-extension-info-link-content">
-              <span class="markview-extension-info-link-title">${MESSAGES.watchDemo || 'Watch Demo'}</span>
-              <span class="markview-extension-info-link-subtitle">See the original MarkView in action</span>
-            </div>
-            <svg class="markview-extension-info-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="#" class="markview-extension-info-link" data-link="whats-new">
-            <div class="markview-extension-info-link-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="markview-extension-info-link-content">
-              <span class="markview-extension-info-link-title">${MESSAGES.whatsNew || "What's New"}</span>
-              <span class="markview-extension-info-link-subtitle">Latest updates and features</span>
-            </div>
-            <svg class="markview-extension-info-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="#" class="markview-extension-info-link" data-link="support">
-            <div class="markview-extension-info-link-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="markview-extension-info-link-content">
-              <span class="markview-extension-info-link-title">${MESSAGES.reportIssue || 'Report Issue'}</span>
-              <span class="markview-extension-info-link-subtitle">Get help and report bugs</span>
-            </div>
-            <svg class="markview-extension-info-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="#" class="markview-extension-info-link" data-link="website">
-            <div class="markview-extension-info-link-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="2" y1="12" x2="22" y2="12" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="markview-extension-info-link-content">
-              <span class="markview-extension-info-link-title">${MESSAGES.extensionInfo?.website || 'Official Website'}</span>
-              <span class="markview-extension-info-link-subtitle">Visit getmarkview.com</span>
-            </div>
-            <svg class="markview-extension-info-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="#" class="markview-extension-info-link" data-link="extension-store">
-            <div class="markview-extension-info-link-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="markview-extension-info-link-content">
-              <span class="markview-extension-info-link-title">${MESSAGES.extensionInfo?.rateExtension || 'Rate Extension'}</span>
-              <span class="markview-extension-info-link-subtitle">Leave a review on ${getStoreName()}</span>
-            </div>
-            <svg class="markview-extension-info-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- About Section -->
-      <div class="markview-extension-info-section">
-        <h2 class="markview-extension-info-section-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="12" y1="16" x2="12" y2="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="12" y1="8" x2="12.01" y2="8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          ${MESSAGES.extensionInfo?.about || 'About'}
-        </h2>
-        
-        <p class="markview-extension-info-description">
-          ${MESSAGES.extensionInfo?.description || 'MarkView Local transforms your Markdown files into beautifully rendered documents with support for syntax highlighting, Mermaid diagrams, math equations, and much more. Browse local files, customize themes, and enjoy a seamless reading experience.'}
-        </p>
-
-        <div class="markview-extension-info-features">
-          <div class="markview-extension-info-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>180+ Programming Languages</span>
-          </div>
-          <div class="markview-extension-info-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Mermaid Diagrams & Math</span>
-          </div>
-          <div class="markview-extension-info-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Dark & Light Themes</span>
-          </div>
-          <div class="markview-extension-info-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Print & Quick Settings</span>
-          </div>
-          <div class="markview-extension-info-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Auto-Refresh & Live Preview</span>
-          </div>
-          <div class="markview-extension-info-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>12 Languages Support</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="markview-extension-info-footer">
-        <p>${MESSAGES.extensionInfo?.madeWith || 'Made with'} ❤️ ${MESSAGES.extensionInfo?.forDevelopers || 'for developers and writers'}</p>
-        <p class="markview-extension-info-copyright">&copy; 2026 ${ORIGINAL_PROJECT.author} · MIT License</p>
-      </div>
     </div>
   `;
 }
@@ -284,40 +123,6 @@ function setupEventListeners(
   if (closeBtn) {
     closeBtn.addEventListener('click', () => closeModal(overlay));
   }
-
-  // Link click handlers
-  const links = bodyElement.querySelectorAll('.markview-extension-info-link');
-  links.forEach(link => {
-    link.addEventListener('click', async (e: Event) => {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLElement;
-      const linkType = target.dataset.link;
-
-      let url: string | undefined;
-      switch (linkType) {
-        case 'demo':
-          url = EXTENSION_LINKS.DEMO_VIDEO;
-          break;
-        case 'whats-new':
-          url = EXTENSION_LINKS.WHATS_NEW;
-          break;
-        case 'support':
-          url = EXTENSION_LINKS.SUPPORT;
-          break;
-        case 'website':
-          url = EXTENSION_LINKS.WEBSITE;
-          break;
-        case 'extension-store':
-          url = getExtensionStoreUrl();
-          break;
-      }
-
-      if (url) {
-        logger.log(`[ExtensionInfoModal] Opening link: ${linkType} - ${url}`);
-        await openExternalLink(url, 'ExtensionInfoModal');
-      }
-    });
-  });
 
   // Close on background click
   overlay.addEventListener('click', e => {

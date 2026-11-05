@@ -17,7 +17,7 @@ afterEach(() => {
 
 describe('extension-info-modal original-project attribution', () => {
   it.each(Object.entries(LOCALES))(
-    'preserves visible credits and safe destinations on %s refresh',
+    'omits marketing and Quick Links while preserving visible credits and native links in %s',
     async (language, messages) => {
       vi.stubGlobal('chrome', {
         ...chrome,
@@ -26,8 +26,42 @@ describe('extension-info-modal original-project attribution', () => {
       // The existing modal registers document listeners; remove this test's listeners after use.
       const listeners = vi.spyOn(document, 'addEventListener');
       try {
-        await initI18n('en');
+        await initI18n(language);
         await showExtensionInfoModal();
+        const assertRemovedContentAbsent = () => {
+          const modal = document.querySelector<HTMLElement>('.markview-extension-info-modal')!;
+          expect(modal.querySelector('h2')).toBeNull();
+          for (const suffix of [
+            'section',
+            'description',
+            'features',
+            'feature',
+            'footer',
+            'copyright',
+          ]) {
+            expect(modal.querySelector(`.markview-extension-info-${suffix}`)).toBeNull();
+          }
+          for (const text of [
+            messages.extensionInfo_about.message,
+            messages.extensionInfo_description.message,
+            messages.extensionInfo_madeWith.message,
+            messages.extensionInfo_forDevelopers.message,
+            messages.extensionInfo_quickLinks.message,
+            '180+ Programming Languages',
+            'Mermaid Diagrams & Math',
+            'Dark & Light Themes',
+            'Print & Quick Settings',
+            'Auto-Refresh & Live Preview',
+            '12 Languages Support',
+            '❤️',
+            '© 2026 MarkView Team · MIT License',
+          ]) {
+            expect(modal.textContent).not.toContain(text);
+          }
+        };
+        assertRemovedContentAbsent();
+        await initI18n('en');
+        document.dispatchEvent(new Event('markview:languageChanged'));
         expect(
           document.querySelector('.markview-extension-info-attribution')?.textContent
         ).toContain('Original author: MarkView Team');
@@ -36,6 +70,16 @@ describe('extension-info-modal original-project attribution', () => {
         expect(document.querySelector('.markview-extension-info-title')?.textContent).toBe(
           'MarkView Local'
         );
+        expect(document.querySelector('.markview-extension-info-version')?.textContent).toBe(
+          'Version 1.0.0'
+        );
+        const modal = document.querySelector<HTMLElement>('.markview-extension-info-modal')!;
+        assertRemovedContentAbsent();
+        expect(modal.querySelector('.markview-extension-info-links')).toBeNull();
+        expect(modal.querySelector('.markview-extension-info-link')).toBeNull();
+        for (const shortcut of ['demo', 'whats-new', 'support', 'website', 'extension-store']) {
+          expect(modal.querySelector(`[data-link="${shortcut}"]`)).toBeNull();
+        }
         const credit = document.querySelector<HTMLElement>('.markview-extension-info-attribution')!;
         expect(isInaccessible(credit)).toBe(false);
         expect(credit.textContent).toContain(
@@ -43,6 +87,7 @@ describe('extension-info-modal original-project attribution', () => {
         );
         expect(credit.textContent).toContain(messages.attribution_modifiedBuild.message);
         const links = credit.querySelectorAll<HTMLAnchorElement>('a');
+        expect([...modal.querySelectorAll('a')]).toEqual([...links]);
         expect([...links].map(link => link.href)).toEqual([
           'https://github.com/markview-app/markview',
           'https://getmarkview.com/',
@@ -69,9 +114,6 @@ describe('extension-info-modal original-project attribution', () => {
             link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }))
           ).toBe(false);
         }
-        expect(document.querySelector('.markview-extension-info-copyright')?.textContent).toBe(
-          '© 2026 MarkView Team · MIT License'
-        );
       } finally {
         for (const [type, listener] of listeners.mock.calls) {
           if (type === 'markview:languageChanged') document.removeEventListener(type, listener);

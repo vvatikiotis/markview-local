@@ -293,15 +293,21 @@ export function buildHtmlExport(
   return `<!doctype html><html lang="en" class="${classes.join(' ')}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)}</title><style>${style}</style></head><body><main id="markview-container" class="${rootClasses.join(' ')}"${rootStyle ? ` style="${escapeHtml(rootStyle)}"` : ''}>${clean}</main></body></html>`;
 }
 
-export function htmlExportFilename(title: string): string {
-  const safeTitle = [...title]
-    .map(character => {
-      const code = character.charCodeAt(0);
-      return /[\\/:*?"<>|]/.test(character) || code < 32 || code === 127 ? '_' : character;
-    })
-    .join('');
-  const documentName = safeTitle.trim().replace(/\.(?:markdown|mdx|mkd|md)$/i, '');
-  return `${documentName || 'document'}.html`;
+export function htmlExportFilename(sourceUrl: string): string {
+  try {
+    const filename = decodeURIComponent(new URL(sourceUrl).pathname.split('/').pop() ?? '');
+    if (!/\.(?:markdown|mdx|mkd|md)$/i.test(filename)) return 'document.html';
+    const documentName = filename.replace(/\.(?:markdown|mdx|mkd|md)$/i, '');
+    const safeName = [...documentName]
+      .map(character => {
+        const code = character.charCodeAt(0);
+        return /[\\/]/.test(character) || code < 32 || code === 127 ? '_' : character;
+      })
+      .join('');
+    return `${safeName.trim() ? safeName : 'document'}.html`;
+  } catch {
+    return 'document.html';
+  }
 }
 
 async function fetchAsset(path: string): Promise<Response> {
@@ -385,7 +391,7 @@ export async function exportRenderedHtml(): Promise<void> {
   const url = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
   const anchor = document.createElement('a');
   anchor.href = url;
-  anchor.download = htmlExportFilename(document.title || 'document');
+  anchor.download = htmlExportFilename(window.location.href);
   try {
     document.body.appendChild(anchor);
     anchor.click();

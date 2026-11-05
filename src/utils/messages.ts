@@ -153,23 +153,11 @@ export const MESSAGES = {
     get quickLinks() {
       return getMessage('extensionInfo_quickLinks');
     },
-    get about() {
-      return getMessage('extensionInfo_about');
-    },
-    get description() {
-      return getMessage('extensionInfo_description');
-    },
     get website() {
       return getMessage('extensionInfo_website');
     },
     get rateExtension() {
       return getMessage('extensionInfo_rateExtension');
-    },
-    get madeWith() {
-      return getMessage('extensionInfo_madeWith');
-    },
-    get forDevelopers() {
-      return getMessage('extensionInfo_forDevelopers');
     },
     get allRightsReserved() {
       return getMessage('extensionInfo_allRightsReserved');

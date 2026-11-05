@@ -338,16 +338,47 @@ describe('parsed export security and references', () => {
   });
 });
 
+const filenameCases = [
+  ['file:///Users/me/my.notes.md', 'my.notes.html'],
+  ['file:///Users/me/guide.markdown', 'guide.html'],
+  ['file:///Users/me/guide.mkd', 'guide.html'],
+  ['file:///Users/me/guide.mdx', 'guide.html'],
+  ['file:///Users/me/guide.MD', 'guide.html'],
+  ['file:///Users/me/guide.MARKDOWN', 'guide.html'],
+  ['file:///Users/me/guide.MKD', 'guide.html'],
+  ['file:///Users/me/guide.MDX', 'guide.html'],
+  ['file:///Users/me/my%20notes%20%E6%97%A5%E6%9C%AC.md', 'my notes 日本.html'],
+  ['file:///Users/me/日本 notes.md', '日本 notes.html'],
+  ['file:///Users/me/100%25%20done%23%3F.md', '100% done#?.html'],
+  ['file:///Users/me/a+b%2520.md', 'a+b%20.html'],
+  ['file:///Users/me/notes.md?download=other.md#heading', 'notes.html'],
+  ['https://example.test/docs/notes.md?download=other.md#heading', 'notes.html'],
+  ['file:///Users/me/%20notes%20.md', ' notes .html'],
+  ['file:///Users/me/a%2Fb%5Cc%00%1F%7F.md', 'a_b_c___.html'],
+  ['not a URL', 'document.html'],
+  ['file:///Users/me/bad%ZZ.md', 'document.html'],
+  ['file:///Users/me/bad%E0%A4.md', 'document.html'],
+  ['file:///Users/me/', 'document.html'],
+  ['file:///Users/me/.md', 'document.html'],
+  ['file:///Users/me/%20.md', 'document.html'],
+  ['file:///Users/me/notes.txt', 'document.html'],
+  ['', 'document.html'],
+];
+
 describe('exportRenderedHtml', () => {
   afterEach(() => {
+    vi.unstubAllGlobals();
     document.body.innerHTML = '';
+    document.title = '';
+    window.history.replaceState(null, '', '/');
     vi.restoreAllMocks();
     vi.mocked(isSandboxed).mockReturnValue(false);
   });
 
   it('downloads rendered content and always releases temporary URL and anchor', async () => {
     document.body.innerHTML = '<main id="markview-container"><p>Rendered</p></main>';
-    document.title = 'Guide';
+    document.title = 'Different Heading';
+    window.history.replaceState(null, '', '/docs/Guide.md');
     const create = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:export');
     const revoke = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
     const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (
@@ -362,6 +393,24 @@ describe('exportRenderedHtml', () => {
     expect(revoke).toHaveBeenCalledWith('blob:export');
     expect(document.querySelector('a[download]')).toBeNull();
   });
+
+  it.each(filenameCases)(
+    'downloads %s as %s regardless of title or H1',
+    async (sourceUrl, expected) => {
+      vi.stubGlobal('window', { location: { href: sourceUrl } });
+      vi.mocked(fetch).mockImplementation(async () => new Response(''));
+      document.title = 'Different Heading';
+      document.body.innerHTML = '<main id="markview-container"><h1>Unrelated H1</h1></main>';
+      vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:export');
+      const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (
+        this: HTMLAnchorElement
+      ) {
+        expect(this.download).toBe(expected);
+      });
+      await exportRenderedHtml();
+      expect(click).toHaveBeenCalledOnce();
+    }
+  );
 
   it('allows image-only documents and refuses raw, unfinished, or sandboxed content', async () => {
     document.body.innerHTML = '<main id="markview-container"><img data-src="pic.png"></main>';
@@ -407,9 +456,7 @@ describe('exportRenderedHtml', () => {
 });
 
 describe('htmlExportFilename', () => {
-  it('makes a document-derived safe html filename', () => {
-    expect(htmlExportFilename('Report: Q1/2026')).toBe('Report_ Q1_2026.html');
-    expect(htmlExportFilename('guide.md')).toBe('guide.html');
-    expect(htmlExportFilename('')).toBe('document.html');
+  it.each(filenameCases)('derives %s as %s', (sourceUrl, expected) => {
+    expect(htmlExportFilename(sourceUrl)).toBe(expected);
   });
 });
