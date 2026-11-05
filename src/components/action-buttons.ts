@@ -1,4 +1,5 @@
 // MarkView Action Buttons Component (Print & Actions)
+import { showNotification } from '@utils/notification';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 import { showKeyboardShortcutsHelp } from './keyboard-shortcuts-help';
@@ -162,26 +163,31 @@ export class ActionButtons {
 
       menuItem.innerHTML = `${item.icon}<span class="markview-menu-item-label">${item.label}</span>`;
 
-      menuItem.addEventListener('click', async e => {
-        e.preventDefault();
-        e.stopPropagation();
+      menuItem.addEventListener('click', e => {
+        return new Promise<void>(resolve => {
+          e.preventDefault();
+          e.stopPropagation();
 
-        // Check if item is disabled due to RAW mode
-        if (isRawModeRestricted) {
-          this.showNotification(MESSAGES.ui.notAvailableInRawMode, 'info');
+          // Check if item is disabled due to RAW mode
+          if (isRawModeRestricted) {
+            this.showNotification(MESSAGES.ui.notAvailableInRawMode, 'info');
+            this.closeMenu();
+            resolve();
+            return;
+          }
+
+          // Check sandbox restriction first
+          if (isSandboxRestricted) {
+            this.showNotification(MESSAGES.notification.sandboxRestriction, 'info');
+            this.closeMenu();
+            resolve();
+            return;
+          }
+
+          item.action();
           this.closeMenu();
-          return;
-        }
-
-        // Check sandbox restriction first
-        if (isSandboxRestricted) {
-          this.showNotification(MESSAGES.notification.sandboxRestriction, 'info');
-          this.closeMenu();
-          return;
-        }
-
-        item.action();
-        this.closeMenu();
+          resolve();
+        });
       });
 
       if (this.menu) {
@@ -242,7 +248,6 @@ export class ActionButtons {
 
   private showNotification(message: string, type: 'success' | 'error' | 'info' = 'info'): void {
     // Use centralized notification system
-    const { showNotification } = require('@utils/notification');
     showNotification(message, type, 3000);
   }
 

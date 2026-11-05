@@ -4,7 +4,7 @@
  */
 
 import { createTocSidebar } from '@components/toc-sidebar';
-import { getSettings } from '@core/storage';
+import { getSettings, type MarkViewSettings } from '@core/storage';
 import { applyLayoutSettings, applyTheme, resetContentMargins } from '@utils/dom';
 import { logger } from '@utils/logger';
 import { startAutoRefresh, stopAutoRefresh } from '@utils/auto-refresh';
@@ -23,7 +23,7 @@ export interface TocState {
  * Handle settings changes
  */
 export async function handleSettingsChange(
-  changes: any,
+  changes: Partial<MarkViewSettings>,
   components: ComponentInstances,
   tocState: TocState,
   renderContentFn: () => Promise<void>,

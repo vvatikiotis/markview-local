@@ -25,7 +25,9 @@ export async function saveToHistory(
 ): Promise<void> {
   try {
     // Get existing history
-    const result = await chrome.storage.local.get([STORAGE_KEY]);
+    const result = await chrome.storage.local.get<{ [STORAGE_KEY]?: RecentDocument[] }>([
+      STORAGE_KEY,
+    ]);
     const history: RecentDocument[] = result[STORAGE_KEY] || [];
 
     // Remove existing entry for this URL (deduplication)
@@ -57,7 +59,9 @@ export async function saveToHistory(
  */
 export async function getRecentDocuments(): Promise<RecentDocument[]> {
   try {
-    const result = await chrome.storage.local.get([STORAGE_KEY]);
+    const result = await chrome.storage.local.get<{ [STORAGE_KEY]?: RecentDocument[] }>([
+      STORAGE_KEY,
+    ]);
     return result[STORAGE_KEY] || [];
   } catch (error) {
     logger.error('[RecentDocuments] Failed to get history:', error);
@@ -83,7 +87,9 @@ export async function clearRecentDocuments(): Promise<void> {
  */
 export async function removeFromHistory(url: string): Promise<void> {
   try {
-    const result = await chrome.storage.local.get([STORAGE_KEY]);
+    const result = await chrome.storage.local.get<{ [STORAGE_KEY]?: RecentDocument[] }>([
+      STORAGE_KEY,
+    ]);
     const history: RecentDocument[] = result[STORAGE_KEY] || [];
 
     // Filter out the specified URL
@@ -107,7 +113,7 @@ export function extractFileName(url: string): string {
     const pathname = urlObj.pathname;
     const fileName = pathname.split('/').pop() || url;
     return decodeURIComponent(fileName);
-  } catch (error) {
+  } catch {
     return url;
   }
 }

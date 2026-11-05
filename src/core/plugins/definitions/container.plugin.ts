@@ -24,10 +24,12 @@ export const containerPlugin: MarkdownPlugin = {
         validate: (params: string) => {
           return params.trim().match(new RegExp(`^${type}\\s*(.*)$`));
         },
-        render: (tokens: any[], idx: number) => {
-          const m = tokens[idx].info.trim().match(new RegExp(`^${type}\\s*(.*)$`));
+        render: (tokens, idx) => {
+          const token = tokens[idx];
+          if (!token) return '';
+          const m = token.info.trim().match(new RegExp(`^${type}\\s*(.*)$`));
 
-          if (tokens[idx].nesting === 1) {
+          if (token.nesting === 1) {
             // Opening tag
             const title = m && m[1] ? md.utils.escapeHtml(m[1]) : '';
             return (

@@ -45,3 +45,7 @@ export const LOCALE_NAMES: Record<string, string> = {
   de: 'Deutsch',
   ru: 'Русский',
 };
+
+export function isLocaleKey(value: string): value is LocaleKey {
+  return Object.prototype.hasOwnProperty.call(LOCALES, value);
+}

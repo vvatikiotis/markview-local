@@ -9,7 +9,7 @@ import type { MarkdownPlugin } from '../types';
 export const alertsPlugin: MarkdownPlugin = {
   id: 'alerts',
   name: 'GitHub Alerts',
-  version: '0.14.0', // @mdit/plugin-alert version
+  version: '2.1.0', // @mdit/plugin-alert version
   description: 'Render [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION] blocks',
   category: 'content',
   priority: 30,

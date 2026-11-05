@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import MarkdownIt from 'markdown-it';
+import MarkdownIt, { type MarkdownIt as MarkdownItInstance } from 'markdown-it';
 import { PluginManager } from '@core/plugins/plugin-manager';
 
 // Mock logger
@@ -17,7 +17,7 @@ vi.mock('@utils/logger', () => ({
 }));
 
 describe('PluginManager', () => {
-  let md: MarkdownIt;
+  let md: MarkdownItInstance;
   let pluginManager: PluginManager;
 
   beforeEach(() => {

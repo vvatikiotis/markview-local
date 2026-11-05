@@ -97,37 +97,48 @@ export class ThemeToggle {
 
     // Listen for theme changes from popup
     chrome.storage.onChanged.addListener(changes => {
-      if (changes.theme) {
+      if (
+        changes.theme?.newValue === 'auto' ||
+        changes.theme?.newValue === 'light' ||
+        changes.theme?.newValue === 'dark'
+      ) {
         this.currentTheme = changes.theme.newValue;
         this.updateButtonIcon();
       }
     });
   }
 
-  private async toggleTheme(): Promise<void> {
-    // Cycle through: light -> dark -> auto -> light
-    const themeOrder: Array<'light' | 'dark' | 'auto'> = ['light', 'dark', 'auto'];
-    const currentIndex = themeOrder.indexOf(this.currentTheme);
-    const nextIndex = (currentIndex + 1) % themeOrder.length;
-    const newTheme = themeOrder[nextIndex];
-    if (!newTheme) return; // Should never happen
+  private toggleTheme(): Promise<void> {
+    return new Promise<void>(resolve => {
+      // Cycle through: light -> dark -> auto -> light
+      const themeOrder: Array<'light' | 'dark' | 'auto'> = ['light', 'dark', 'auto'];
+      const currentIndex = themeOrder.indexOf(this.currentTheme);
+      const nextIndex = (currentIndex + 1) % themeOrder.length;
+      const newTheme = themeOrder[nextIndex];
+      if (!newTheme) {
+        resolve();
+        return; // Should never happen
+      }
 
-    this.currentTheme = newTheme;
+      this.currentTheme = newTheme;
 
-    // Update icon immediately for instant feedback
-    this.updateButtonIcon();
+      // Update icon immediately for instant feedback
+      this.updateButtonIcon();
 
-    // Show notification immediately
-    this.showNotification();
+      // Show notification immediately
+      this.showNotification();
 
-    // Apply theme (fast - just CSS class changes)
-    this.applyTheme();
+      // Apply theme (fast - just CSS class changes)
+      this.applyTheme();
 
-    // Save to storage asynchronously (non-blocking)
-    // This will trigger the settings change listener in main.ts
-    // which handles Mermaid re-rendering
-    updateSetting('theme', this.currentTheme).catch(err => {
-      logger.error('[ThemeToggle] Failed to save theme setting:', err);
+      // Save to storage asynchronously (non-blocking)
+      // This will trigger the settings change listener in main.ts
+      // which handles Mermaid re-rendering
+      updateSetting('theme', this.currentTheme).catch(err => {
+        logger.error('[ThemeToggle] Failed to save theme setting:', err);
+      });
+
+      resolve();
     });
   }
 

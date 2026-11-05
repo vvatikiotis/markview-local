@@ -41,6 +41,7 @@ lerna-debug.log*
 *.tsbuildinfo
 
 # Temporary
+/tmp/
 .tmp/
 .cache/
 temp/

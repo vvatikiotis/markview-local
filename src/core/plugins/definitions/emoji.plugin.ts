@@ -9,14 +9,13 @@ import type { MarkdownPlugin } from '../types';
 export const emojiPlugin: MarkdownPlugin = {
   id: 'emoji',
   name: 'Emoji',
-  version: '3.0.0', // markdown-it-emoji version
+  version: '3.1.0', // markdown-it-emoji version
   description: 'Convert emoji shortcodes like :smile: to unicode emoji',
   category: 'formatting',
   priority: 50,
   enabledByDefault: true,
 
   install(md) {
-    // @ts-ignore - Type mismatch
     md.use(markdownItEmoji.full);
   },
 };

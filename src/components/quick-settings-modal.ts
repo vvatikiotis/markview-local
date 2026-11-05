@@ -4,9 +4,10 @@
  * Follows MarkView brand design system
  */
 
+import { isLocaleKey } from '@utils/locales';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
-import { getSettings, updateSetting, type MarkViewSettings } from '@core/storage';
+import { getSettings, updateSetting, type DisplaySettings } from '@core/storage';
 import { keyboardManager } from '@utils/keyboard-shortcuts';
 import { showNotification } from '@utils/notification';
 
@@ -252,11 +253,11 @@ function setupSettingListeners(bodyElement: HTMLElement, modalElement: HTMLEleme
   const toggles = bodyElement.querySelectorAll<HTMLInputElement>('.quick-setting-toggle');
   toggles.forEach(toggle => {
     toggle.addEventListener('change', async () => {
-      const settingName = toggle.getAttribute('data-setting') as keyof MarkViewSettings;
-      if (settingName) {
+      const settingName = toggle.getAttribute('data-setting');
+      if (settingName === 'autoRefresh') {
         const newValue = toggle.checked;
         logger.log(`[QuickSettingsModal] Setting "${String(settingName)}" changed to ${newValue}`);
-        await updateSetting(settingName as any, newValue);
+        await updateSetting('autoRefresh', newValue);
         showNotification(MESSAGES.popup.settingsSaved, {
           type: 'success',
           scope: modalElement,
@@ -277,15 +278,19 @@ function setupSettingListeners(bodyElement: HTMLElement, modalElement: HTMLEleme
 
         // Handle nested displaySettings
         if (settingName === 'codeBlockDisplay') {
+          if (newValue !== 'wrap' && newValue !== 'scroll') return;
           const currentSettings = await getSettings();
-          const displaySettings = {
+          const displaySettings: DisplaySettings = {
             ...currentSettings.displaySettings,
-            codeBlockDisplay: newValue as 'wrap' | 'scroll',
+            codeBlockDisplay: newValue,
           };
           await updateSetting('displaySettings', displaySettings);
+        } else if (settingName === 'fontFamily') {
+          await updateSetting('fontFamily', newValue);
+        } else if (settingName === 'language' && (newValue === 'auto' || isLocaleKey(newValue))) {
+          await updateSetting('language', newValue);
         } else {
-          // Handle regular settings
-          await updateSetting(settingName as any, newValue);
+          return;
         }
 
         showNotification(MESSAGES.popup.settingsSaved, {

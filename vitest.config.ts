@@ -21,12 +21,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@components': path.resolve(__dirname, './src/components'),
-      '@core': path.resolve(__dirname, './src/core'),
-      '@utils': path.resolve(__dirname, './src/utils'),
-      '@plugins': path.resolve(__dirname, './src/plugins'),
-      '@styles': path.resolve(__dirname, './src/styles'),
-      '@types': path.resolve(__dirname, './src/types'),
+      '@components': path.resolve(import.meta.dirname, './src/components'),
+      '@core': path.resolve(import.meta.dirname, './src/core'),
+      '@utils': path.resolve(import.meta.dirname, './src/utils'),
+      '@plugins': path.resolve(import.meta.dirname, './src/plugins'),
+      '@styles': path.resolve(import.meta.dirname, './src/styles'),
+      '@types': path.resolve(import.meta.dirname, './src/types'),
     },
   },
 });

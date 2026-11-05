@@ -2,7 +2,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const { render } = vi.hoisted(() => ({ render: vi.fn() }));
-vi.mock('mermaid', () => ({ default: { initialize: vi.fn(), render: (...args: unknown[]) => render(...args) } }));
+vi.mock('mermaid', () => ({
+  default: { initialize: vi.fn(), render: (...args: unknown[]) => render(...args) },
+}));
 vi.mock('@components/mermaid-zoom', () => ({ initMermaidZoom: vi.fn() }));
 import { renderMermaidDiagrams, reRenderDiagrams } from '@utils/mermaid-renderer';
 
@@ -23,7 +25,9 @@ function framesIncludingTemplateContents(root: ParentNode): Element[] {
   return [
     ...Array.from(root.querySelectorAll('iframe, frame, frameset')),
     ...Array.from(root.querySelectorAll('template')).flatMap(template =>
-      template instanceof HTMLTemplateElement ? framesIncludingTemplateContents(template.content) : []
+      template instanceof HTMLTemplateElement
+        ? framesIncludingTemplateContents(template.content)
+        : []
     ),
   ];
 }
@@ -59,7 +63,8 @@ describe('Mermaid returned markup', () => {
     const container = document.createElement('div');
     container.className = 'mermaid-container';
     container.setAttribute('data-mermaid-code', 'graph TD; A-->B');
-    container.innerHTML = '<svg id="chart-svg"><rect/></svg><button class="mermaid-action-buttons">copy</button>';
+    container.innerHTML =
+      '<svg id="chart-svg"><rect/></svg><button class="mermaid-action-buttons">copy</button>';
     document.body.append(container);
 
     await reRenderDiagrams();
@@ -69,4 +74,24 @@ describe('Mermaid returned markup', () => {
     expect(container.querySelector('.mermaid-action-buttons')?.textContent).toBe('copy');
     expect(bindFunctions).toHaveBeenCalledWith(container.querySelector('svg'));
   });
+});
+
+describe('Mermaid error boundary', () => {
+  it.each([
+    [new Error('<unsafe>'), '<unsafe>'],
+    [{ message: '<plain object>' }, '<plain object>'],
+    [{ message: 123 }, 'Failed to render Mermaid diagram'],
+    [null, 'Failed to render Mermaid diagram'],
+    ['failure', 'Failed to render Mermaid diagram'],
+  ])(
+    'handles rejected value %j without unsafe access or HTML injection',
+    async (failure, expected) => {
+      render.mockRejectedValue(failure);
+      document.body.innerHTML =
+        '<div class="mermaid-placeholder" id="error-chart" data-code="graph TD; A--&gt;B"></div>';
+      await expect(renderMermaidDiagrams()).resolves.toBeUndefined();
+      expect(document.querySelector('.mermaid-error pre')?.textContent).toBe(expected);
+      expect(document.querySelector('.mermaid-error pre')?.children).toHaveLength(0);
+    }
+  );
 });

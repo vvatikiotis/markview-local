@@ -4,9 +4,9 @@ How to build, run and test MarkView (Open-Source Edition), and where things live
 
 ## Requirements
 
-- Node.js 20 or later (Vitest 4 and happy-dom require it)
-- pnpm 8 or later: `npm install -g pnpm`. The project refuses other package managers (`preinstall` runs
-  `only-allow pnpm`).
+- Node.js 22.22.2+, 24.15.0+, or 26+ (the supported ranges required by jsdom and Vitest)
+- pnpm 12 or later: `npm install -g pnpm`. Use pnpm to preserve the lockfile.
+  `pnpm-workspace.yaml` approves only esbuild's dependency build script.
 
 ## Build and load
 
@@ -45,8 +45,8 @@ tab. The content script is only injected on page load.
 | `pnpm run test:run`      | Vitest, single run (what CI runs)                             |
 | `pnpm run test:coverage` | Coverage report (v8) for `src/core` and `src/utils`           |
 | `pnpm run test:ui`       | Vitest UI                                                     |
-| `pnpm run lint`          | ESLint on `src/`                                              |
-| `pnpm run lint:fix`      | ESLint with auto-fix                                          |
+| `pnpm run lint`          | Oxlint (type-aware) on `src/`                                |
+| `pnpm run lint:fix`      | Oxlint with auto-fix                                          |
 | `pnpm run format`        | Prettier on `src/`                                            |
 | `pnpm run format:check`  | Prettier check on `src/`                                      |
 | `pnpm run type-check`    | `tsc --noEmit` over `src/` and `tests/`                       |
@@ -108,7 +108,7 @@ examples/                   # Sample documents for trying the renderer
 - **Interface strings** come from `src/_locales/<language>/messages.json` through `getMessage()` in
   `src/utils/i18n.ts`, collected in `src/utils/messages.ts`. A new string needs an entry in every locale; use the
   English text where you cannot translate it.
-- **Logging** goes through `logger` from `src/utils/logger.ts`, not `console.log` (ESLint warns on it).
+- **Logging** goes through `logger` from `src/utils/logger.ts`, not `console.log` (Oxlint warns on it).
 - **Document HTML reaches the page only through the sanitizer.** HTML derived from a document (rendered markdown, raw
   HTML) is inserted with `setDocumentHTML()` from `src/core/sanitize-document-html.ts`, or passed through
   `sanitizeDocumentHTML()`, never with `innerHTML`. HTML that is only read is parsed with `DOMParser`. Never move
@@ -121,11 +121,21 @@ examples/                   # Sample documents for trying the renderer
 Prettier (`.prettierrc`): 2-space indentation, single quotes, semicolons, trailing commas where valid in ES5, 100
 character lines, LF line endings.
 
-ESLint (`.eslintrc.cjs`) highlights:
+Oxlint (`oxlint.json`, loaded explicitly by both lint scripts) highlights:
 
-- `prefer-const` and `no-var` are errors; unused variables are errors unless prefixed with `_`
+- `prefer-const` and `no-var` are errors; unused variables are errors (only arguments prefixed with `_` are exempt)
 - `any` is a warning: prefer a real type or `unknown`
 - `console.log` is a warning; `console.warn` and `console.error` are allowed
+- `options.typeAware: true` activates `oxlint-tsgolint`; `require-await` remains a warning
+- Substantive ESLint/TypeScript recommended checks are selected explicitly, including invalid regexes,
+  unsafe optional chains, empty blocks, duplicate enum values, and unsafe declaration merging
+- The previous Chrome API exceptions remain: unsafe-value rules, floating/misused promises, and
+  `no-case-declarations` are off; TypeScript suppression comments without descriptions produce warnings
+
+`tsc --noEmit` remains a separate check. Compiler/parser diagnostics cover duplicate arguments, invalid
+constructors, undefined names, and legacy octal syntax; Prettier covers extra semicolons and mixed indentation.
+The rule mapping is not a byte-for-byte ESLint preset port. Packaging uses fflate with Node filesystem traversal;
+production webpack uses its native output cleaning before static assets are copied.
 
 ## Tests
 
@@ -193,7 +203,7 @@ Create a class in `src/components/` that builds its element, mounts it and clean
   it contains `manifest.json`. Run `pnpm run build` again if not.
 - **Local files are not rendered:** turn on **Allow access to file URLs** in the extension's Details.
 - **Changes do not show up:** reload the extension in `chrome://extensions/`, then reload the markdown tab.
-- **`pnpm install` fails with "Use pnpm":** the project only installs with pnpm.
+- **Dependency installation:** use pnpm 12+ with a supported Node version; CI installs with `--frozen-lockfile`.
 
 ## Getting help
 

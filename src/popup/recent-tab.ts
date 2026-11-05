@@ -91,7 +91,9 @@ export class RecentTab {
    */
   async loadRecentFiles(): Promise<void> {
     try {
-      const result = await chrome.storage.local.get(['markviewHistory']);
+      const result = await chrome.storage.local.get<{ markviewHistory?: RecentDocument[] }>([
+        'markviewHistory',
+      ]);
       this.allRecentDocuments = result.markviewHistory || [];
       this.filteredRecentDocuments = this.allRecentDocuments;
       this.renderRecentFiles(this.filteredRecentDocuments);
@@ -338,43 +340,51 @@ export class RecentTab {
   /**
    * Open a recent document
    */
-  private async openRecentDocument(url: string, openInNewTab: boolean = false): Promise<void> {
-    try {
-      // File System API not supported in OSS version
-      if (url.startsWith('fs-api://')) {
+  private openRecentDocument(url: string, openInNewTab: boolean = false): Promise<void> {
+    return new Promise<void>(resolve => {
+      try {
+        // File System API not supported in OSS version
+        if (url.startsWith('fs-api://')) {
+          this.showNotification(
+            'Local file system support is not available in the open source version.',
+            'error'
+          );
+          resolve();
+          return;
+        }
+
+        // For browser-rendered files (http://, https://, file://) - existing logic
+        if (openInNewTab) {
+          // Open in new tab
+          chrome.tabs.create({ url: url }, () => {
+            window.close();
+          });
+        } else {
+          // Open in current tab (default behavior - matches sidebar file clicks)
+          // Query for active tab since popup doesn't have a "current tab" context
+          chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            if (tabs[0] && tabs[0].id) {
+              chrome.tabs.update(tabs[0].id, { url: url }, () => {
+                window.close();
+              });
+            } else {
+              // Fallback to new tab if active tab not found
+              chrome.tabs.create({ url: url }, () => {
+                window.close();
+              });
+            }
+          });
+        }
+      } catch (error) {
+        logger.error('Failed to open document:', error);
         this.showNotification(
-          'Local file system support is not available in the open source version.',
+          getMessage('recent_openFailed') || 'Failed to open document',
           'error'
         );
-        return;
       }
 
-      // For browser-rendered files (http://, https://, file://) - existing logic
-      if (openInNewTab) {
-        // Open in new tab
-        chrome.tabs.create({ url: url }, () => {
-          window.close();
-        });
-      } else {
-        // Open in current tab (default behavior - matches sidebar file clicks)
-        // Query for active tab since popup doesn't have a "current tab" context
-        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-          if (tabs[0] && tabs[0].id) {
-            chrome.tabs.update(tabs[0].id, { url: url }, () => {
-              window.close();
-            });
-          } else {
-            // Fallback to new tab if active tab not found
-            chrome.tabs.create({ url: url }, () => {
-              window.close();
-            });
-          }
-        });
-      }
-    } catch (error) {
-      logger.error('Failed to open document:', error);
-      this.showNotification(getMessage('recent_openFailed') || 'Failed to open document', 'error');
-    }
+      resolve();
+    });
   }
 
   /**
@@ -406,7 +416,9 @@ export class RecentTab {
    */
   private async removeRecentDocument(url: string): Promise<void> {
     try {
-      const result = await chrome.storage.local.get(['markviewHistory']);
+      const result = await chrome.storage.local.get<{ markviewHistory?: RecentDocument[] }>([
+        'markviewHistory',
+      ]);
       const history: RecentDocument[] = result.markviewHistory || [];
       const filteredHistory = history.filter(item => item.url !== url);
       await chrome.storage.local.set({ markviewHistory: filteredHistory });

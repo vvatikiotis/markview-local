@@ -62,28 +62,33 @@ export class TocSidebar {
   /**
    * Initialize the TOC sidebar
    */
-  async initialize(): Promise<void> {
-    logger.log('[TocSidebar] Initializing...');
+  initialize(): Promise<void> {
+    return new Promise<void>(resolve => {
+      logger.log('[TocSidebar] Initializing...');
 
-    // Extract headings from the rendered markdown
-    this.extractHeadings();
+      // Extract headings from the rendered markdown
+      this.extractHeadings();
 
-    if (this.headings.length === 0) {
-      logger.log('[TocSidebar] No headings found, not showing TOC');
-      return;
-    }
+      if (this.headings.length === 0) {
+        logger.log('[TocSidebar] No headings found, not showing TOC');
+        resolve();
+        return;
+      }
 
-    // Create and inject sidebar
-    this.createSidebar();
-    this.render();
-    this.setupScrollSpy();
-    this.setupRawViewListeners();
-    this.setupKeyboardShortcut();
+      // Create and inject sidebar
+      this.createSidebar();
+      this.render();
+      this.setupScrollSpy();
+      this.setupRawViewListeners();
+      this.setupKeyboardShortcut();
 
-    // Set content margin to make room for the sidebar
-    this.adjustContentMargin(true);
+      // Set content margin to make room for the sidebar
+      this.adjustContentMargin(true);
 
-    logger.log('[TocSidebar] Initialized with', this.headings.length, 'headings');
+      logger.log('[TocSidebar] Initialized with', this.headings.length, 'headings');
+
+      resolve();
+    });
   }
 
   /**

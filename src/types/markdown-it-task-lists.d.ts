@@ -1,6 +1,6 @@
 // Type declarations for markdown-it-task-lists
 declare module 'markdown-it-task-lists' {
-  import MarkdownIt from 'markdown-it';
+  import type { MarkdownIt } from 'markdown-it';
 
   interface TaskListsOptions {
     enabled?: boolean;

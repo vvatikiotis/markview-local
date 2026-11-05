@@ -3,7 +3,7 @@
  * Provides standard interfaces for markdown-it plugins
  */
 
-import type MarkdownIt from 'markdown-it';
+import type { MarkdownIt } from 'markdown-it';
 
 /**
  * Plugin category for organization and UI grouping

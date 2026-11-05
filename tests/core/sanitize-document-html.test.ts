@@ -346,6 +346,20 @@ describe('setDocumentHTML', () => {
     expect(target.querySelector('img')?.hasAttribute('onerror')).toBe(false);
   });
 
+  it.each([
+    '<frameset><frame src="https://example.com"></frameset>',
+    '<html><head></head><frameset><frame src="file:///private.md"></frameset></html>',
+  ])('clears stale children when DOMPurify rejects a frameset document: %s', html => {
+    const target = document.createElement('div');
+    target.innerHTML = '<p>stale document</p>';
+    expect(() => setDocumentHTML(target, html)).not.toThrow();
+    expect(target.childNodes).toHaveLength(0);
+    expect(sanitizeDocumentHTML(html)).toBe('');
+
+    setDocumentHTML(target, '<p>safe replacement</p>');
+    expect(target.innerHTML).toBe('<p>safe replacement</p>');
+  });
+
   it('should not add text that was not in the input', () => {
     const target = document.createElement('div');
     setDocumentHTML(target, '<p>one</p><p>two</p>');

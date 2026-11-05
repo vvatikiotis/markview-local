@@ -189,5 +189,11 @@ export function setDocumentHTML(target: Element, html: string): void {
     RETURN_DOM_FRAGMENT: true,
   });
   logRemovals('fragment');
-  target.replaceChildren(document.importNode(sanitized, true));
+  if (sanitized && typeof sanitized === 'object' && sanitized.nodeType === 11) {
+    target.replaceChildren(document.importNode(sanitized, true));
+  } else {
+    // DOMPurify 3.4 can return an empty string for a rejected frameset document,
+    // even with RETURN_DOM_FRAGMENT. Clear stale content without parsing a fallback.
+    target.replaceChildren();
+  }
 }

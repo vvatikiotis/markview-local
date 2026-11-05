@@ -42,19 +42,22 @@ export function initializeHighlightJS(): void {
 /**
  * Load a specific language (no-op as languages are pre-bundled)
  */
-export async function loadLanguage(language: string): Promise<boolean> {
-  initializeHighlightJS();
+export function loadLanguage(language: string): Promise<boolean> {
+  return new Promise<boolean>(resolve => {
+    initializeHighlightJS();
 
-  // Normalize language name
-  const normalizedLang = (languageAliases[language] || language).toLowerCase();
+    // Normalize language name
+    const normalizedLang = (languageAliases[language] || language).toLowerCase();
 
-  // Check if language is available
-  if (hljs.getLanguage(normalizedLang)) {
-    return true;
-  }
+    // Check if language is available
+    if (hljs.getLanguage(normalizedLang)) {
+      resolve(true);
+      return;
+    }
 
-  logger.warn(`[HighlightJS] Language not available: ${normalizedLang}`);
-  return false;
+    logger.warn(`[HighlightJS] Language not available: ${normalizedLang}`);
+    resolve(false);
+  });
 }
 
 /**
@@ -69,29 +72,33 @@ export function isLanguageSupported(language: string): boolean {
 /**
  * Highlight code with automatic language loading
  */
-export async function highlightCode(code: string, language: string): Promise<string> {
-  // Skip highlighting for Mermaid diagrams
-  if (language === 'mermaid') {
-    return escapeHtml(code);
-  }
-
-  // Normalize language
-  const normalizedLang = (languageAliases[language] || language).toLowerCase();
-
-  // Initialize if needed
-  initializeHighlightJS();
-
-  // Check if language is available
-  if (hljs.getLanguage(normalizedLang)) {
-    try {
-      return hljs.highlight(code, { language: normalizedLang, ignoreIllegals: true }).value;
-    } catch (err) {
-      logger.warn(`[HighlightJS] Failed to highlight code for ${normalizedLang}:`, err);
+export function highlightCode(code: string, language: string): Promise<string> {
+  return new Promise<string>(resolve => {
+    // Skip highlighting for Mermaid diagrams
+    if (language === 'mermaid') {
+      resolve(escapeHtml(code));
+      return;
     }
-  }
 
-  // Fallback to plain text
-  return escapeHtml(code);
+    // Normalize language
+    const normalizedLang = (languageAliases[language] || language).toLowerCase();
+
+    // Initialize if needed
+    initializeHighlightJS();
+
+    // Check if language is available
+    if (hljs.getLanguage(normalizedLang)) {
+      try {
+        resolve(hljs.highlight(code, { language: normalizedLang, ignoreIllegals: true }).value);
+        return;
+      } catch (err) {
+        logger.warn(`[HighlightJS] Failed to highlight code for ${normalizedLang}:`, err);
+      }
+    }
+
+    // Fallback to plain text
+    resolve(escapeHtml(code));
+  });
 }
 
 /**

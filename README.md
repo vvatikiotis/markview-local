@@ -38,7 +38,7 @@ Remote Markdown documents are not supported.
 
 ## Install from source
 
-Requirements: Node.js 20 or later, pnpm 8 or later.
+Requirements: Node.js 22.22.2+, 24.15.0+, or 26+, and pnpm 12 or later.
 
 ```bash
 git clone https://github.com/markview-app/markview.git

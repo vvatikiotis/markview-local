@@ -30,18 +30,24 @@ export function startAutoRefresh(
   lastFileContent = extractMarkdownSource();
 
   // Set up polling interval
-  autoRefreshInterval = window.setInterval(async () => {
+  autoRefreshInterval = window.setInterval(() => {
     try {
       // Use background service worker to fetch the file
       // This avoids CORS issues since the service worker has host_permissions
-      chrome.runtime.sendMessage({ action: 'fetch', url: currentFileUrl }, response => {
+      chrome.runtime.sendMessage({ action: 'fetch', url: currentFileUrl }, (response: unknown) => {
         if (chrome.runtime.lastError) {
           logger.log('[MarkView] Runtime error:', chrome.runtime.lastError.message);
           return;
         }
 
-        if (!response || response.error) {
-          logger.log('[MarkView] Auto-refresh fetch failed:', response?.error);
+        if (
+          typeof response !== 'object' ||
+          response === null ||
+          ('error' in response && response.error) ||
+          !('content' in response) ||
+          typeof response.content !== 'string'
+        ) {
+          logger.log('[MarkView] Auto-refresh fetch failed:', response);
           return;
         }
 
@@ -69,7 +75,7 @@ export function startAutoRefresh(
           });
         }
       });
-    } catch (err) {
+    } catch {
       // Silently ignore errors to avoid showing in the extension error log
       // chrome://extensions/?errors=idjpfcnfiddjhbgkejkdgbgmmenhmnbh
     }
@@ -80,13 +86,17 @@ export function startAutoRefresh(
  * Start auto-refresh for local files using File System Access API
  * NOTE: This feature has been removed in the open source version
  */
-export async function startLocalFileAutoRefresh(
+export function startLocalFileAutoRefresh(
   _interval: number = 2000,
   _onContentChange: (content: string) => Promise<void>,
   _providedFileHandle?: FileSystemFileHandle
 ): Promise<void> {
-  logger.log('[MarkView] Local file auto-refresh is not available in open source version');
-  showNotification(MESSAGES.notification.autoRefreshUnavailable, 'info', 5000);
+  return new Promise<void>(resolve => {
+    logger.log('[MarkView] Local file auto-refresh is not available in open source version');
+    showNotification(MESSAGES.notification.autoRefreshUnavailable, 'info', 5000);
+
+    resolve();
+  });
 }
 
 /**

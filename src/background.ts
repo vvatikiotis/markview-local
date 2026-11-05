@@ -5,19 +5,42 @@ import { logger } from '@utils/logger';
 
 logger.log('MarkView: Background service worker started');
 
+type BackgroundResponse =
+  | { error: string; success?: false }
+  | { success: true; content: string; url: string }
+  | { success: true; tabId: number | undefined; url: string }
+  | { success: false; error: string | undefined };
+type SendResponse = (response: BackgroundResponse) => void;
+
 // Message handler
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message: unknown, sender, sendResponse: SendResponse) => {
   logger.log('MarkView: Received message:', message);
+
+  if (typeof message !== 'object' || message === null || !('action' in message)) {
+    sendResponse({ error: 'Invalid message' });
+    return false;
+  }
 
   // Handle different message types
   switch (message.action) {
-    case 'fetch':
-      handleFetchMessage(message, sender, sendResponse);
+    case 'fetch': {
+      const url = 'url' in message ? message.url : undefined;
+      if (url !== undefined && typeof url !== 'string') {
+        sendResponse({ error: 'Invalid URL' });
+        return false;
+      }
+      handleFetchMessage({ url }, sender, sendResponse);
       return true; // Indicates async response
+    }
 
-    case 'openTab':
-      handleOpenTabMessage(message, sendResponse);
+    case 'openTab': {
+      if (!('url' in message) || typeof message.url !== 'string') {
+        sendResponse({ error: 'Missing required URL parameter' });
+        return false;
+      }
+      handleOpenTabMessage({ url: message.url }, sendResponse);
       return true; // Indicates async response
+    }
 
     default:
       logger.warn('MarkView: Unknown message action:', message.action);
@@ -28,9 +51,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Handle fetch messages for auto-refresh
 async function handleFetchMessage(
-  message: any,
+  message: { url?: string },
   sender: chrome.runtime.MessageSender,
-  sendResponse: (response?: any) => void
+  sendResponse: SendResponse
 ): Promise<void> {
   try {
     const url = message.url || sender.url;
@@ -102,10 +125,7 @@ async function handleFetchMessage(
 }
 
 // Handle opening new tabs (for sandboxed contexts where window.open is blocked)
-async function handleOpenTabMessage(
-  message: { url: string },
-  sendResponse: (response?: any) => void
-): Promise<void> {
+function handleOpenTabMessage(message: { url: string }, sendResponse: SendResponse): void {
   try {
     const { url } = message;
 

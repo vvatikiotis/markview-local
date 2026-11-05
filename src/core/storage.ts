@@ -12,7 +12,7 @@ function isExtensionContextValid(): boolean {
   try {
     // Try to access chrome.runtime.id - will throw if context is invalidated
     return !!chrome?.runtime?.id;
-  } catch (err) {
+  } catch {
     return false;
   }
 }
@@ -221,7 +221,7 @@ export async function getSetting<K extends keyof MarkViewSettings>(
   }
 
   try {
-    const result = await chrome.storage.local.get(key);
+    const result = await chrome.storage.local.get<Partial<MarkViewSettings>>(key);
     return result[key] !== undefined ? result[key] : DEFAULT_SETTINGS[key];
   } catch (err) {
     // Check if error is due to context invalidation
@@ -344,7 +344,7 @@ export function onSettingsChanged(callback: (changes: Partial<MarkViewSettings>)
           change?.newValue
         );
         if (key in DEFAULT_SETTINGS && change?.newValue !== undefined) {
-          settingsChanges[key as keyof MarkViewSettings] = change.newValue;
+          Object.assign(settingsChanges, { [key]: change.newValue });
         }
       }
       logger.log('[Storage] Settings changes to propagate:', settingsChanges);

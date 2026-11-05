@@ -856,13 +856,13 @@ export class ImageViewer {
   /**
    * Debounce utility for resize events
    */
-  private debounce<T extends (...args: any[]) => void>(
-    func: T,
+  private debounce<Args extends unknown[]>(
+    func: (...args: Args) => void,
     wait: number
-  ): (...args: Parameters<T>) => void {
+  ): (...args: Args) => void {
     let timeout: number | null = null;
 
-    return (...args: Parameters<T>) => {
+    return (...args: Args) => {
       if (timeout !== null) {
         clearTimeout(timeout);
       }

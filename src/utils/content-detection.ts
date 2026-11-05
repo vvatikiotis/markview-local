@@ -18,7 +18,7 @@ export const CONTENT_TYPES = ['text/plain', 'text/markdown', 'text/x-markdown'] 
  */
 export function isMarkdownContentType(): boolean {
   const contentType = document.contentType;
-  return CONTENT_TYPES.includes(contentType as any);
+  return CONTENT_TYPES.some(type => type === contentType);
 }
 
 /**

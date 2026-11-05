@@ -101,14 +101,20 @@ export async function renderMermaidDiagrams(): Promise<void> {
       } else {
         logger.warn(`[Mermaid] Placeholder ${id} is no longer connected to DOM`);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       logger.error(`[Mermaid] Failed to render diagram ${id}`, err);
 
       // Show error message
       const errorContainer = document.createElement('div');
       errorContainer.className = 'mermaid-error';
       errorContainer.innerHTML = `<pre>${escapeHtml(
-        err?.message || 'Failed to render Mermaid diagram'
+        typeof err === 'object' &&
+          err !== null &&
+          'message' in err &&
+          typeof err.message === 'string' &&
+          err.message
+          ? err.message
+          : 'Failed to render Mermaid diagram'
       )}</pre>`;
 
       if (placeholder.isConnected) {

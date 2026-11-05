@@ -297,13 +297,13 @@ export function safeExecute<T>(fn: () => T, errorMessage: string): T | null {
 /**
  * Debounce function for performance optimization
  */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
+export function debounce<Args extends unknown[], This, Result>(
+  func: (this: This, ...args: Args) => Result,
   wait: number
-): (...args: Parameters<T>) => void {
+): (this: This, ...args: Args) => void {
   let timeout: NodeJS.Timeout | null = null;
 
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: This, ...args: Args) {
     const context = this;
 
     if (timeout) {

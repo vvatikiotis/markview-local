@@ -4,7 +4,7 @@
  */
 import { getSettings } from '@core/storage';
 import { logger } from './logger';
-import { LOCALES, type LocaleMessages } from './locales';
+import { LOCALES, isLocaleKey, type LocaleMessages } from './locales';
 
 let messages: LocaleMessages = LOCALES.en;
 
@@ -28,20 +28,17 @@ export async function initI18n(language?: string): Promise<void> {
     // Get browser language (e.g., "en-US" -> "en")
     const browserLang = navigator.language.split('-')[0];
     // Check if we support this language, otherwise default to 'en'
-    if (browserLang && browserLang in LOCALES) {
-      locale = browserLang as any;
+    if (browserLang && isLocaleKey(browserLang)) {
+      locale = browserLang;
     } else {
       locale = 'en';
     }
   }
 
   // Ensure locale exists in LOCALES, fallback to 'en' if not
-  if (!(locale in LOCALES)) {
-    locale = 'en';
-  }
-
-  messages = LOCALES[locale as keyof typeof LOCALES];
-  logger.log(`[i18n] Messages loaded for locale: ${locale}`);
+  const selectedLocale = isLocaleKey(locale) ? locale : 'en';
+  messages = LOCALES[selectedLocale];
+  logger.log(`[i18n] Messages loaded for locale: ${selectedLocale}`);
 }
 
 /**
@@ -49,14 +46,15 @@ export async function initI18n(language?: string): Promise<void> {
  * @param key The key of the message
  */
 export function getMessage(key: string): string {
-  // Check if key exists in messages
-  if (messages && key in messages) {
-    return (messages as any)[key].message;
+  const localized: Readonly<Record<string, { message: string }>> = messages;
+  const english: Readonly<Record<string, { message: string }>> = LOCALES.en;
+  if (Object.prototype.hasOwnProperty.call(localized, key)) {
+    return localized[key]?.message ?? key;
   }
 
   // Fallback to English
-  if (LOCALES.en && key in LOCALES.en) {
-    return (LOCALES.en as any)[key].message;
+  if (Object.prototype.hasOwnProperty.call(english, key)) {
+    return english[key]?.message ?? key;
   }
 
   return key;

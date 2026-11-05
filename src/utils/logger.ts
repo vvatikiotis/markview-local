@@ -19,10 +19,15 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
  * Logger instance with environment-aware methods
  */
 export const logger = {
+  /** The welcome banner is intentionally visible in production. */
+  banner: (...args: unknown[]): void => {
+    console.log(...args);
+  },
+
   /**
    * Log debug information (hidden in production)
    */
-  log: (...args: any[]): void => {
+  log: (...args: unknown[]): void => {
     if (!IS_PRODUCTION) {
       console.log(...args);
     }
@@ -31,7 +36,7 @@ export const logger = {
   /**
    * Log warnings (hidden in production)
    */
-  warn: (...args: any[]): void => {
+  warn: (...args: unknown[]): void => {
     if (!IS_PRODUCTION) {
       console.warn(...args);
     }
@@ -40,7 +45,7 @@ export const logger = {
   /**
    * Log errors (hidden in production)
    */
-  error: (...args: any[]): void => {
+  error: (...args: unknown[]): void => {
     if (!IS_PRODUCTION) {
       console.error(...args);
     }
@@ -49,7 +54,7 @@ export const logger = {
   /**
    * Log informational messages (hidden in production)
    */
-  info: (...args: any[]): void => {
+  info: (...args: unknown[]): void => {
     if (!IS_PRODUCTION) {
       console.info(...args);
     }
@@ -59,7 +64,7 @@ export const logger = {
    * Log debug messages (hidden in production)
    * Alias for log() for semantic clarity
    */
-  debug: (...args: any[]): void => {
+  debug: (...args: unknown[]): void => {
     if (!IS_PRODUCTION) {
       console.debug(...args);
     }

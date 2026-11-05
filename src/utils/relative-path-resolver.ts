@@ -24,10 +24,12 @@ export function setCurrentFilePath(filePath: string | null): void {
  * NOTE: Local file resolution has been removed in the open source version
  * Returns null for local files
  */
-export async function resolveRelativePath(_relativePath: string): Promise<string | null> {
-  // Local file system support has been removed
-  logger.log('[RelativePathResolver] Local file resolution not available in open source version');
-  return null;
+export function resolveRelativePath(_relativePath: string): Promise<string | null> {
+  return new Promise<string | null>(resolve => {
+    // Local file system support has been removed
+    logger.log('[RelativePathResolver] Local file resolution not available in open source version');
+    resolve(null);
+  });
 }
 
 /**
@@ -52,61 +54,66 @@ function resolveRelativeUrl(baseUrl: string, relativePath: string): string | nul
  * Replaces <img src="relative/path.png"> with <img src="blob:..."> (for local files)
  * or <img src="https://..."> (for external URLs)
  */
-export async function resolveImagesInHTML(container: HTMLElement): Promise<void> {
-  // Check if we're loading an external file (browser-rendered)
-  const documentUrl = window.location.href;
-  const isExternalFile = documentUrl.startsWith('http://') || documentUrl.startsWith('https://');
+export function resolveImagesInHTML(container: HTMLElement): Promise<void> {
+  return new Promise<void>(resolve => {
+    // Check if we're loading an external file (browser-rendered)
+    const documentUrl = window.location.href;
+    const isExternalFile = documentUrl.startsWith('http://') || documentUrl.startsWith('https://');
 
-  // For external files, resolve relative paths using URL resolution
-  if (isExternalFile) {
-    logger.log('[RelativePathResolver] Resolving images for external file:', documentUrl);
-    const images = container.querySelectorAll('img');
-    logger.log('[RelativePathResolver] Found', images.length, 'images to check');
+    // For external files, resolve relative paths using URL resolution
+    if (isExternalFile) {
+      logger.log('[RelativePathResolver] Resolving images for external file:', documentUrl);
+      const images = container.querySelectorAll('img');
+      logger.log('[RelativePathResolver] Found', images.length, 'images to check');
 
-    for (const img of Array.from(images)) {
-      // Check for data-src first (set by markdown renderer for relative paths)
-      let src = img.getAttribute('data-src');
-      const isDeferred = !!src;
+      for (const img of Array.from(images)) {
+        // Check for data-src first (set by markdown renderer for relative paths)
+        let src = img.getAttribute('data-src');
+        const isDeferred = !!src;
 
-      // Fall back to src attribute if no data-src
-      if (!src) {
-        src = img.getAttribute('src');
-      }
-
-      if (!src) continue;
-
-      // Skip absolute URLs (http://, https://, file://, blob:, data:)
-      if (
-        src.startsWith('http://') ||
-        src.startsWith('https://') ||
-        src.startsWith('file://') ||
-        src.startsWith('blob:') ||
-        src.startsWith('data:')
-      ) {
-        continue;
-      }
-
-      // This is a relative path, resolve it against the document URL
-      logger.log('[RelativePathResolver] Resolving relative image URL:', src);
-      const absoluteUrl = resolveRelativeUrl(documentUrl, src);
-
-      if (absoluteUrl) {
-        if (isDeferred) {
-          img.setAttribute('data-src', absoluteUrl);
-        } else {
-          img.setAttribute('src', absoluteUrl);
+        // Fall back to src attribute if no data-src
+        if (!src) {
+          src = img.getAttribute('src');
         }
-        img.setAttribute('data-original-src', src); // Keep original for reference
-        logger.log('[RelativePathResolver] Image URL resolved:', src, '→', absoluteUrl);
-      } else {
-        logger.warn('[RelativePathResolver] Could not resolve image URL:', src);
-      }
-    }
-    return;
-  }
 
-  // Local file system support has been removed in the open source version
-  logger.log('[RelativePathResolver] Local file resolution not available');
+        if (!src) continue;
+
+        // Skip absolute URLs (http://, https://, file://, blob:, data:)
+        if (
+          src.startsWith('http://') ||
+          src.startsWith('https://') ||
+          src.startsWith('file://') ||
+          src.startsWith('blob:') ||
+          src.startsWith('data:')
+        ) {
+          continue;
+        }
+
+        // This is a relative path, resolve it against the document URL
+        logger.log('[RelativePathResolver] Resolving relative image URL:', src);
+        const absoluteUrl = resolveRelativeUrl(documentUrl, src);
+
+        if (absoluteUrl) {
+          if (isDeferred) {
+            img.setAttribute('data-src', absoluteUrl);
+          } else {
+            img.setAttribute('src', absoluteUrl);
+          }
+          img.setAttribute('data-original-src', src); // Keep original for reference
+          logger.log('[RelativePathResolver] Image URL resolved:', src, '→', absoluteUrl);
+        } else {
+          logger.warn('[RelativePathResolver] Could not resolve image URL:', src);
+        }
+      }
+      resolve();
+      return;
+    }
+
+    // Local file system support has been removed in the open source version
+    logger.log('[RelativePathResolver] Local file resolution not available');
+
+    resolve();
+  });
 }
 
 /**

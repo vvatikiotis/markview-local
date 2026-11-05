@@ -69,7 +69,7 @@ export function extractFileNameFromUrl(url: string): string | null {
 /**
  * Stage 1: Extract and cache markdown source
  */
-async function prepareMarkdownSource(context: RenderContext): Promise<string | null> {
+function prepareMarkdownSource(context: RenderContext): string | null {
   const { customContent, cachedMarkdownSource } = context;
 
   const markdownSource = customContent || cachedMarkdownSource.value || extractMarkdownSource();

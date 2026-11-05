@@ -6,6 +6,7 @@
 import { logger } from '@utils/logger';
 import { DEFAULT_SETTINGS, getSettings, updateSetting, type MarkViewSettings } from '@core/storage';
 import { applyTranslations, initI18n, getMessage } from '@utils/i18n';
+import { isLocaleKey } from '@utils/locales';
 import { PopupUI } from './popup-ui';
 
 export class SettingsTab {
@@ -119,7 +120,10 @@ export class SettingsTab {
   /**
    * Save a single setting
    */
-  private async saveSetting(key: keyof MarkViewSettings, value: any): Promise<void> {
+  private async saveSetting<K extends keyof MarkViewSettings>(
+    key: K,
+    value: MarkViewSettings[K]
+  ): Promise<void> {
     try {
       await updateSetting(key, value);
       logger.log(`Setting saved: ${key} =`, value);
@@ -171,14 +175,19 @@ export class SettingsTab {
 
     if (themeSelect) {
       themeSelect.addEventListener('change', () => {
-        this.saveSetting('theme', themeSelect.value as 'light' | 'dark' | 'auto');
+        const theme = themeSelect.value;
+        if (theme === 'light' || theme === 'dark' || theme === 'auto') {
+          this.saveSetting('theme', theme);
+        }
       });
     }
 
     const languageSelect = document.getElementById('language') as HTMLSelectElement;
     if (languageSelect) {
       languageSelect.addEventListener('change', async () => {
-        await this.saveSetting('language', languageSelect.value);
+        const language = languageSelect.value;
+        if (language !== 'auto' && !isLocaleKey(language)) return;
+        await this.saveSetting('language', language);
 
         // Reload popup UI to apply language change
         await initI18n();
@@ -253,10 +262,12 @@ export class SettingsTab {
     const codeBlockDisplaySelect = document.getElementById('codeBlockDisplay') as HTMLSelectElement;
     if (codeBlockDisplaySelect) {
       codeBlockDisplaySelect.addEventListener('change', async () => {
+        const codeBlockDisplay = codeBlockDisplaySelect.value;
+        if (codeBlockDisplay !== 'wrap' && codeBlockDisplay !== 'scroll') return;
         const settings = await getSettings();
-        const displaySettings = {
+        const displaySettings: NonNullable<MarkViewSettings['displaySettings']> = {
           ...settings.displaySettings,
-          codeBlockDisplay: codeBlockDisplaySelect.value as 'wrap' | 'scroll',
+          codeBlockDisplay,
         };
         this.saveSetting('displaySettings', displaySettings);
       });
@@ -309,17 +320,17 @@ export class SettingsTab {
 
     chrome.storage.local.onChanged.addListener(changes => {
       // Update TOC visibility checkbox
-      if (changes.tocVisible && tocVisibleCheckboxRef) {
+      if (typeof changes.tocVisible?.newValue === 'boolean' && tocVisibleCheckboxRef) {
         tocVisibleCheckboxRef.checked = changes.tocVisible.newValue;
       }
 
       // Update theme select when changed from theme toggle button on page
-      if (changes.theme && themeSelectRef) {
+      if (typeof changes.theme?.newValue === 'string' && themeSelectRef) {
         themeSelectRef.value = changes.theme.newValue;
       }
 
       // Update centered checkbox when changed from centered toggle button on page
-      if (changes.centered !== undefined && centeredCheckboxRef) {
+      if (typeof changes.centered?.newValue === 'boolean' && centeredCheckboxRef) {
         centeredCheckboxRef.checked = changes.centered.newValue;
       }
     });
@@ -464,7 +475,7 @@ export class SettingsTab {
         try {
           await chrome.tabs.sendMessage(tab.id, { type: 'clearInMemoryCaches' });
           logger.log('[ClearCache] Cleared in-memory caches in active tab');
-        } catch (error) {
+        } catch {
           // Tab might not have MarkView loaded, ignore
           logger.log('[ClearCache] Active tab does not have MarkView loaded (expected)');
         }

@@ -1,6 +1,5 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.cjs');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { EsbuildPlugin } = require('esbuild-loader');
 
 module.exports = merge(common, {
@@ -19,8 +18,5 @@ module.exports = merge(common, {
     ]
   },
 
-  plugins: [
-    // Clean output directory before build
-    new CleanWebpackPlugin()
-  ]
+  output: { clean: true }
 });

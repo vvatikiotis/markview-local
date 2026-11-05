@@ -336,11 +336,11 @@ function setupEventListeners(
 /**
  * Update modal content when language changes
  */
-async function updateModalContent(
+function updateModalContent(
   headerElement: HTMLElement,
   bodyElement: HTMLElement,
   overlay: HTMLElement
-): Promise<void> {
+): void {
   // Get extension version
   const manifest = chrome.runtime.getManifest();
   const version = manifest.version;

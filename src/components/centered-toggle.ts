@@ -85,7 +85,7 @@ export class CenteredToggle {
 
     // Listen for centered changes from popup
     chrome.storage.onChanged.addListener(changes => {
-      if (changes.centered !== undefined) {
+      if (typeof changes.centered?.newValue === 'boolean') {
         this.isCentered = changes.centered.newValue;
         this.updateButtonIcon();
       }

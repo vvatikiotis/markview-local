@@ -3,7 +3,7 @@
  * Manages plugin lifecycle, installation, and state
  */
 
-import type MarkdownIt from 'markdown-it';
+import type { MarkdownIt } from 'markdown-it';
 import type { MarkdownPlugin, PluginState, PluginManagerEvent } from './types';
 import { PLUGIN_REGISTRY } from './registry';
 import { logger } from '@utils/logger';

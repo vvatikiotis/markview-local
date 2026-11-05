@@ -5,7 +5,7 @@
  * not after DOM injection. This is critical for Chrome extension compatibility.
  */
 
-import type MarkdownIt from 'markdown-it';
+import type { MarkdownIt } from 'markdown-it';
 
 /**
  * Generate unique ID for mermaid diagram

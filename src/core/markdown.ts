@@ -3,7 +3,7 @@
 
 import { logger } from '@utils/logger';
 import { highlightCodeSync } from '@utils/highlight-loader';
-import MarkdownIt from 'markdown-it';
+import MarkdownIt, { type MarkdownIt as MarkdownItInstance } from 'markdown-it';
 import { PluginManager } from './plugins';
 
 /**
@@ -63,7 +63,7 @@ function convertLegacyOptions(options: MarkdownRendererOptions): string[] {
 }
 
 export class MarkdownRenderer {
-  private md: MarkdownIt;
+  private md: MarkdownItInstance;
   private pluginManager: PluginManager;
 
   constructor(options: MarkdownRendererOptions = {}) {
@@ -106,7 +106,7 @@ export class MarkdownRenderer {
     this.md.renderer.rules.link_open = (tokens, idx, _options, _env, self) => {
       const token = tokens[idx];
       if (token) {
-        const href = token.attrGet('href') || '';
+        const href = String(token.attrGet('href') ?? '');
         const isExternal =
           href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//');
 
@@ -115,14 +115,14 @@ export class MarkdownRenderer {
           token.attrSet('rel', 'noopener noreferrer');
         }
       }
-      return self.renderToken(tokens, idx, {});
+      return self.renderToken(tokens, idx, _options);
     };
 
     // Images: defer relative paths, add lazy loading
     this.md.renderer.rules.image = (tokens, idx, _options, _env, self) => {
       const token = tokens[idx];
       if (token) {
-        const src = token.attrGet('src') || '';
+        const src = String(token.attrGet('src') ?? '');
         const isRelative =
           src &&
           !src.startsWith('http://') &&
@@ -142,7 +142,7 @@ export class MarkdownRenderer {
         // The global CSS rule `height: auto` overrides HTML attributes
         const height = token.attrGet('height');
         const width = token.attrGet('width');
-        const existingStyle = token.attrGet('style') || '';
+        const existingStyle = String(token.attrGet('style') ?? '');
 
         const styleRules: string[] = [];
         if (existingStyle) {
@@ -151,13 +151,13 @@ export class MarkdownRenderer {
 
         if (height) {
           // Add 'px' unit if height is a number
-          const heightValue = /^\d+$/.test(height) ? `${height}px` : height;
+          const heightValue = /^\d+$/.test(String(height)) ? `${height}px` : height;
           styleRules.push(`height: ${heightValue}`);
         }
 
         if (width) {
           // Add 'px' unit if width is a number
-          const widthValue = /^\d+$/.test(width) ? `${width}px` : width;
+          const widthValue = /^\d+$/.test(String(width)) ? `${width}px` : width;
           styleRules.push(`width: ${widthValue}`);
         }
 
@@ -165,7 +165,7 @@ export class MarkdownRenderer {
           token.attrSet('style', styleRules.join('; '));
         }
       }
-      return self.renderToken(tokens, idx, {});
+      return self.renderToken(tokens, idx, _options);
     };
   }
 
@@ -204,14 +204,14 @@ export class MarkdownRenderer {
       // Add height to style
       if (heightMatch) {
         const height = heightMatch[1];
-        const heightValue = /^\d+$/.test(height) ? `${height}px` : height;
+        const heightValue = /^\d+$/.test(String(height)) ? `${height}px` : height;
         styleRules.push(`height: ${heightValue}`);
       }
 
       // Add width to style
       if (widthMatch) {
         const width = widthMatch[1];
-        const widthValue = /^\d+$/.test(width) ? `${width}px` : width;
+        const widthValue = /^\d+$/.test(String(width)) ? `${width}px` : width;
         styleRules.push(`width: ${widthValue}`);
       }
 
@@ -277,7 +277,7 @@ export class MarkdownRenderer {
   /**
    * Get the markdown-it instance for advanced usage
    */
-  getMarkdownIt(): MarkdownIt {
+  getMarkdownIt(): MarkdownItInstance {
     return this.md;
   }
 

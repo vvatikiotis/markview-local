@@ -71,7 +71,7 @@ commit body when it is not obvious, and reference the issue (`Fixes #123`).
 
 ## Code style
 
-Prettier and ESLint settings are in the repository; `pnpm run format` and `pnpm run lint:fix` apply most of them. The
+Prettier and Oxlint settings are in the repository; `pnpm run format` and `pnpm run lint:fix` apply most of them. The
 conventions that tools do not check (no UI framework, no global state, strings from `_locales`, `logger` instead of
 `console.log`) are listed in [DEVELOPMENT.md](DEVELOPMENT.md#conventions).
 
