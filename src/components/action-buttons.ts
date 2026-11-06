@@ -23,6 +23,11 @@ export class ActionButtons {
   private isOpen: boolean = false;
   private menuItems: HTMLButtonElement[] = [];
   private isRawMode: boolean = false;
+  private handleKeydown = (e: KeyboardEvent): void => {
+    if (e.key === 'Escape') {
+      this.closeMenu();
+    }
+  };
 
   constructor() {
     this.init();
@@ -223,9 +228,11 @@ export class ActionButtons {
     if (!this.menu) return;
     this.isOpen = true;
     this.menu.classList.add('menu-open');
+    document.addEventListener('keydown', this.handleKeydown);
   }
 
   private closeMenu(): void {
+    document.removeEventListener('keydown', this.handleKeydown);
     if (!this.menu) return;
     this.isOpen = false;
     this.menu.classList.remove('menu-open');
@@ -294,11 +301,13 @@ export class ActionButtons {
       if (wasOpen) {
         this.menu?.classList.add('menu-open');
         this.isOpen = true;
+        document.addEventListener('keydown', this.handleKeydown);
       }
     }
   }
 
   public destroy(): void {
+    this.closeMenu();
     if (this.container) {
       this.container.remove();
     }

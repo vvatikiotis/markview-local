@@ -43,6 +43,49 @@ async function menuListener(label = MESSAGES.actions.print) {
     );
 }
 
+describe('Actions menu keyboard dismissal', () => {
+  it('closes on Escape from a menu item and can reopen, while leaving other keys alone', async () => {
+    const listeners = vi.spyOn(document, 'addEventListener');
+    const actions = new ActionButtons();
+    try {
+      const toggle = document.querySelector<HTMLButtonElement>('#markview-actions-toggle')!;
+      const openMenu = async () => {
+        toggle.click();
+        await vi.waitFor(() =>
+          expect(
+            document.querySelector('#markview-actions-menu')?.classList.contains('menu-open')
+          ).toBe(true)
+        );
+        return document.querySelector<HTMLElement>('#markview-actions-menu')!;
+      };
+
+      const menu = await openMenu();
+      const item = menu.querySelector('button')!;
+      item.focus();
+      for (const key of ['Tab', 'Enter', 'ArrowDown']) {
+        const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+        item.dispatchEvent(event);
+        expect(event.defaultPrevented).toBe(false);
+        expect(menu.classList.contains('menu-open')).toBe(true);
+      }
+
+      item.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      expect(menu.classList.contains('menu-open')).toBe(false);
+
+      await openMenu();
+      toggle.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      expect(
+        document.querySelector('#markview-actions-menu')?.classList.contains('menu-open')
+      ).toBe(false);
+    } finally {
+      actions.destroy();
+      for (const [type, listener] of listeners.mock.calls) {
+        document.removeEventListener(type, listener);
+      }
+    }
+  });
+});
+
 describe('HTML export action restrictions', () => {
   it('disables the export item in raw mode and sandbox contexts', async () => {
     const actions = new ActionButtons();
