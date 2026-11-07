@@ -58,7 +58,7 @@ Open the extension toolbar popup, then **Settings**:
 - **Theme** controls the interface and the default document appearance: Light, Dark, or Auto.
 - **Document Theme** controls the reading area. **Default** follows Theme; **Catppuccin Pitch Black** applies the
   modified Neovim Markdown palette on black, even with a light interface.
-- **Syntax Theme** independently controls highlighted code blocks. Select **Catppuccin Pitch Black** here too for
+- **Syntax Theme** independently controls highlighting colors within code blocks. Select **Catppuccin Pitch Black** here too for
   coordinated code highlighting, or keep any other syntax theme.
 
 Document theme changes apply immediately and persist across reloads. HTML export keeps the selected document and

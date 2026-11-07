@@ -14,6 +14,10 @@
     color: #cdd6f4;
   }
 
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container pre {
+    background: #313244;
+  }
+
   html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h1,
   html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h2 {
     color: #89b4fa;
@@ -74,8 +78,8 @@
     text-decoration-line: underline;
   }
 
-  /* External syntax themes have higher specificity on .hljs, so they retain
-   * ownership of highlighted block colors. Inline code always uses this palette.
+  /* External syntax themes retain token colors. The block background comes from
+   * the surrounding pre, and inline code uses this palette.
    */
   html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container code {
     color: #3ec1ff;

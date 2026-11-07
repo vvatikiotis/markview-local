@@ -35,13 +35,12 @@ continue to work as before. Semantic styles combine for nested emphasis, links, 
 
 ## Selecting syntax colors
 
-Set **Syntax Theme → Catppuccin Pitch Black** for coordinated code highlighting. It gives code blocks an opaque black
-background in both interface modes. With Document Theme set to Default, prose and interface colors continue to follow
-Theme. With the Catppuccin document preset, the reading area also receives the Markdown mappings above.
+Set **Syntax Theme → Catppuccin Pitch Black** for coordinated code highlighting. It changes code token colors without changing the block background. With Document Theme set to Default,
+prose and code-block backgrounds follow the interface Theme. With the Catppuccin document preset, the reading area also receives the Markdown mappings above.
 
 | Syntax role            | Color                 | Style  |
 | ---------------------- | --------------------- | ------ |
-| Code background / text | `#000000` / `#cdd6f4` |        |
+| Code text              | `#cdd6f4`             |        |
 | Comments               | `#9399b2`             | italic |
 | Function titles        | `#89b4fa`             | bold   |
 | Numbers                | `#cdd6f4`             |        |
@@ -51,12 +50,10 @@ Theme. With the Catppuccin document preset, the reading area also receives the M
 | Keywords               | `#cba6f7`             |        |
 | Strings                | `#a6e3a1`             |        |
 
-An explicitly selected external Syntax Theme controls highlighted block foreground/background and tokens, overriding
-the document's plain-code palette. The syntax background fills the block padding too, avoiding a contrasting
-document-colored frame. Inline code always follows Document Theme. With **MarkView Local (Default)**
-syntax highlighting, built-in token colors still follow Light/Dark while the Catppuccin document preset supplies
-cyan base code text on surface0. To restore adaptive document and code colors entirely, select Default for both
-Document Theme and Syntax Theme.
+Document Theme controls the background of every code block. Catppuccin Pitch Black uses surface0 (`#313244`);
+Default follows the interface mode. Syntax Theme controls token and base code foreground colors independently;
+inline code follows Document Theme. Some syntax colors may have low contrast against a different document palette.
+To restore adaptive document and code colors entirely, select Default for both themes.
 
 ## Export, printing, and limitations
 

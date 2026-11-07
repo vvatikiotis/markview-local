@@ -123,7 +123,7 @@ describe.each(['light', 'dark'] as const)('document theme with %s interface', mo
     expect(style('p a').textDecorationLine).toBe('underline');
     expect(style('p code').color).toBe('rgb(62, 193, 255)');
     expect(style('p code').backgroundColor).toBe('rgb(49, 50, 68)');
-    expect(style('pre code').backgroundColor).toBe('rgb(49, 50, 68)');
+    expect(style('pre').backgroundColor).toBe('rgb(49, 50, 68)');
     expect(style('#interface').color).not.toBe('rgb(205, 214, 244)');
     const source = document.getElementById('markview-container')!;
     const exported = new DOMParser().parseFromString(
@@ -149,19 +149,32 @@ describe.each(['light', 'dark'] as const)('document theme with %s interface', mo
     frame.remove();
     vi.stubGlobal(
       'fetch',
-      vi.fn(async () => new Response(await readFile(`src/styles/themes/${theme}.css`, 'utf8')))
+      vi.fn(
+        async (url: string) =>
+          new Response(
+            await readFile(
+              url.endsWith('github-dark.css')
+                ? 'node_modules/highlight.js/styles/github-dark.css'
+                : `src/styles/themes/${theme}.css`,
+              'utf8'
+            )
+          )
+      )
     );
     document
       .getElementById('markview-container')!
       .insertAdjacentHTML('beforeend', '<pre id=unthemed>raw preformatted text</pre>');
     await loadSyntaxTheme(theme);
     expect(style('#unthemed').padding).toBe('16px');
-    expect(style('pre code').backgroundColor).toBe('rgb(0, 0, 0)');
-    expect(style('pre').padding).toBe('0px');
-    expect(style('pre').backgroundColor).toBe('rgba(0, 0, 0, 0)');
-    expect(style('pre code').padding).toBe('16px');
-    expect(style('pre code').borderRadius).toBe(style('pre').borderRadius);
+    expect(style('pre').backgroundColor).toBe('rgb(49, 50, 68)');
+    expect(style('pre code').backgroundColor).toBe('rgba(0, 0, 0, 0)');
+    expect(style('pre').padding).toBe('16px');
+    expect(style('pre').backgroundColor).toBe('rgb(49, 50, 68)');
+    expect(style('pre code').padding).toBe('0px');
     expect(style('h1').color).toBe('rgb(137, 180, 250)');
+    await loadSyntaxTheme('github-dark');
+    expect(style('pre').backgroundColor).toBe('rgb(49, 50, 68)');
+    expect(style('pre code').backgroundColor).toBe('rgba(0, 0, 0, 0)');
     await handleSettingsChange(
       { theme: mode === 'dark' ? 'light' : 'dark' },
       createComponentInstances(),
@@ -173,7 +186,7 @@ describe.each(['light', 'dark'] as const)('document theme with %s interface', mo
     await selectTheme('default');
     expect(document.documentElement.hasAttribute(attribute)).toBe(false);
     expect(style('#markview-container').backgroundColor).not.toBe('rgb(0, 0, 0)');
-    expect(style('pre code').backgroundColor).toBe('rgb(0, 0, 0)');
+    expect(style('pre code').backgroundColor).toBe('rgba(0, 0, 0, 0)');
     await selectTheme('unrecognized');
     expect(document.documentElement.hasAttribute(attribute)).toBe(false);
     await loadSyntaxTheme('custom');

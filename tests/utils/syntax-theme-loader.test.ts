@@ -62,7 +62,7 @@ describe('Catppuccin Pitch Black', () => {
     const blocks = [...document.querySelectorAll('pre code')];
     expect(blocks).toHaveLength(4);
     for (const block of blocks) {
-      expect(getComputedStyle(block).backgroundColor).toBe('rgb(0, 0, 0)');
+      expect(getComputedStyle(block).backgroundColor).toBe('rgba(0, 0, 0, 0)');
       expect(getComputedStyle(block).color).toBe('rgb(205, 214, 244)');
     }
     expect(blocks[0]!.classList.contains('language-js')).toBe(true);
@@ -92,7 +92,7 @@ describe('Catppuccin Pitch Black', () => {
       await loadSyntaxTheme(id);
       expect(getCurrentTheme()).toBe(id);
       const style = (selector: string) => getComputedStyle(document.querySelector(selector)!);
-      expect(style('code').backgroundColor).toBe('rgb(0, 0, 0)');
+      expect(style('code').backgroundColor).toBe('rgba(0, 0, 0, 0)');
       expect(style('code').color).toBe('rgb(205, 214, 244)');
       expect(style('code .hljs-comment').color).toBe('rgb(147, 153, 178)');
       expect(style('code .hljs-comment').fontStyle).toBe('italic');
