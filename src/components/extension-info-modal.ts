@@ -9,6 +9,8 @@ import { getMessage } from '@utils/i18n';
 import { ORIGINAL_PROJECT } from '@utils/original-project';
 import { MESSAGES } from '@utils/messages';
 
+const keyboardCleanups = new WeakMap<HTMLElement, () => void>();
+
 /**
  * Show extension info modal
  * Displays version and original-project attribution
@@ -53,6 +55,12 @@ export async function showExtensionInfoModal(): Promise<void> {
 
   // Setup event listeners
   setupEventListeners(modalHeader, modalBody, overlay);
+
+  const handleKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') closeModal(overlay);
+  };
+  document.addEventListener('keydown', handleKeydown);
+  keyboardCleanups.set(overlay, () => document.removeEventListener('keydown', handleKeydown));
 
   logger.log('[ExtensionInfoModal] Modal displayed successfully');
 }
@@ -162,6 +170,8 @@ function updateModalContent(
  * Close modal with fade-out animation
  */
 function closeModal(overlay: HTMLElement): void {
+  keyboardCleanups.get(overlay)?.();
+  keyboardCleanups.delete(overlay);
   // Add fade out animation using inline styles (more reliable than CSS class)
   overlay.style.opacity = '0';
   overlay.style.transition = 'opacity 0.2s ease-out';

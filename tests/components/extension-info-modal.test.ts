@@ -123,24 +123,28 @@ describe('extension-info-modal original-project attribution', () => {
   );
 });
 
-describe('extension-info-modal mouse dismissal without keybindings', () => {
-  it('leaves Escape and native control keys unhandled but closes on button and backdrop clicks', async () => {
+describe('extension-info-modal dismissal', () => {
+  it('closes on Escape, button and backdrop clicks while leaving other keys unhandled', async () => {
     vi.useFakeTimers();
     vi.stubGlobal('chrome', {
       ...chrome,
       runtime: { ...chrome.runtime, getManifest: () => ({ version: '1.0.0' }) },
     });
-    const listeners = vi.spyOn(document, 'addEventListener');
     await showExtensionInfoModal();
     const overlay = document.querySelector<HTMLElement>('.markview-extension-info-overlay')!;
-    for (const key of ['Escape', 'Tab', 'Enter']) {
+    for (const key of ['Tab', 'Enter']) {
       const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
       expect(overlay.querySelector('button')!.dispatchEvent(event)).toBe(true);
       expect(event.defaultPrevented).toBe(false);
       expect(overlay.style.opacity).not.toBe('0');
     }
-    expect(listeners.mock.calls.some(([type]) => /^key(down|up|press)$/.test(type))).toBe(false);
-    overlay.querySelector<HTMLButtonElement>('.markview-extension-info-close')!.click();
+    overlay
+      .querySelector('button')!
+      .dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    vi.advanceTimersByTime(200);
+    expect(overlay.isConnected).toBe(false);
+    await showExtensionInfoModal();
+    document.querySelector<HTMLButtonElement>('.markview-extension-info-close')!.click();
     vi.advanceTimersByTime(200);
     expect(overlay.isConnected).toBe(false);
     await showExtensionInfoModal();
