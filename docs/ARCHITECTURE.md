@@ -13,11 +13,11 @@ code, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ## Parts of the extension
 
-| Part           | Entry               | Role                                                                               |
-| -------------- | ------------------- | ---------------------------------------------------------------------------------- |
-| Content script | `src/main.ts`       | Runs on markdown URLs, renders the document and mounts the reading UI              |
-| Service worker | `src/background.ts` | Fetches the document for auto-refresh; opens tabs |
-| Popup          | `src/popup/`        | Recent documents and settings                                                      |
+| Part           | Entry               | Role                                                                  |
+| -------------- | ------------------- | --------------------------------------------------------------------- |
+| Content script | `src/main.ts`       | Runs on markdown URLs, renders the document and mounts the reading UI |
+| Service worker | `src/background.ts` | Fetches the document for auto-refresh; opens tabs                     |
+| Popup          | `src/popup/`        | Recent documents and settings                                         |
 
 The content script is declared for `.md`, `.markdown`, `.mkd` and `.mdx` URLs (with upper-case and query-string
 variants) on `file://` URLs only, and runs at `document_end`.
@@ -46,7 +46,7 @@ Only local Markdown documents (`file://`) reach the renderer; remote Markdown UR
 1. **Source.** `extractMarkdownSource()` (`src/utils/dom.ts`) reads the `<pre>` text and, when the browser decoded a
    UTF-8 file with its legacy fallback encoding, recovers the real text (see [Encoding](#encoding)).
 2. **Preload** the highlight.js languages the document uses.
-3. **Theme** for code blocks.
+3. **Themes**: apply interface mode, the document palette, and the independently selected syntax theme.
 4. **Render to HTML** with markdown-it and the registered plugins (`src/core/markdown.ts`).
 5. **Inject** the HTML into the page, through the document HTML sanitizer (see [Security notes](#security-notes)).
 6. **Metadata**: the page title.
@@ -99,6 +99,27 @@ menu, quick settings, image viewer and Mermaid zoom with download.
 
 Interface text comes from `src/_locales/<language>/messages.json` (12 languages) through `src/utils/i18n.ts`.
 
+## Color themes
+
+Three settings are intentionally separate:
+
+- `theme` (`light`, `dark`, `auto`) applies the interface mode through `utils/dom.ts` and the on-page theme toggle.
+- `documentTheme` (`default`, `catppuccin-pitch-black`) defaults to `default` when older stored settings are merged.
+  `utils/document-theme.ts` sets or removes an allowlisted `data-markview-document-theme` attribute on `<html>`.
+  `styles/document-theme.css`, bundled through `main.ts`, scopes its screen-only overrides and palette variables
+  to `#markview-container`. Interface components outside the reading area retain their existing appearance.
+- `syntaxTheme` selects built-in highlighting or a packaged stylesheet through `utils/syntax-theme-loader.ts`.
+  External syntax themes retain precedence over document code colors on `.hljs` blocks. Inline code follows
+  the document palette. The default syntax theme retains its mode-dependent token palette.
+
+`document-renderer.ts` applies the saved document palette before injecting content. `settings-manager.ts` updates it
+live without re-parsing the document. The popup loads, validates, saves, and synchronizes the document selector via
+`chrome.storage.local`. `utils/html-export.ts` retains only the recognized document-theme attribute and includes the
+bundled stylesheet in the standalone HTML, alongside the selected syntax CSS. Document palette overrides are limited
+to screen media so the print stylesheet continues to apply.
+
+See [the Catppuccin guide](catppuccin-pitch-black.md) for exact mappings and intentional approximations.
+
 ## Storage
 
 Settings and the recent-documents list are stored in `chrome.storage.local`, on the device. Document content is never
@@ -106,11 +127,11 @@ stored.
 
 ## Network
 
-| Request                                   | Made by                         | When                                                         |
-| ----------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
-| The local document URL                    | the browser; the service worker | Opening the document; each auto-refresh poll                 |
-| Images the document references            | the page                         | Rendering, subject to normal browser image-loading policies |
-| `fonts.googleapis.com` and its font files | the page                        | Only when a font other than the default is selected          |
+| Request                                   | Made by                         | When                                                        |
+| ----------------------------------------- | ------------------------------- | ----------------------------------------------------------- |
+| The local document URL                    | the browser; the service worker | Opening the document; each auto-refresh poll                |
+| Images the document references            | the page                        | Rendering, subject to normal browser image-loading policies |
+| `fonts.googleapis.com` and its font files | the page                        | Only when a font other than the default is selected         |
 
 There is no analytics, telemetry, crash reporting or remote configuration.
 

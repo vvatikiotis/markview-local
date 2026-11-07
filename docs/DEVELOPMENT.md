@@ -45,7 +45,7 @@ tab. The content script is only injected on page load.
 | `pnpm run test:run`      | Vitest, single run (what CI runs)                             |
 | `pnpm run test:coverage` | Coverage report (v8) for `src/core` and `src/utils`           |
 | `pnpm run test:ui`       | Vitest UI                                                     |
-| `pnpm run lint`          | Oxlint (type-aware) on `src/`                                |
+| `pnpm run lint`          | Oxlint (type-aware) on `src/`                                 |
 | `pnpm run lint:fix`      | Oxlint with auto-fix                                          |
 | `pnpm run format`        | Prettier on `src/`                                            |
 | `pnpm run format:check`  | Prettier check on `src/`                                      |
@@ -53,6 +53,26 @@ tab. The content script is only injected on page load.
 
 CI (`.github/workflows/ci.yml`) runs lint, format check, type check, tests and the build on every push and pull
 request.
+
+## Theme changes and checks
+
+Document colors live in `src/styles/document-theme.css`; `src/utils/document-theme.ts` owns the allowlisted
+`documentTheme` marker. The setting is separate from interface `theme` and code `syntaxTheme`. Keep new document
+rules scoped to the reading area and avoid overriding an explicitly selected external syntax theme.
+
+Focused checks:
+
+```bash
+pnpm exec vitest run tests/utils/document-theme.test.ts tests/core/document-theme-settings.test.ts tests/popup/settings-tab.test.ts tests/utils/syntax-theme-loader.test.ts tests/utils/html-export.test.ts
+```
+
+The document tests use real rendered and sanitized Markdown, screen styles in both interface modes, persisted
+settings, live changes, and exported HTML. For a browser check after building, open
+[`examples/document-theme.md`](../examples/document-theme.md) via its local file URL. Try both Document Theme choices
+with Light and Dark interface modes, select an external Syntax Theme, and toggle back to Default. Confirm that
+headings, prose, links, quotes and inline code change while the interface and chosen syntax theme retain their own
+appearance. Reload, export HTML and open the result, then check print preview against the existing print stylesheet.
+Browser verification is manual; unit tests do not reproduce browser print layout or extension isolated worlds.
 
 ## Browser security regression check
 

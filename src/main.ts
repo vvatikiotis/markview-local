@@ -25,6 +25,7 @@ import './styles/markdown-extended.css';
 import './styles/custom-containers.css';
 import './styles/main.css';
 import './styles/syntax-highlighting.css';
+import './styles/document-theme.css';
 import './styles/print.css';
 import './styles/mermaid.css';
 import './styles/mermaid-zoom.css';

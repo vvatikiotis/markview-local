@@ -1,6 +1,7 @@
 // MarkView Chrome Storage Wrapper
 // Provides type-safe access to Chrome Storage API
 
+import type { DocumentTheme } from '@utils/document-theme';
 import { logger } from '@utils/logger';
 import { MESSAGES } from '@utils/messages';
 
@@ -96,6 +97,7 @@ export interface MarkViewSettings {
     | 'de'
     | 'ru';
   theme: 'light' | 'dark' | 'auto';
+  documentTheme: DocumentTheme;
   centered: boolean;
   fontSize: number;
   fontFamily: string;
@@ -134,6 +136,7 @@ export const DEFAULT_SETTINGS: MarkViewSettings = {
   enabled: true,
   language: 'auto',
   theme: 'light',
+  documentTheme: 'default',
   centered: true,
   fontSize: 16,
   fontFamily: 'default',

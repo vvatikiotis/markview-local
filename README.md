@@ -33,13 +33,14 @@ These changes are relative to the upstream snapshot cloned for this repository, 
 - GitHub-style alerts: Note, Tip, Important, Warning, Caution
 - Extended syntax: subscript, superscript, inserted and highlighted text, abbreviations, definition lists, custom
   containers, emoji shortcodes
-- Syntax highlighting with highlight.js (its common language set), a copy button and 14 color themes
+- Syntax highlighting with highlight.js (its common language set), a copy button and selectable syntax themes, including Catppuccin Pitch Black
 - Mermaid diagrams, with zoom and download
 - KaTeX math, inline and display
 
 **Reading**
 
-- Light and dark themes
+- Light, dark, and system appearance for the interface
+- Independent document themes: Default and Catppuccin Pitch Black
 - Table of contents for H1–H3 headings, in a resizable sidebar
 - Raw markdown view, print styles, image viewer, font selection
 - Export the rendered document as a static HTML snapshot with MarkView styles and syntax highlighting. Images and other document resources remain referenced by source-resolved URLs, not bundled. KaTeX fonts are embedded from packaged extension assets. Mermaid is static; HTML labels become plain SVG text, so complex label layout may differ.
@@ -49,6 +50,23 @@ These changes are relative to the upstream snapshot cloned for this repository, 
 **Supported file extensions**
 
 - `.md`, `.markdown`, `.mkd` and `.mdx`
+
+## Choosing colors
+
+Open the extension toolbar popup, then **Settings**:
+
+- **Theme** controls the interface and the default document appearance: Light, Dark, or Auto.
+- **Document Theme** controls the reading area. **Default** follows Theme; **Catppuccin Pitch Black** applies the
+  modified Neovim Markdown palette on black, even with a light interface.
+- **Syntax Theme** independently controls highlighted code blocks. Select **Catppuccin Pitch Black** here too for
+  coordinated code highlighting, or keep any other syntax theme.
+
+Document theme changes apply immediately and persist across reloads. HTML export keeps the selected document and
+syntax themes. Switching Document Theme back to Default restores the existing document colors without changing
+interface or syntax settings. Printing keeps the existing print stylesheet.
+
+See the [Catppuccin guide](docs/catppuccin-pitch-black.md) for the exact mappings and adaptations, and open
+[the theme sample](examples/document-theme.md) as a local file to try it.
 
 ## Install from source
 
@@ -93,6 +111,7 @@ is not installed or is unavailable to the browser, a fallback font is displayed.
 
 - [Development guide](docs/DEVELOPMENT.md): build, test and project layout
 - [Architecture](docs/ARCHITECTURE.md): how a document goes from raw text to rendered page
+- [Catppuccin themes](docs/catppuccin-pitch-black.md): document colors, syntax colors, and how they interact
 - [Contributing](docs/CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 - [Changelog](CHANGELOG.md)
