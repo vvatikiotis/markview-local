@@ -51,6 +51,22 @@
   font-weight: unset;
 }
 
+/* Let the selected syntax background fill the padding as well as the text area.
+ * Keeping padding on pre exposes the document's background as a contrasting frame.
+ * Screen-only: preserve the existing print layout and its wrapping rules.
+ */
+@media screen {
+  .markview-external-syntax-theme #markview-container pre:has(> code.hljs) {
+    padding: 0;
+    background: transparent;
+  }
+
+  .markview-external-syntax-theme #markview-container pre > code.hljs {
+    padding: 16px;
+    border-radius: inherit;
+  }
+}
+
 /* Color palette - sophisticated and professional */
 :root {
   --syntax-purple: #6f42c1; /* Keywords - professional purple */

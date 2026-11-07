@@ -151,8 +151,16 @@ describe.each(['light', 'dark'] as const)('document theme with %s interface', mo
       'fetch',
       vi.fn(async () => new Response(await readFile(`src/styles/themes/${theme}.css`, 'utf8')))
     );
+    document
+      .getElementById('markview-container')!
+      .insertAdjacentHTML('beforeend', '<pre id=unthemed>raw preformatted text</pre>');
     await loadSyntaxTheme(theme);
+    expect(style('#unthemed').padding).toBe('16px');
     expect(style('pre code').backgroundColor).toBe('rgb(0, 0, 0)');
+    expect(style('pre').padding).toBe('0px');
+    expect(style('pre').backgroundColor).toBe('rgba(0, 0, 0, 0)');
+    expect(style('pre code').padding).toBe('16px');
+    expect(style('pre code').borderRadius).toBe(style('pre').borderRadius);
     expect(style('h1').color).toBe('rgb(137, 180, 250)');
     await handleSettingsChange(
       { theme: mode === 'dark' ? 'light' : 'dark' },
@@ -168,5 +176,8 @@ describe.each(['light', 'dark'] as const)('document theme with %s interface', mo
     expect(style('pre code').backgroundColor).toBe('rgb(0, 0, 0)');
     await selectTheme('unrecognized');
     expect(document.documentElement.hasAttribute(attribute)).toBe(false);
+    await loadSyntaxTheme('custom');
+    expect(style('pre').padding).toBe('16px');
+    expect(style('pre code').padding).toBe('0px');
   });
 });

@@ -52,7 +52,8 @@ Theme. With the Catppuccin document preset, the reading area also receives the M
 | Strings                | `#a6e3a1`             |        |
 
 An explicitly selected external Syntax Theme controls highlighted block foreground/background and tokens, overriding
-the document's plain-code palette. Inline code always follows Document Theme. With **MarkView Local (Default)**
+the document's plain-code palette. The syntax background fills the block padding too, avoiding a contrasting
+document-colored frame. Inline code always follows Document Theme. With **MarkView Local (Default)**
 syntax highlighting, built-in token colors still follow Light/Dark while the Catppuccin document preset supplies
 cyan base code text on surface0. To restore adaptive document and code colors entirely, select Default for both
 Document Theme and Syntax Theme.
