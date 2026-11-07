@@ -1,10 +1,9 @@
 /* Catppuccin Pitch Black: modified Mocha palette from THEME-SPEC.md.
- * Syntax-only adaptation: opaque black keeps code readable in either app mode.
+ * Syntax-only adaptation: the document theme controls code-block backgrounds.
  * Selectors are scoped by syntax-theme-loader before use, including HTML export.
  */
 .hljs {
   color: #cdd6f4;
-  background: #000000;
 }
 
 .hljs-comment {

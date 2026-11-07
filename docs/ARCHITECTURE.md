@@ -109,8 +109,8 @@ Three settings are intentionally separate:
   `styles/document-theme.css`, bundled through `main.ts`, scopes its screen-only overrides and palette variables
   to `#markview-container`. Interface components outside the reading area retain their existing appearance.
 - `syntaxTheme` selects built-in highlighting or a packaged stylesheet through `utils/syntax-theme-loader.ts`.
-  External syntax themes retain precedence over document code colors on `.hljs` blocks. Inline code follows
-  the document palette. The default syntax theme retains its mode-dependent token palette.
+  External syntax themes provide foreground and token colors on `.hljs` blocks; the document theme controls
+  their background. Inline code follows the document palette. The default syntax theme retains its mode-dependent token palette.
 
 `document-renderer.ts` applies the saved document palette before injecting content. `settings-manager.ts` updates it
 live without re-parsing the document. The popup loads, validates, saves, and synchronizes the document selector via

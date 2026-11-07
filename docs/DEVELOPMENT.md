@@ -58,7 +58,7 @@ request.
 
 Document colors live in `src/styles/document-theme.css`; `src/utils/document-theme.ts` owns the allowlisted
 `documentTheme` marker. The setting is separate from interface `theme` and code `syntaxTheme`. Keep new document
-rules scoped to the reading area and avoid overriding an explicitly selected external syntax theme.
+rules scoped to the reading area. Document themes control code-block backgrounds; syntax themes control token colors.
 
 Focused checks:
 

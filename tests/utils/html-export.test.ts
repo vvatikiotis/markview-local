@@ -197,7 +197,6 @@ describe('portable resources', () => {
       expect(css).toContain('.markview-external-syntax-theme #markview-container');
       expect(fetch).toHaveBeenCalledWith(chrome.runtime.getURL(assetPath));
       if (theme === 'catppuccin-pitch-black') {
-        expect(css).toContain('background: #000000');
         expect(css).toContain('color: #9399b2');
       }
       await loadSyntaxTheme('custom');
