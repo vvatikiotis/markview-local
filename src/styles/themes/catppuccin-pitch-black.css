@@ -1,0 +1,124 @@
+/* Catppuccin Pitch Black: modified Mocha palette from THEME-SPEC.md.
+ * Syntax-only adaptation: opaque black keeps code readable in either app mode.
+ * Selectors are scoped by syntax-theme-loader before use, including HTML export.
+ */
+.hljs {
+  color: #cdd6f4;
+  background: #000000;
+}
+
+.hljs-comment {
+  color: #9399b2;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-template-tag {
+  color: #cba6f7;
+}
+
+.hljs-built_in,
+.hljs-type,
+.hljs-class,
+.hljs-title.class_ {
+  color: #f9e2af;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-meta .hljs-string {
+  color: #a6e3a1;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable.constant_ {
+  color: #cdd6f4;
+}
+
+.hljs-literal,
+.hljs-variable.constant_ {
+  font-weight: bold;
+}
+
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.function,
+.hljs-function .hljs-title {
+  color: #89b4fa;
+  font-weight: bold;
+}
+
+.hljs-params {
+  color: #fab387;
+  font-style: italic;
+}
+
+.hljs-operator,
+.hljs-symbol,
+.hljs-bullet {
+  color: #f9e2af;
+}
+
+.hljs-punctuation,
+.hljs-subst,
+.hljs-variable,
+.hljs-template-variable {
+  color: #cdd6f4;
+}
+
+.hljs-property,
+.hljs-attr,
+.hljs-attribute {
+  color: #89b4fa;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #cba6f7;
+}
+
+.hljs-meta,
+.hljs-doctag,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #f9e2af;
+}
+
+.hljs-section {
+  color: #89b4fa;
+  font-weight: bold;
+}
+
+.hljs-quote {
+  color: #f5c2e7;
+}
+
+.hljs-link {
+  color: #89dceb;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.hljs-emphasis {
+  color: #f5e0dc;
+  font-style: italic;
+}
+
+.hljs-strong {
+  color: #f38ba8;
+  font-weight: bold;
+}
+
+.hljs-addition {
+  color: #a6e3a1;
+  background-color: #11111b;
+}
+
+.hljs-deletion {
+  color: #f38ba8;
+  background-color: #11111b;
+}

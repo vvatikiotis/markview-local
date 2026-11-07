@@ -123,7 +123,11 @@ beforeEach(() => {
                 )
               ).join('\n')
             )
-          : await readFile(path);
+          : await readFile(
+              path === 'css/catppuccin-pitch-black.css'
+                ? 'src/styles/themes/catppuccin-pitch-black.css'
+                : path
+            );
       return new Response(bytes, { status: 200 });
     })
   );
@@ -180,17 +184,25 @@ describe('portable resources', () => {
     await expect(collectExtensionStyles()).rejects.toThrow('asset unavailable');
   });
 
-  it('refetches only the selected packaged syntax theme, ignoring host style elements', async () => {
-    await loadSyntaxTheme('github-dark');
-    document.getElementById('markview-syntax-theme')!.textContent = '.forged{color:red}';
-    const css = await collectExtensionStyles();
-    expect(css).not.toContain('.forged');
-    expect(css).toContain('.markview-external-syntax-theme #markview-container');
-    expect(fetch).toHaveBeenCalledWith(
-      chrome.runtime.getURL('node_modules/highlight.js/styles/github-dark.css')
-    );
-    await loadSyntaxTheme('custom');
-  });
+  it.each([
+    ['github-dark', 'node_modules/highlight.js/styles/github-dark.css'],
+    ['catppuccin-pitch-black', 'css/catppuccin-pitch-black.css'],
+  ])(
+    'refetches selected packaged theme %s, ignoring host style elements',
+    async (theme, assetPath) => {
+      await loadSyntaxTheme(theme);
+      document.getElementById('markview-syntax-theme')!.textContent = '.forged{color:red}';
+      const css = await collectExtensionStyles();
+      expect(css).not.toContain('.forged');
+      expect(css).toContain('.markview-external-syntax-theme #markview-container');
+      expect(fetch).toHaveBeenCalledWith(chrome.runtime.getURL(assetPath));
+      if (theme === 'catppuccin-pitch-black') {
+        expect(css).toContain('background: #000000');
+        expect(css).toContain('color: #9399b2');
+      }
+      await loadSyntaxTheme('custom');
+    }
+  );
 
   it('refuses invalid bundled font bytes rather than emitting a false WOFF2 MIME type', async () => {
     vi.mocked(fetch).mockResolvedValue(new Response('not a font'));

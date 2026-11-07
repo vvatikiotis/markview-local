@@ -9,12 +9,13 @@ import { logger } from '@utils/logger';
 /**
  * Available syntax themes
  * 'custom' uses the built-in MarkView theme from syntax-highlighting.css
- * Other themes are loaded from highlight.js styles
+ * Other themes load packaged CSS (highlight.js styles or a local asset)
  */
 export interface SyntaxTheme {
   id: string;
   name: string;
   type: 'light' | 'dark' | 'auto'; // Indicates theme preference
+  assetPath?: string; // Locally authored themes override the highlight.js asset path
 }
 
 /**
@@ -32,6 +33,12 @@ export const SYNTAX_THEMES: SyntaxTheme[] = [
   { id: 'tokyo-night-light', name: 'Tokyo Night Light', type: 'light' },
 
   // Dark themes
+  {
+    id: 'catppuccin-pitch-black',
+    name: 'Catppuccin Pitch Black',
+    type: 'dark',
+    assetPath: 'css/catppuccin-pitch-black.css',
+  },
   { id: 'github-dark', name: 'GitHub Dark', type: 'dark' },
   { id: 'github-dark-dimmed', name: 'GitHub Dark Dimmed', type: 'dark' },
   { id: 'vs2015', name: 'Visual Studio 2015', type: 'dark' },
@@ -110,10 +117,14 @@ export async function loadSyntaxTheme(themeId: string): Promise<void> {
 }
 
 /**
- * Fetch theme CSS from extension assets
+ * Resolve the packaged asset shared by the viewer and HTML export.
  */
+export function getSyntaxThemePath(themeId: string): string {
+  return getThemeById(themeId)?.assetPath ?? `node_modules/highlight.js/styles/${themeId}.css`;
+}
+
 async function fetchThemeCss(themeId: string): Promise<string> {
-  const themeUrl = chrome.runtime.getURL(`node_modules/highlight.js/styles/${themeId}.css`);
+  const themeUrl = chrome.runtime.getURL(getSyntaxThemePath(themeId));
 
   const response = await fetch(themeUrl);
   if (!response.ok) {

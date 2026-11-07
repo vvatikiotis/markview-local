@@ -3,7 +3,12 @@ import { logger } from './logger';
 import { showNotification } from './notification';
 import { MESSAGES } from './messages';
 import { isSandboxed } from './sandbox-detection';
-import { getCurrentTheme, scopeThemeCss, SYNTAX_THEMES } from './syntax-theme-loader';
+import {
+  getCurrentTheme,
+  getSyntaxThemePath,
+  scopeThemeCss,
+  SYNTAX_THEMES,
+} from './syntax-theme-loader';
 
 // Mermaid installs hooks on its default purifier; exports must not inherit them.
 const exportPurifier = DOMPurify(window);
@@ -360,7 +365,7 @@ export async function collectExtensionStyles(): Promise<string> {
   ];
   const theme = getCurrentTheme();
   if (theme !== 'custom' && SYNTAX_THEMES.some(item => item.id === theme)) {
-    const path = `node_modules/highlight.js/styles/${theme}.css`;
+    const path = getSyntaxThemePath(theme);
     rules.push(scopeThemeCss(await (await fetchAsset(path)).text()));
   }
   return rules.join('\n');
