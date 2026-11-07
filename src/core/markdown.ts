@@ -99,9 +99,19 @@ export class MarkdownRenderer {
 
   /**
    * Setup custom markdown-it renderer rules
-   * These handle link targets and image lazy loading
+   * These handle code-block styling, link targets and image lazy loading
    */
   private setupCustomRenderers(): void {
+    // Theme base colors require hljs on the code element, not just token spans.
+    // Delegate fences to the installed renderer to preserve Mermaid handling.
+    const renderFence = this.md.renderer.rules.fence!;
+    this.md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+      tokens[idx]?.attrJoin('class', 'hljs');
+      return renderFence(tokens, idx, options, env, self);
+    };
+    this.md.renderer.rules.code_block = (tokens, idx) =>
+      `<pre><code class="hljs">${this.md.utils.escapeHtml(tokens[idx]?.content ?? '')}</code></pre>\n`;
+
     // External links open in new tab
     this.md.renderer.rules.link_open = (tokens, idx, _options, _env, self) => {
       const token = tokens[idx];

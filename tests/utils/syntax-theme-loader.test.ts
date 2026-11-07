@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { readFile } from 'node:fs/promises';
+import { MarkdownRenderer } from '@core/markdown';
 import { getThemeById, loadSyntaxTheme, getCurrentTheme } from '@utils/syntax-theme-loader';
 
 const id = 'catppuccin-pitch-black';
@@ -19,6 +20,58 @@ describe('Catppuccin Pitch Black', () => {
     const option = document.querySelector<HTMLOptionElement>(`#syntaxTheme option[value="${id}"]`);
     expect(option?.textContent).toBe('Catppuccin Pitch Black');
     expect(option?.disabled).toBe(false);
+  });
+
+  it.each([false, true])('themes actual Markdown code blocks in dark mode = %s', async dark => {
+    const base = document.createElement('style');
+    base.textContent =
+      (await readFile('src/styles/main.css', 'utf8')) +
+      (await readFile('src/styles/syntax-highlighting.css', 'utf8'));
+    document.head.append(base);
+    document.documentElement.classList.add('markview-active');
+    document.documentElement.classList.toggle('markview-dark', dark);
+    const renderer = new MarkdownRenderer();
+    const markdown = [
+      '```js',
+      '// comment',
+      'const answer = 42;',
+      '```',
+      '',
+      '```unknown-language',
+      '<plain> & text',
+      '```',
+      '',
+      '```',
+      '<plain> & text',
+      '```',
+      '',
+      '    <indented> & text',
+      '',
+      '```mermaid',
+      'graph TD; A-->B;',
+      '```',
+      '',
+      'Prose with `inline code`.',
+    ].join('\n');
+    document.body.innerHTML = `<div id="markview-container">${renderer.render(markdown)}</div>`;
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response(await readFile(`src/styles/themes/${id}.css`, 'utf8')))
+    );
+    await loadSyntaxTheme(id);
+    const blocks = [...document.querySelectorAll('pre code')];
+    expect(blocks).toHaveLength(4);
+    for (const block of blocks) {
+      expect(getComputedStyle(block).backgroundColor).toBe('rgb(0, 0, 0)');
+      expect(getComputedStyle(block).color).toBe('rgb(205, 214, 244)');
+    }
+    expect(blocks[0]!.classList.contains('language-js')).toBe(true);
+    expect(blocks[0]!.querySelector('.hljs-keyword')?.textContent).toBe('const');
+    expect(blocks[1]!.textContent).toBe('<plain> & text\n');
+    expect(blocks[2]!.textContent).toBe('<plain> & text\n');
+    expect(blocks[3]!.textContent).toBe('<indented> & text\n');
+    expect(document.querySelector('.mermaid-placeholder')).not.toBeNull();
+    expect(document.querySelector('p code')!.classList.contains('hljs')).toBe(false);
   });
 
   it.each([false, true])(
