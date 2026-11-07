@@ -131,6 +131,11 @@ module.exports = {
           from: 'node_modules/highlight.js/styles/tokyo-night-light.css',
           to: 'node_modules/highlight.js/styles/tokyo-night-light.css',
         },
+        // Locally authored syntax theme
+        {
+          from: 'src/styles/themes/catppuccin-pitch-black.css',
+          to: 'css/catppuccin-pitch-black.css',
+        },
         // Dark themes
         {
           from: 'node_modules/highlight.js/styles/github-dark.css',
