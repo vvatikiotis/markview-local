@@ -90,7 +90,11 @@ export class SettingsTab {
       if (autoRefreshCheckbox) autoRefreshCheckbox.checked = settings.autoRefresh;
 
       const documentThemeSelect = document.getElementById('documentTheme') as HTMLSelectElement;
-      if (documentThemeSelect) documentThemeSelect.value = settings.documentTheme || 'default';
+      if (documentThemeSelect) {
+        documentThemeSelect.value = isDocumentTheme(settings.documentTheme)
+          ? settings.documentTheme
+          : 'default';
+      }
 
       // Features
       const syntaxThemeSelect = document.getElementById('syntaxTheme') as HTMLSelectElement;

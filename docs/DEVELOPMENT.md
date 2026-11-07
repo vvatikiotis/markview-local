@@ -45,7 +45,7 @@ tab. The content script is only injected on page load.
 | `pnpm run test:run`      | Vitest, single run (what CI runs)                             |
 | `pnpm run test:coverage` | Coverage report (v8) for `src/core` and `src/utils`           |
 | `pnpm run test:ui`       | Vitest UI                                                     |
-| `pnpm run lint`          | Oxlint (type-aware) on `src/`                                 |
+| `pnpm run lint`          | Oxlint (type-aware) on `src/`                                |
 | `pnpm run lint:fix`      | Oxlint with auto-fix                                          |
 | `pnpm run format`        | Prettier on `src/`                                            |
 | `pnpm run format:check`  | Prettier check on `src/`                                      |
