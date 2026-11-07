@@ -26,7 +26,7 @@ The document preset maps rendered Markdown elements directly:
 | Strikethrough (`s` or `del`) | `#cdd6f4` | inherited  | line-through                       |
 | Quote                        | `#f5c2e7` | inherited  | inherited                          |
 | Links / autolinks            | `#89dceb` | inherited  | italic, underline, including hover |
-| Inline code                  | `#3ec1ff` | `#313244`  | inherited                          |
+| Inline code                  | `#3ec1ff` | `#181825`  | inherited                          |
 | Code block                   | `#3ec1ff` | `#181825`  | inherited                          |
 
 For unspecified table and supporting roles, borders use surface1 (`#45475a`), table headers use surface0 (`#313244`),

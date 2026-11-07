@@ -122,7 +122,7 @@ describe.each(['light', 'dark'] as const)('document theme with %s interface', mo
     expect(style('p a').fontStyle).toBe('italic');
     expect(style('p a').textDecorationLine).toBe('underline');
     expect(style('p code').color).toBe('rgb(62, 193, 255)');
-    expect(style('p code').backgroundColor).toBe('rgb(49, 50, 68)');
+    expect(style('p code').backgroundColor).toBe('rgb(24, 24, 37)');
     expect(style('pre').backgroundColor).toBe('rgb(24, 24, 37)');
     expect(style('#interface').color).not.toBe('rgb(205, 214, 244)');
     const source = document.getElementById('markview-container')!;

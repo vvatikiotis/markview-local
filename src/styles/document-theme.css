@@ -7,7 +7,7 @@
     --markview-text: #cdd6f4;
     --markview-text-muted: #a6adc8;
     --markview-border: #45475a;
-    --markview-code-bg: #313244;
+    --markview-code-bg: #181825;
     --markview-table-header-bg: #313244;
     --markview-table-stripe-bg: #11111b;
     background: #000000;
@@ -83,6 +83,6 @@
    */
   html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container code {
     color: #3ec1ff;
-    background-color: #313244;
+    background-color: #181825;
   }
 }
