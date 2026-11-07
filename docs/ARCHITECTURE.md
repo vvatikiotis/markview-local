@@ -13,11 +13,11 @@ code, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ## Parts of the extension
 
-| Part           | Entry               | Role                                                                  |
-| -------------- | ------------------- | --------------------------------------------------------------------- |
-| Content script | `src/main.ts`       | Runs on markdown URLs, renders the document and mounts the reading UI |
-| Service worker | `src/background.ts` | Fetches the document for auto-refresh; opens tabs                     |
-| Popup          | `src/popup/`        | Recent documents and settings                                         |
+| Part           | Entry               | Role                                                                               |
+| -------------- | ------------------- | ---------------------------------------------------------------------------------- |
+| Content script | `src/main.ts`       | Runs on markdown URLs, renders the document and mounts the reading UI              |
+| Service worker | `src/background.ts` | Fetches the document for auto-refresh; opens tabs |
+| Popup          | `src/popup/`        | Recent documents and settings                                                      |
 
 The content script is declared for `.md`, `.markdown`, `.mkd` and `.mdx` URLs (with upper-case and query-string
 variants) on `file://` URLs only, and runs at `document_end`.
@@ -127,11 +127,11 @@ stored.
 
 ## Network
 
-| Request                                   | Made by                         | When                                                        |
-| ----------------------------------------- | ------------------------------- | ----------------------------------------------------------- |
-| The local document URL                    | the browser; the service worker | Opening the document; each auto-refresh poll                |
-| Images the document references            | the page                        | Rendering, subject to normal browser image-loading policies |
-| `fonts.googleapis.com` and its font files | the page                        | Only when a font other than the default is selected         |
+| Request                                   | Made by                         | When                                                         |
+| ----------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| The local document URL                    | the browser; the service worker | Opening the document; each auto-refresh poll                 |
+| Images the document references            | the page                         | Rendering, subject to normal browser image-loading policies |
+| `fonts.googleapis.com` and its font files | the page                        | Only when a font other than the default is selected          |
 
 There is no analytics, telemetry, crash reporting or remote configuration.
 

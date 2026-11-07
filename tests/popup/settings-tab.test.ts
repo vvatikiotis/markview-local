@@ -7,7 +7,7 @@ vi.mock('@core/storage', async importOriginal => {
     updateSetting: vi.fn().mockResolvedValue(undefined),
   };
 });
-import { updateSetting } from '@core/storage';
+import { updateSetting, getSettings, DEFAULT_SETTINGS } from '@core/storage';
 import { SettingsTab } from '../../src/popup/settings-tab';
 
 beforeEach(async () => {
@@ -19,6 +19,7 @@ beforeEach(async () => {
   await new SettingsTab(document.body).initialize();
 });
 afterEach(() => {
+  vi.mocked(getSettings).mockResolvedValue(DEFAULT_SETTINGS);
   document.body.innerHTML = '';
   vi.clearAllTimers();
   vi.useRealTimers();
@@ -55,6 +56,17 @@ describe('settings-tab select narrowing', () => {
   ])('saves valid %s selection %s', async (key, value) => {
     change(key, value);
     await vi.waitFor(() => expect(updateSetting).toHaveBeenCalledExactlyOnceWith(key, value));
+  });
+
+  it('loads the saved document theme when the popup opens', async () => {
+    vi.mocked(getSettings).mockResolvedValue({
+      ...DEFAULT_SETTINGS,
+      documentTheme: 'catppuccin-pitch-black',
+    });
+    await new SettingsTab(document.body).initialize();
+    expect(document.querySelector<HTMLSelectElement>('#documentTheme')!.value).toBe(
+      'catppuccin-pitch-black'
+    );
   });
 
   it('saves a valid nested display setting', async () => {

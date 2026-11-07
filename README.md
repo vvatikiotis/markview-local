@@ -65,7 +65,7 @@ Document theme changes apply immediately and persist across reloads. HTML export
 syntax themes. Switching Document Theme back to Default restores the existing document colors without changing
 interface or syntax settings. Printing keeps the existing print stylesheet.
 
-See the [Catppuccin guide](docs/catppuccin-pitch-black.md) for the exact mappings and adaptations, and open
+See the Catppuccin guide in Documentation below for the exact mappings and adaptations, and open
 [the theme sample](examples/document-theme.md) as a local file to try it.
 
 ## Install from source
