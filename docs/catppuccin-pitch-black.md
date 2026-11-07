@@ -26,7 +26,8 @@ The document preset maps rendered Markdown elements directly:
 | Strikethrough (`s` or `del`) | `#cdd6f4` | inherited  | line-through                       |
 | Quote                        | `#f5c2e7` | inherited  | inherited                          |
 | Links / autolinks            | `#89dceb` | inherited  | italic, underline, including hover |
-| Inline and plain code        | `#3ec1ff` | `#313244`  | inherited                          |
+| Inline code                  | `#3ec1ff` | `#313244`  | inherited                          |
+| Code block                   | `#3ec1ff` | `#181825`  | inherited                          |
 
 For unspecified table and supporting roles, borders use surface1 (`#45475a`), table headers use surface0 (`#313244`),
 striped table rows use crust (`#11111b`), and muted text uses subtext0 (`#a6adc8`). These are adaptations within the
@@ -50,7 +51,7 @@ prose and code-block backgrounds follow the interface Theme. With the Catppuccin
 | Keywords               | `#cba6f7`             |        |
 | Strings                | `#a6e3a1`             |        |
 
-Document Theme controls the background of every code block. Catppuccin Pitch Black uses surface0 (`#313244`);
+Document Theme controls the background of every code block. Catppuccin Pitch Black uses mantle (`#181825`);
 Default follows the interface mode. Syntax Theme controls token and base code foreground colors independently;
 inline code follows Document Theme. Some syntax colors may have low contrast against a different document palette.
 To restore adaptive document and code colors entirely, select Default for both themes.
