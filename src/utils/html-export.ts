@@ -1,3 +1,4 @@
+import { DOCUMENT_THEME_ATTRIBUTE } from './document-theme';
 import DOMPurify from 'dompurify';
 import { logger } from './logger';
 import { showNotification } from './notification';
@@ -293,9 +294,13 @@ export function buildHtmlExport(
   if (document.documentElement.classList.contains('markview-external-syntax-theme')) {
     classes.push('markview-external-syntax-theme');
   }
+  const documentThemeAttribute =
+    document.documentElement.getAttribute(DOCUMENT_THEME_ATTRIBUTE) === 'catppuccin-pitch-black'
+      ? ` ${DOCUMENT_THEME_ATTRIBUTE}="catppuccin-pitch-black"`
+      : '';
   const portableExtensionStyles = extensionStyles.replace(/<\/style/gi, '<\\/style');
   const style = `${portableExtensionStyles}\nbody{margin:0;padding:2rem;font:16px/1.6 system-ui,sans-serif;color:#24292f;background:#fff}.markview-content{max-width:900px;margin:auto;overflow-wrap:anywhere}pre{overflow:auto;padding:1rem;background:#f6f8fa}code{font-family:ui-monospace,monospace}table{border-collapse:collapse}td,th{border:1px solid #d0d7de;padding:.4rem}img,svg{max-width:100%;height:auto}${dark ? 'body{color:#e6edf3;background:#0d1117}pre{background:#161b22}td,th{border-color:#30363d}' : ''}`;
-  return `<!doctype html><html lang="en" class="${classes.join(' ')}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)}</title><style>${style}</style></head><body><main id="markview-container" class="${rootClasses.join(' ')}"${rootStyle ? ` style="${escapeHtml(rootStyle)}"` : ''}>${clean}</main></body></html>`;
+  return `<!doctype html><html lang="en" class="${classes.join(' ')}"${documentThemeAttribute}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)}</title><style>${style}</style></head><body><main id="markview-container" class="${rootClasses.join(' ')}"${rootStyle ? ` style="${escapeHtml(rootStyle)}"` : ''}>${clean}</main></body></html>`;
 }
 
 export function htmlExportFilename(sourceUrl: string): string {

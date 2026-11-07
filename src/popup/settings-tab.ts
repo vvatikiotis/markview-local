@@ -1,3 +1,4 @@
+import { isDocumentTheme } from '@utils/document-theme';
 import { createLocalFontSettings } from '@components/local-font-settings';
 import { applyLocalFonts, getInterfaceFontFamily } from '@utils/fonts';
 /**
@@ -87,6 +88,9 @@ export class SettingsTab {
       // Live Preview
       const autoRefreshCheckbox = document.getElementById('autoRefresh') as HTMLInputElement;
       if (autoRefreshCheckbox) autoRefreshCheckbox.checked = settings.autoRefresh;
+
+      const documentThemeSelect = document.getElementById('documentTheme') as HTMLSelectElement;
+      if (documentThemeSelect) documentThemeSelect.value = settings.documentTheme || 'default';
 
       // Features
       const syntaxThemeSelect = document.getElementById('syntaxTheme') as HTMLSelectElement;
@@ -261,6 +265,12 @@ export class SettingsTab {
       });
     }
 
+    const documentThemeSelect = document.getElementById('documentTheme') as HTMLSelectElement;
+    documentThemeSelect?.addEventListener('change', () => {
+      const value = documentThemeSelect.value;
+      if (isDocumentTheme(value)) this.saveSetting('documentTheme', value);
+    });
+
     // Syntax Theme selector
     const syntaxThemeSelect = document.getElementById('syntaxTheme') as HTMLSelectElement;
     if (syntaxThemeSelect) {
@@ -338,6 +348,11 @@ export class SettingsTab {
       // Update theme select when changed from theme toggle button on page
       if (typeof changes.theme?.newValue === 'string' && themeSelectRef) {
         themeSelectRef.value = changes.theme.newValue;
+      }
+
+      if (typeof changes.documentTheme?.newValue === 'string' && documentThemeSelect) {
+        const value = changes.documentTheme.newValue;
+        documentThemeSelect.value = isDocumentTheme(value) ? value : 'default';
       }
 
       // Update centered checkbox when changed from centered toggle button on page

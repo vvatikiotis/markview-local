@@ -41,7 +41,9 @@ separate Chrome Web Store or Edge Add-ons edition go to [markview-app/support](h
 1. Fork the repository and create a branch: `fix/toc-scroll`, `docs/dev-guide`, …
 2. Set up and build as described in [DEVELOPMENT.md](DEVELOPMENT.md)
 3. Keep the change focused: one fix or improvement per pull request
-4. Add or update tests in `tests/` for behavior you change
+4. Add or update tests in `tests/` for behavior you change. For document or syntax color changes, follow the
+   [theme checks](DEVELOPMENT.md#theme-changes-and-checks), and update the [theme guide](catppuccin-pitch-black.md)
+   when mappings or theme precedence change.
 5. Before pushing, run:
 
    ```bash

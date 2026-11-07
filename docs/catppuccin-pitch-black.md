@@ -1,15 +1,45 @@
-# Catppuccin Pitch Black syntax theme
+# Catppuccin Pitch Black themes
 
-Select **Catppuccin Pitch Black** in the extension popup's **Syntax Theme** list.
-It keeps an opaque black code background in both light and dark app modes;
-page prose and interface colors still follow the app theme. HTML exports retain
-the selected syntax theme. Selecting **MarkView Local (Default)** restores the
-adaptive built-in theme.
+The supplied modified Catppuccin Mocha specification is available as two independent selections in the toolbar
+popup's **Settings** tab. Neither selection changes the other automatically.
 
-The theme adapts the supplied modified Catppuccin Mocha specification to
-highlight.js token classes:
+## Selecting document colors
 
-| Role                   | Color                 | Style  |
+Set **Document Theme → Catppuccin Pitch Black** to apply the Neovim Markdown palette to the reading area.
+The document stays black with either a Light or Dark interface; **Theme → Auto** still follows the system for the
+interface. Select **Document Theme → Default** to restore the existing document appearance for the current interface
+mode. Existing installations start on Default. Changes apply immediately and save locally for future document loads.
+
+The document preset maps rendered Markdown elements directly:
+
+| Markdown role                | Color     | Background | Style                              |
+| ---------------------------- | --------- | ---------- | ---------------------------------- |
+| Body text                    | `#cdd6f4` | `#000000`  | inherited                          |
+| Heading 1                    | `#89b4fa` | `#000000`  | bold, underline                    |
+| Heading 2                    | `#89b4fa` | `#000000`  | bold                               |
+| Heading 3                    | `#74c7ec` | `#000000`  | bold                               |
+| Heading 4                    | `#74c7ec` | `#000000`  | normal weight                      |
+| Heading 5                    | `#ffffff` | `#000000`  | bold                               |
+| Heading 6                    | `#ffffff` | `#000000`  | normal weight                      |
+| Strong                       | `#f38ba8` | inherited  | bold                               |
+| Emphasis                     | `#f5e0dc` | inherited  | italic                             |
+| Strikethrough (`s` or `del`) | `#cdd6f4` | inherited  | line-through                       |
+| Quote                        | `#f5c2e7` | inherited  | inherited                          |
+| Links / autolinks            | `#89dceb` | inherited  | italic, underline, including hover |
+| Inline and plain code        | `#3ec1ff` | `#313244`  | inherited                          |
+
+For unspecified table and supporting roles, borders use surface1 (`#45475a`), table headers use surface0 (`#313244`),
+striped table rows use crust (`#11111b`), and muted text uses subtext0 (`#a6adc8`). These are adaptations within the
+supplied palette, not additional explicit Neovim mappings. Font families, sizes, layout, and rendered heading anchors
+continue to work as before. Semantic styles combine for nested emphasis, links, and other inline markup.
+
+## Selecting syntax colors
+
+Set **Syntax Theme → Catppuccin Pitch Black** for coordinated code highlighting. It gives code blocks an opaque black
+background in both interface modes. With Document Theme set to Default, prose and interface colors continue to follow
+Theme. With the Catppuccin document preset, the reading area also receives the Markdown mappings above.
+
+| Syntax role            | Color                 | Style  |
 | ---------------------- | --------------------- | ------ |
 | Code background / text | `#000000` / `#cdd6f4` |        |
 | Comments               | `#9399b2`             | italic |
@@ -21,14 +51,24 @@ highlight.js token classes:
 | Keywords               | `#cba6f7`             |        |
 | Strings                | `#a6e3a1`             |        |
 
-Other tokens use nearby Mocha palette colors according to their role. These are
-highlight.js adaptations rather than a complete reproduction of Neovim's syntax
-groups. Colors apply only where a language grammar emits the corresponding token;
-for example, highlight.js does not identify every constant or operator. Its generic
-Markdown section token cannot distinguish all six heading levels.
+An explicitly selected external Syntax Theme controls highlighted block foreground/background and tokens, overriding
+the document's plain-code palette. Inline code always follows Document Theme. With **MarkView Local (Default)**
+syntax highlighting, built-in token colors still follow Light/Dark while the Catppuccin document preset supplies
+cyan base code text on surface0. To restore adaptive document and code colors entirely, select Default for both
+Document Theme and Syntax Theme.
 
-Opaque black is the fallback adaptation of the reference's transparent editor
-background. The reference's Markdown prose rules (including cyan code on surface0)
-are not applied to the rendered page: this selection controls syntax highlighting
-inside code blocks. Editor-only roles such as cursor lines, diagnostics, inlay hints,
-inactive-window dimming, and Git UI indicators have no equivalent in this theme.
+## Export, printing, and limitations
+
+HTML export retains the selected document and syntax palettes. The document rules are screen-only so the existing
+white-paper print stylesheet remains active; printing is not an exact reproduction of the on-screen black document.
+No additional theme downloads or permissions are required.
+
+Opaque black is the fallback adaptation of the reference's transparent editor background. The interface, TOC,
+Mermaid diagrams, and specialized alert/container styling retain their existing theme behavior; this is a document
+palette, not a replacement for every component's theme. Syntax colors depend on which token classes a language
+grammar emits. Editor-only roles such as cursor lines, diagnostics, undercurls, inlay hints, inactive-window dimming,
+and Git UI indicators have no equivalent here. Rendered headings support all six explicit levels; highlight.js's
+Markdown syntax tokens inside a code fence cannot distinguish them all.
+
+Try the [sample document](../examples/document-theme.md). The implementation and automated/manual checks are described
+in [Architecture](ARCHITECTURE.md#color-themes) and [Development](DEVELOPMENT.md#theme-changes-and-checks).

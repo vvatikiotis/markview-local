@@ -1,0 +1,84 @@
+/* Rendered-document palette only. Interface and syntax themes remain independent.
+ * Screen-only rules preserve the existing white-paper print styling.
+ */
+@media screen {
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container {
+    --markview-bg: #000000;
+    --markview-text: #cdd6f4;
+    --markview-text-muted: #a6adc8;
+    --markview-border: #45475a;
+    --markview-code-bg: #313244;
+    --markview-table-header-bg: #313244;
+    --markview-table-stripe-bg: #11111b;
+    background: #000000;
+    color: #cdd6f4;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h1,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h2 {
+    color: #89b4fa;
+    background: #000000;
+    font-weight: 700;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h1 {
+    text-decoration-line: underline;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h3,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h4 {
+    color: #74c7ec;
+    background: #000000;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h3,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h5 {
+    font-weight: 700;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h4,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h6 {
+    font-weight: 400;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h5,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container h6 {
+    color: #ffffff;
+    background: #000000;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container strong {
+    color: #f38ba8;
+    font-weight: 700;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container em {
+    color: #f5e0dc;
+    font-style: italic;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container del,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container s {
+    color: #cdd6f4;
+    text-decoration-line: line-through;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container blockquote {
+    color: #f5c2e7;
+  }
+
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container a,
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container a:hover {
+    color: #89dceb;
+    font-style: italic;
+    text-decoration-line: underline;
+  }
+
+  /* External syntax themes have higher specificity on .hljs, so they retain
+   * ownership of highlighted block colors. Inline code always uses this palette.
+   */
+  html[data-markview-document-theme='catppuccin-pitch-black'] #markview-container code {
+    color: #3ec1ff;
+    background-color: #313244;
+  }
+}

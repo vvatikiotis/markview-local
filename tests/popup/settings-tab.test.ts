@@ -13,7 +13,7 @@ import { SettingsTab } from '../../src/popup/settings-tab';
 beforeEach(async () => {
   vi.useFakeTimers();
   document.body.innerHTML =
-    '<select id="language"><option value="auto">Auto</option></select><select id="theme"><option value="light">Light</option></select><select id="codeBlockDisplay"><option value="scroll">Scroll</option></select>';
+    '<select id="documentTheme"><option value="default">Default</option><option value="catppuccin-pitch-black">Catppuccin Pitch Black</option></select><select id="language"><option value="auto">Auto</option></select><select id="theme"><option value="light">Light</option></select><select id="codeBlockDisplay"><option value="scroll">Scroll</option></select>';
   chrome.storage.local.onChanged = chrome.storage.onChanged;
   vi.mocked(updateSetting).mockClear();
   await new SettingsTab(document.body).initialize();
@@ -39,6 +39,7 @@ describe('settings-tab select narrowing', () => {
     ['language', 'constructor'],
     ['language', 'unknown'],
     ['theme', 'other'],
+    ['documentTheme', 'other'],
     ['codeBlockDisplay', 'other'],
   ])('rejects invalid %s selection %s', async (key, value) => {
     change(key, value);
@@ -49,6 +50,8 @@ describe('settings-tab select narrowing', () => {
   it.each([
     ['language', 'vi'],
     ['theme', 'dark'],
+    ['documentTheme', 'catppuccin-pitch-black'],
+    ['documentTheme', 'default'],
   ])('saves valid %s selection %s', async (key, value) => {
     change(key, value);
     await vi.waitFor(() => expect(updateSetting).toHaveBeenCalledExactlyOnceWith(key, value));

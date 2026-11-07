@@ -80,6 +80,15 @@
   "configurePlugins": {
     "message": "Configurar Plugins"
   },
+  "documentTheme": {
+    "message": "Document Theme"
+  },
+  "documentTheme_default": {
+    "message": "Default"
+  },
+  "documentThemeDescription": {
+    "message": "Colors for the reading area, independent of interface and syntax themes."
+  },
   "syntaxTheme": {
     "message": "Tema de Sintaxis"
   },

@@ -10,6 +10,7 @@ import { logger } from '@utils/logger';
 import { startAutoRefresh, stopAutoRefresh } from '@utils/auto-refresh';
 import { ComponentInstances, destroyAllComponents } from './component-manager';
 import { initI18n } from '@utils/i18n';
+import { applyDocumentTheme } from '@utils/document-theme';
 import { loadSyntaxTheme } from '@utils/syntax-theme-loader';
 
 /**
@@ -44,6 +45,10 @@ export async function handleSettingsChange(
         });
       });
     }
+  }
+
+  if (changes.documentTheme !== undefined) {
+    applyDocumentTheme(changes.documentTheme);
   }
 
   // Handle syntax theme changes

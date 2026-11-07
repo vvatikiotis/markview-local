@@ -23,6 +23,7 @@ import { MESSAGES } from '@utils/messages';
 import { saveToHistory } from '@utils/recent-documents';
 import { resolveImagesInHTML } from '@utils/relative-path-resolver';
 import { scrollToHash } from '@utils/scroll';
+import { applyDocumentTheme } from '@utils/document-theme';
 import { loadSyntaxTheme } from '@utils/syntax-theme-loader';
 import { ComponentInstances } from './component-manager';
 
@@ -102,6 +103,7 @@ async function preloadAssets(markdownSource: string): Promise<void> {
 async function prepareTheme(): Promise<void> {
   const settings = await getSettings();
   applyTheme(settings.theme);
+  applyDocumentTheme(settings.documentTheme);
 
   // Load syntax highlighting theme (custom or external)
   await loadSyntaxTheme(settings.syntaxTheme || 'custom');

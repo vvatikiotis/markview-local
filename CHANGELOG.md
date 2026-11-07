@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 See the [differences from upstream](README.md#differences-from-the-original-open-source-edition) for the changes in
 MarkView Local.
 
+### Added
+
+- Independent **Document Theme** selection: Default and Catppuccin Pitch Black. The new document palette applies
+  the supplied modified Neovim Markdown colors to the reading area in either interface mode, persists across
+  reloads, updates live, and is retained in HTML exports.
+- Document-theme regression tests and a local Markdown sample. Existing interface and syntax theme selections
+  remain independent; the document preset uses opaque black as the transparency fallback.
+
 ## [Upstream baseline]
 
 The entries below describe the original MarkView open-source snapshot, intended for version 1.0.0. They are retained
