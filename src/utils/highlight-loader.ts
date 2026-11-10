@@ -105,6 +105,16 @@ export function highlightCode(code: string, language: string): Promise<string> {
  * Synchronous highlight for languages that are already loaded
  */
 export function highlightCodeSync(code: string, language: string): string {
+  if (!language) {
+    try {
+      const result = hljs.highlightAuto(code);
+      return result.language && result.relevance > 0 ? result.value : escapeHtml(code);
+    } catch (err) {
+      logger.warn('[HighlightJS] Failed to auto-highlight code:', err);
+      return escapeHtml(code);
+    }
+  }
+
   // Skip highlighting for Mermaid diagrams
   if (language === 'mermaid') {
     return escapeHtml(code);

@@ -45,7 +45,9 @@ describe('Catppuccin Pitch Black', () => {
       '<plain> & text',
       '```',
       '',
-      '    <indented> & text',
+      '    import pandas as pd',
+      '    def scan_market(prices):',
+      '        return pd.Series(prices)',
       '',
       '```mermaid',
       'graph TD; A-->B;',
@@ -69,7 +71,10 @@ describe('Catppuccin Pitch Black', () => {
     expect(blocks[0]!.querySelector('.hljs-keyword')?.textContent).toBe('const');
     expect(blocks[1]!.textContent).toBe('<plain> & text\n');
     expect(blocks[2]!.textContent).toBe('<plain> & text\n');
-    expect(blocks[3]!.textContent).toBe('<indented> & text\n');
+    expect(blocks[3]!.querySelector('.hljs-keyword')?.textContent).toBe('import');
+    const detectedTitle = blocks[3]!.querySelector('.hljs-title.function_')!;
+    expect(detectedTitle.textContent).toBe('scan_market');
+    expect(getComputedStyle(detectedTitle).color).toBe('rgb(137, 180, 250)');
     expect(document.querySelector('.mermaid-placeholder')).not.toBeNull();
     expect(document.querySelector('p code')!.classList.contains('hljs')).toBe(false);
   });

@@ -1,7 +1,33 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { getHighlightJS, highlightCode, loadLanguage } from '@utils/highlight-loader';
+import {
+  getHighlightJS,
+  highlightCode,
+  highlightCodeSync,
+  loadLanguage,
+} from '@utils/highlight-loader';
 
 afterEach(() => vi.restoreAllMocks());
+
+describe('highlightCodeSync automatic detection', () => {
+  it('uses bundled detection only for an absent language', () => {
+    const detect = vi.spyOn(getHighlightJS(), 'highlightAuto');
+    expect(
+      highlightCodeSync('import pandas as pd\ndef scan(prices):\n    return pd.Series(prices)', '')
+    ).toContain('hljs-keyword');
+    expect(detect).toHaveBeenCalledTimes(1);
+    for (const language of ['py', 'plaintext', 'text', 'unknown', 'mermaid']) {
+      highlightCodeSync('<b>&', language);
+    }
+    expect(detect).toHaveBeenCalledTimes(1);
+  });
+
+  it('escapes when detection fails', () => {
+    vi.spyOn(getHighlightJS(), 'highlightAuto').mockImplementation(() => {
+      throw new Error('detection failed');
+    });
+    expect(highlightCodeSync('<b>&', '')).toBe('&lt;b&gt;&amp;');
+  });
+});
 
 describe('highlight-loader Promise contracts', () => {
   it('checks supported and unsupported languages immediately and returns Promises', async () => {

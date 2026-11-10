@@ -73,7 +73,10 @@ export class MarkdownRenderer {
       linkify: options.linkify ?? true,
       breaks: options.breaks ?? false, // Use CommonMark behavior: single newlines = spaces, only <br> or 2 trailing spaces create breaks
       typographer: options.typographer ?? true,
-      highlight: options.highlight !== false ? this.highlightCode.bind(this) : undefined,
+      highlight:
+        options.highlight !== false && !options.disabledPlugins?.includes('highlight')
+          ? this.highlightCode.bind(this)
+          : undefined,
     });
 
     // Determine disabled plugins
@@ -109,8 +112,11 @@ export class MarkdownRenderer {
       tokens[idx]?.attrJoin('class', 'hljs');
       return renderFence(tokens, idx, options, env, self);
     };
-    this.md.renderer.rules.code_block = (tokens, idx) =>
-      `<pre><code class="hljs">${this.md.utils.escapeHtml(tokens[idx]?.content ?? '')}</code></pre>\n`;
+    this.md.renderer.rules.code_block = (tokens, idx, options) => {
+      const code = tokens[idx]?.content ?? '';
+      const highlighted = options.highlight?.(code, '', '') || this.md.utils.escapeHtml(code);
+      return `<pre><code class="hljs">${highlighted}</code></pre>\n`;
+    };
 
     // External links open in new tab
     this.md.renderer.rules.link_open = (tokens, idx, _options, _env, self) => {
@@ -183,9 +189,6 @@ export class MarkdownRenderer {
    * Highlight code blocks using highlight.js
    */
   private highlightCode(code: string, language: string): string {
-    if (!language) {
-      return this.md.utils.escapeHtml(code);
-    }
     return highlightCodeSync(code, language);
   }
 
